@@ -1,6 +1,8 @@
 package com.example.mentaland__friendpage;
 
-public class Mood {
+import java.io.Serializable;
+
+public class Mood implements Serializable {
     private String emotionstr;
     private String emotionState;
     private String reason;
