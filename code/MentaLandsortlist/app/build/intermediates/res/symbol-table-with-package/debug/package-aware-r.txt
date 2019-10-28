@@ -1098,6 +1098,7 @@ id fill_horizontal
 id fill_vertical
 id filled
 id filter_button
+id filter_list
 id fixed
 id followed_button
 id forever

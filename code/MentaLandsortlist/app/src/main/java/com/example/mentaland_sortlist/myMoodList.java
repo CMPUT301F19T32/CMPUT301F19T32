@@ -1,5 +1,7 @@
 package com.example.mentaland_sortlist;
 
+import android.annotation.SuppressLint;
+import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +20,7 @@ public class myMoodList extends ArrayAdapter<Mood> {
 
     private ArrayList<Mood> moods;
     private MainActivity context;
+    private int pos1;
 
     public myMoodList(MainActivity context, ArrayList<Mood> moods) {
         super(context,0,moods);
@@ -33,18 +38,46 @@ public class myMoodList extends ArrayAdapter<Mood> {
             view = LayoutInflater.from(context).inflate(R.layout.content,parent,false);
         }
 
-        Mood mood = moods.get(position);
+        final Mood mood = moods.get(position);
 
         TextView mood_text = view.findViewById(R.id.mood_text);
         TextView date_text = view.findViewById(R.id.date_text);
 
         mood_text.setText(mood.getEmotionstr());
-        date_text.setText(mood.getEmotionstr());
+        date_text.setText(mood.getDate());
 
-        context.delete_mood.setOnClickListener(new View.OnClickListener() {
+        //sort the list by date
+        Collections.sort(moods, new Comparator<Mood>() {
+            public int compare(Mood first, Mood second)  {
+                return second.getDate().compareTo(first.getDate());
+            }
+        });
+
+        context.filter_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.moodDataList.remove(pos);
+                if (mood!= null) {
+                    context.filterList.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+
+        view.setOnClickListener(new View.OnClickListener() {
+            //to press on the list position
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View v) {
+                pos1 = pos;
+            }
+        });
+
+        context.delete_mood.setOnClickListener(new View.OnClickListener() {
+            //to delete a mood
+            @Override
+            public void onClick(View v) {
+                context.moodDataList.remove(pos1);
                 context.moodAdapter.notifyDataSetChanged();
                 context.moodList.setAdapter(context.moodAdapter);
         }

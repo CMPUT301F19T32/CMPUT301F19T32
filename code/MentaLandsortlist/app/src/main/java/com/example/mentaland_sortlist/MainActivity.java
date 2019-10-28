@@ -7,13 +7,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ListView moodList;
     ArrayAdapter<Mood> moodAdapter;
     ArrayList<Mood> moodDataList;
-    Button delete_mood;
+    FloatingActionButton delete_mood;
+    ListView filterList;
+    ArrayAdapter<Mood> filterAdapter;
+    ArrayList<Mood> filterDataList;
+    Button filter_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         delete_mood = findViewById(R.id.delete_mood);
         moodList = findViewById(R.id.mood_list);
+        filter_button = findViewById(R.id.filter_button);
+        filterList = findViewById(R.id.filter_list);
 
         String []mood = {"Happy", "Angry", "Happy", "Sad", "Happy"};
         String []date = {"1010-09-01", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
@@ -36,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         moodAdapter = new myMoodList(this, moodDataList);
 
         moodList.setAdapter(moodAdapter);
+
+        // filterDataList = new ArrayList<>();
 
     }
 }
