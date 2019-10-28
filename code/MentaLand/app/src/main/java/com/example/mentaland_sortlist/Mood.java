@@ -1,4 +1,4 @@
-package com.example.mentaland;
+package com.example.mentaland_sortlist;
 
 public class Mood {
     private String emotionstr;
@@ -8,6 +8,16 @@ public class Mood {
     private  String date;
     private String socialState;
     private String username;
+
+    public Mood(String emotionstr, String emotionState, String reason, String time, String date, String socialState, String username) {
+        this.emotionstr = emotionstr;
+        this.emotionState = emotionState;
+        this.reason = reason;
+        this.time = time;
+        this.date = date;
+        this.socialState = socialState;
+        this.username = username;
+    }
 
     public String getEmotionstr() {
         return emotionstr;

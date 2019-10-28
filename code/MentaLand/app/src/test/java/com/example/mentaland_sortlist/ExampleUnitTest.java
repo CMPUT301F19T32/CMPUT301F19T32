@@ -1,4 +1,4 @@
-package com.example.mentaland;
+package com.example.mentaland_sortlist;
 
 import org.junit.Test;
 

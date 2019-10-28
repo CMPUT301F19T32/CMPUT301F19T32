@@ -1,4 +1,4 @@
-package com.example.mentaland;
+package com.example.mentaland_sortlist;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.mentaland", appContext.getPackageName());
+        assertEquals("com.example.mentaland_sortlist", appContext.getPackageName());
     }
 }
