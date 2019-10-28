@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<Mood> moodFrArrayAdapter;
     ArrayList<Mood> moodFrArrayList;
     private int index;
+    private String user;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,15 +29,17 @@ public class MainActivity extends AppCompatActivity {
         Button requestButton = findViewById(R.id.request);
         Button map = findViewById(R.id.map_fr);
         Button addFriend = findViewById(R.id.addFriend);
+        user = "a";
         addFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 index = moodFrArrayList.size() + 1;
-                new addFriendFrag().show(getSupportFragmentManager(),"addFriend");
+                new addFriendFrag(user).show(getSupportFragmentManager(),"addFriend");
 
             }
         });
 
 
     }
+    
 }
