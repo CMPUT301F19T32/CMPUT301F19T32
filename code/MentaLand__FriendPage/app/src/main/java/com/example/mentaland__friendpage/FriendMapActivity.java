@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FriendMap extends AppCompatActivity {
-    @Override
-    private ArrayList<Mood> mapMood;
+public class FriendMapActivity extends AppCompatActivity {
 
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    private ArrayList<Mood> mapMood;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friendmap);
         Bundle bundle = getIntent().getExtras();

@@ -2,7 +2,6 @@ package com.example.mentaland__friendpage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,14 +40,23 @@ public class MainActivity extends AppCompatActivity implements addFriendFrag.OnF
         });
 
         map.setOnClickListener(new View.OnClickListener() {
-            Intent mapIntent  = new Intent(MainActivity.this,FriendMap.class );
-            Bundle mapBundle = new Bundle();
+
             @Override
             public void onClick(View v) {
+                Intent mapIntent  = new Intent(MainActivity.this, FriendMapActivity.class );
+                Bundle mapBundle = new Bundle();
                 mapBundle.putSerializable("array", moodFrArrayList);
                 mapIntent.putExtras(mapBundle);
                 startActivity(mapIntent);
 
+            }
+        });
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent requestIntent  = new Intent(MainActivity.this, RequestActivity.class );
+                requestIntent.putExtra("user",user);
+                startActivity(requestIntent);
             }
         });
     }
