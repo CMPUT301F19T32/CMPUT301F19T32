@@ -20,7 +20,8 @@ public class RequestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_layout);
         username = getIntent().getStringExtra("user");
-
+//onclick view list both
+        
     }
 
 }
