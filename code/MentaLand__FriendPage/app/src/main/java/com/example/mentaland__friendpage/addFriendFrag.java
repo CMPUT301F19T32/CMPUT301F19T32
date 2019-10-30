@@ -19,10 +19,10 @@ public class addFriendFrag extends DialogFragment {
     private EditText userToSent;
     private EditText massage;
     private OnFragmentInteractionListener listener;
-
+    private Request request;
 
     public interface OnFragmentInteractionListener {
-        void onOkPress();
+        void onOkPress(Request request);
     }
 
     @Override
@@ -54,7 +54,10 @@ public class addFriendFrag extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //search in FireStore
-                        listener.onOkPress();
+                        request.setMassageSent(massage.getText().toString());
+                        request.setReciveName(userToSent.getText().toString());
+                        request.setSentName(userName);
+                        listener.onOkPress(request);
                     }
                 }).create();
     }

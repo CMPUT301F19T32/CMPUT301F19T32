@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements addFriendFrag.OnF
     ArrayList<Mood> moodFrArrayList;
     private int index;
     private String user;
+    private Mood mood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,17 @@ public class MainActivity extends AppCompatActivity implements addFriendFrag.OnF
                 startActivity(requestIntent);
             }
         });
+        moodFriendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mood = moodFrArrayList.get(position);
+                /// add new activity relatide to homepage
+            }
+        });
     }
 
     @Override
-    public void onOkPress() {
-
+    public void onOkPress(Request request) {
+        //search and return toast in Friend page
     }
 }
