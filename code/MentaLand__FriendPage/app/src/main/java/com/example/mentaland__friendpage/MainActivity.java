@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements addFriendFrag.OnF
         moodFriendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mood = moodFrArrayList.get(position);
+                mood = moodFrArrayAdapter.getItem(position);
                 /// add new activity relatide to homepage
             }
         });

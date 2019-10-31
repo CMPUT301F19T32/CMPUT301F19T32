@@ -27,7 +27,7 @@ public class RequestActivity extends AppCompatActivity {
         requestVeiw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                new AgreeDisagreeFrag(requestArrayAdapter.getItem(position)).show(getSupportFragmentManager(),"A/D");
             }
         });
     }
