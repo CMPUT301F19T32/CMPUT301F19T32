@@ -8,8 +8,8 @@
 
     <ListView
         android:id="@+id/mood_list"
-        android:layout_width="393dp"
-        android:layout_height="308dp"
+        android:layout_width="397dp"
+        android:layout_height="347dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,18 +99,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/delete_mood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
-
     <ListView
         android:id="@+id/filter_list"
         android:layout_width="86dp"
@@ -118,6 +106,16 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/mood_list"
         app:layout_constraintTop_toBottomOf="@+id/filter_button" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="239dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Long click to delete a mood history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mood_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

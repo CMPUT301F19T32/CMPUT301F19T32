@@ -3,11 +3,12 @@ package com.example.mentaland_sortlist;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     ListView moodList;
     ArrayAdapter<Mood> moodAdapter;
     ArrayList<Mood> moodDataList;
-    FloatingActionButton delete_mood;
     ListView filterList;
     ArrayAdapter<Mood> filterAdapter;
     ArrayList<Mood> filterDataList;
@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        delete_mood = findViewById(R.id.delete_mood);
         moodList = findViewById(R.id.mood_list);
         filter_button = findViewById(R.id.filter_button);
         filterList = findViewById(R.id.filter_list);
@@ -41,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
             moodDataList.add((new Mood(mood[i],something[i],something[i],something[i], date[i],something[i],something[i])));
         }
 
-        moodAdapter = new myMoodList(this, moodDataList);
+        moodAdapter = new myMoodList(this,moodDataList);
 
         moodList.setAdapter(moodAdapter);
 
-        // filterDataList = new ArrayList<>();
+
 
     }
 }

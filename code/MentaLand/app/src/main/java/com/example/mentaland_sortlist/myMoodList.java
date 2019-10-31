@@ -20,7 +20,7 @@ public class myMoodList extends ArrayAdapter<Mood> {
 
     private ArrayList<Mood> moods;
     private MainActivity context;
-    private int pos1;
+
 
     public myMoodList(MainActivity context, ArrayList<Mood> moods) {
         super(context,0,moods);
@@ -64,24 +64,17 @@ public class myMoodList extends ArrayAdapter<Mood> {
 
 
 
-        view.setOnClickListener(new View.OnClickListener() {
-            //to press on the list position
-            @SuppressLint("RestrictedApi")
+        view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                pos1 = pos;
+            public boolean onLongClick(View v) {
+                context.moodDataList.remove(pos);
+                context.moodAdapter.notifyDataSetChanged();
+                context.moodList.setAdapter(context.moodAdapter);
+                return true;
             }
         });
 
-        context.delete_mood.setOnClickListener(new View.OnClickListener() {
-            //to delete a mood
-            @Override
-            public void onClick(View v) {
-                context.moodDataList.remove(pos1);
-                context.moodAdapter.notifyDataSetChanged();
-                context.moodList.setAdapter(context.moodAdapter);
-        }
-        });
+
 
         return view;
     }
