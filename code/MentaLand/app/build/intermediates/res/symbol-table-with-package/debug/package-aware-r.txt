@@ -1000,12 +1000,12 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable empty
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
-drawable img
 drawable img1
 drawable img2
 drawable img3
@@ -1028,7 +1028,6 @@ drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
 id CTRL
-id Emotion
 id FUNCTION
 id META
 id SHIFT
@@ -1053,7 +1052,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
-id add_button
+id add_image
 id alertTitle
 id all
 id always
@@ -1083,7 +1082,6 @@ id customPanel
 id date_text
 id decor_content_parent
 id default_activity_button
-id delete_mood
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1094,6 +1092,7 @@ id direct
 id disableHome
 id editText
 id edit_query
+id emotion
 id end
 id enterAlways
 id enterAlwaysCollapsed
@@ -1109,7 +1108,6 @@ id filter_list
 id fixed
 id followed_button
 id forever
-id geolocation
 id ghost_view
 id gone
 id gridview
@@ -1197,7 +1195,6 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
-id social
 id spacer
 id split_action_bar
 id spread
@@ -1221,7 +1218,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
-id textView4
+id textView3
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1295,6 +1292,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_create
+layout activity_image_adapter
 layout activity_main
 layout content
 layout design_bottom_navigation_item

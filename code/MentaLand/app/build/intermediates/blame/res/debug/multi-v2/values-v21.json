@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Nathan\\Desktop\\mentaland\\code\\MentaLand\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "C:\\Users\\Nathan\\Desktop\\GitHub\\MentaLand\\code\\MentaLand\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Nathan\\.gradle\\caches\\transforms-2\\files-2.1\\cb634fe4b4d1fdfcd5255e485d30a0c1\\material-1.0.0\\res\\values-v21\\values-v21.xml",

@@ -1,4 +1,4 @@
-#Thu Oct 31 16:11:49 MDT 2019
-base.0=C\:\\Users\\Nathan\\Desktop\\mentaland\\code\\MentaLand\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Thu Oct 31 17:09:57 MDT 2019
+base.0=C\:\\Users\\Nathan\\Desktop\\GitHub\\MentaLand\\code\\MentaLand\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
