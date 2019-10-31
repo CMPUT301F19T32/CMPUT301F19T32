@@ -1,7 +1,9 @@
 package com.example.mentaland__friendpage;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,7 @@ public class AgreeDisagreeFrag extends DialogFragment {
     private OnFragmentInteractionListener listener;
     private Request request;
     public interface OnFragmentInteractionListener {
-        void onAgreePressed();
+        void onAgreePressed(Integer state);
     }
 
     @Override
@@ -36,5 +38,21 @@ public class AgreeDisagreeFrag extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.agree_disagree_layout, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        return builder
+                .setView(view)
+                .setTitle("Request")
+                .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listener.onAgreePressed(0);
+                    }
+                })
+                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listener.onAgreePressed(1);
+                    }
+                }).create();
     }
 }

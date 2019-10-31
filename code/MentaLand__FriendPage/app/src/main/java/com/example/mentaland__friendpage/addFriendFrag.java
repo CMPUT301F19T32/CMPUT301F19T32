@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class addFriendFrag extends DialogFragment {
+public class AddFriendFrag extends DialogFragment {
     private String userName;
     private EditText userToSent;
     private EditText massage;
@@ -36,7 +36,7 @@ public class addFriendFrag extends DialogFragment {
         }
     }
 
-    public addFriendFrag(String userNamein){this.userName = userNamein;}
+    public AddFriendFrag(String userNamein){this.userName = userNamein;}
 
 
     @NonNull

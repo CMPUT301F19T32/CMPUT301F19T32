@@ -16,8 +16,8 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
     private ArrayList<Mood> moods;
     private Context context;
 
-    public CustomeFriendList(Context context, ArrayList<Mood> rides) {
-        super(context, 0, rides);
+    public CustomeFriendList(Context context, ArrayList<Mood> moods) {
+        super(context, 0, moods);
         this.moods = moods;
         this.context = context;
     }

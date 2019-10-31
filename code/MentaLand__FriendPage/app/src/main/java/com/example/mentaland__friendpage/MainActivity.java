@@ -12,14 +12,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements addFriendFrag.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements AddFriendFrag.OnFragmentInteractionListener{
     ListView moodFriendList;
     ArrayAdapter<Mood> moodFrArrayAdapter;
     ArrayList<Mood> moodFrArrayList;
     private int index;
     private String user;
     private Mood mood;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements addFriendFrag.OnF
             @Override
             public void onClick(View v) {
                 index = moodFrArrayList.size() + 1;
-                new addFriendFrag(user).show(getSupportFragmentManager(),"addFriend");
+                new AddFriendFrag(user).show(getSupportFragmentManager(),"addFriend");
 
             }
         });
@@ -73,5 +73,8 @@ public class MainActivity extends AppCompatActivity implements addFriendFrag.OnF
     @Override
     public void onOkPress(Request request) {
         //search and return toast in Friend page
+        // return already, is friend , not a user, sent.
     }
+
+
 }

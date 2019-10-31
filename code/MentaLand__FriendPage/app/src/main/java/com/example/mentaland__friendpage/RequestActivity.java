@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class RequestActivity extends AppCompatActivity {
+public class RequestActivity extends AppCompatActivity implements AgreeDisagreeFrag.OnFragmentInteractionListener{
     private String username;
     ListView requestVeiw;
     ArrayList<Request> requestArrayList;
@@ -31,5 +31,8 @@ public class RequestActivity extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public void onAgreePressed(Integer state) {
+        // firestore friend both +
+    }
 }
