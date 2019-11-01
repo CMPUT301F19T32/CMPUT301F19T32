@@ -3,7 +3,7 @@
     package="com.example.mentaland_sortlist.test" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="29"
         android:targetSdkVersion="29" />
 
     <instrumentation
