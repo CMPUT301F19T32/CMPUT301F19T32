@@ -23,6 +23,12 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_layout);
         username = getIntent().getStringExtra("user");
+        requestVeiw = findViewById(R.id.requestListView);
+        requestArrayList = new ArrayList<>();
+        requestArrayAdapter = new CustomRequestList(this,requestArrayList);
+        requestVeiw.setAdapter(requestArrayAdapter);
+
+
 //onclick view list both
         requestVeiw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

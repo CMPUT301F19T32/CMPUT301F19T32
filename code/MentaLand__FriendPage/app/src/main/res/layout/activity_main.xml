@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.039" />
+
 
     <ListView
         android:id="@+id/friendLIstVeiw"
@@ -26,46 +27,45 @@
         android:layout_height="433dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.194">
-    </ListView>
+        app:layout_constraintVertical_bias="0.035"></ListView>
 
-
-
-
-        <Button
-            android:id="@+id/request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/map_fr"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw" />
+    <Button
+        android:id="@+id/request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/map_fr"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
+        app:layout_constraintVertical_bias="0.277" />
 
     <Button
         android:id="@+id/map_fr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="MAP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
-        app:layout_constraintVertical_bias="0.504" />
+        app:layout_constraintVertical_bias="0.277" />
 
     <Button
-            android:id="@+id/addFriend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/map_fr"
-            app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw" />
+        android:id="@+id/addFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADDFRIEND"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintStart_toEndOf="@+id/map_fr"
+        app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
+        app:layout_constraintVertical_bias="0.277" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

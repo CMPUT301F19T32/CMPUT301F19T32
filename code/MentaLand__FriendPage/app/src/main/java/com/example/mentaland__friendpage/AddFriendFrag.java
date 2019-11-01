@@ -17,7 +17,7 @@ import androidx.fragment.app.DialogFragment;
 public class AddFriendFrag extends DialogFragment {
     private String userName;
     private EditText userToSent;
-    private EditText massage;
+    private EditText massageIn;
     private OnFragmentInteractionListener listener;
     private Request request;
 
@@ -44,7 +44,7 @@ public class AddFriendFrag extends DialogFragment {
     public Dialog onCreateDialog( Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.add_friend_fragment,null);
         userToSent = view.findViewById(R.id.UserNameToSent);
-        massage = view.findViewById(R.id.MassageToSent);
+        massageIn = view.findViewById(R.id.MassageToSent);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         return builder
                 .setView(view)
@@ -54,10 +54,14 @@ public class AddFriendFrag extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //search in FireStore
-                        request.setMassageSent(massage.getText().toString());
-                        request.setReciveName(userToSent.getText().toString());
-                        request.setSentName(userName);
-                        listener.onOkPress(request);
+                        //
+
+                        //
+                        String massage  =  massageIn.getText().toString();
+                        String formWhom = userName;
+                        String toWhom = userToSent.getText().toString();
+                        Request requestIn = new Request(formWhom,toWhom,massage);
+                        listener.onOkPress(requestIn);
                     }
                 }).create();
     }
