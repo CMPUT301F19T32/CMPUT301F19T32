@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,10 +33,18 @@ public class HomePage extends AppCompatActivity {
     ListView moodList;
     ArrayAdapter<Mood> moodAdapter;
     ArrayList<Mood> moodDataList;
-    ListView filterList;
-    ArrayAdapter<Mood> filterAdapter;
+
+
+    LinearLayout filterLayout;
     ArrayList<Mood> filterDataList;
     Button filter_button;
+    Button filter_angry;
+    Button filter_sad;
+    Button filter_happy;
+    Button filter_all;
+    static int chk=0;
+    Button map_button;
+
     Button add_button;
     FirebaseFirestore db;
     TextView test;
@@ -44,7 +53,6 @@ public class HomePage extends AppCompatActivity {
     private LocationManager locationManager;
     private double longitude;
     private double latitude;
-    Button map_button;
     Button followed;
 
 
@@ -57,9 +65,16 @@ public class HomePage extends AppCompatActivity {
         String username = tohome.getStringExtra("username");
         db = FirebaseFirestore.getInstance();
         final DocumentReference docRef = db.collection("Account").document(username);
+
+
         moodList = findViewById(R.id.mood_list);
         filter_button = findViewById(R.id.filter_button);
-        filterList = findViewById(R.id.filter_list);
+        filterLayout = findViewById(R.id.filter_layout);
+        filter_angry = findViewById(R.id.filter_angry);
+        filter_happy = findViewById(R.id.filter_happy);
+        filter_sad = findViewById(R.id.filter_sad);
+        filter_all = findViewById(R.id.filter_all);
+
         add_button = findViewById(R.id.button);
         test= findViewById(R.id.test);
         DocumentReference getdata = db.collection("Account").document(username);
@@ -121,8 +136,103 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        filter_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        filter_sad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionstr().equals("Sad")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String date = moodDataList.get(num).getDate();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        filterDataList.add(new Mood("Sad", emotionState, reason, time, date, socialState, username));
+                        chk = 1;
+
+                    }
+                }
+                filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(filterDataList);
+
+            }
+        });
+
+        filter_angry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionstr().equals("Angry")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String date = moodDataList.get(num).getDate();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        filterDataList.add(new Mood("Angry", emotionState, reason, time, date, socialState, username));
+                        chk = 1;
+
+                    }
+                }
+                filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(filterDataList);
+
+            }
+        });
+
+        filter_happy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionstr().equals("Happy")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String date = moodDataList.get(num).getDate();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        filterDataList.add(new Mood("Happy", emotionState, reason, time, date, socialState, username));
+                        chk = 1;
+
+                    }
+                }
+                filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(filterDataList);
+
+            }
+        });
+        filter_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(moodDataList);
+                chk = 0;
+
+            }
+        });
 
 
 
     }
+    public void filter_show(ArrayList<Mood> myDataList){
+        moodAdapter = new myMoodList(this, myDataList);
+        moodList.setAdapter(moodAdapter);
+    }
+
 }

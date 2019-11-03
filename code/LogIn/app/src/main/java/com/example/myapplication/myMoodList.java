@@ -53,24 +53,29 @@ public class myMoodList extends ArrayAdapter<Mood> {
             }
         });
 
-        context.filter_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mood!= null) {
-                    context.filterList.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-
-
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                context.moodDataList.remove(pos);
-                context.moodAdapter.notifyDataSetChanged();
-                context.moodList.setAdapter(context.moodAdapter);
-                return true;
+                if (context.chk == 0) {
+                    context.moodDataList.remove(pos);
+                    context.moodAdapter.notifyDataSetChanged();
+                    context.moodList.setAdapter(context.moodAdapter);
+                    return true;
+                }
+                else if(context.chk == 1){
+                    for(int num = 0;num < context.moodDataList.size();num++) {
+                        if (context.moodDataList.get(num).getTime().equals(context.filterDataList.get(pos).getTime())&&
+                                context.moodDataList.get(num).getDate().equals(context.filterDataList.get(pos).getDate()
+                                )) {
+                            context.moodDataList.remove(num);
+                        }
+                    }
+                    context.filterDataList.remove(pos);
+                    context.moodAdapter.notifyDataSetChanged();
+                    context.moodList.setAdapter(context.moodAdapter);
+                    return true;
+                }
+                return false;
             }
         });
 

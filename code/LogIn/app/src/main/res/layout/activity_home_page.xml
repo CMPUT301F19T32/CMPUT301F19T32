@@ -87,14 +87,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.503" />
 
-    <ListView
-        android:id="@+id/filter_list"
-        android:layout_width="86dp"
-        android:layout_height="142dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/mood_list"
-        app:layout_constraintTop_toBottomOf="@+id/filter_button" />
-
     <TextView
         android:id="@+id/text"
         android:layout_width="239dp"
@@ -140,5 +132,38 @@
         app:layout_constraintStart_toStartOf="@id/text"
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="0.656" />
+
+    <LinearLayout
+        android:id="@+id/filter_layout"
+        android:layout_width="86dp"
+        android:layout_height="142dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/mood_list"
+        app:layout_constraintTop_toBottomOf="@+id/filter_button"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/filter_all"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="All"/>
+        <Button
+            android:id="@+id/filter_angry"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="Angry"/>
+        <Button
+            android:id="@+id/filter_happy"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="Happy"/>
+        <Button
+            android:id="@+id/filter_sad"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="Sad"/>
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
