@@ -1,4 +1,4 @@
-#Fri Nov 01 11:37:11 MDT 2019
+#Sun Nov 03 14:40:27 MST 2019
 base.0=/Users/masterzh/Desktop/MentaLand/code/MentaLand/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

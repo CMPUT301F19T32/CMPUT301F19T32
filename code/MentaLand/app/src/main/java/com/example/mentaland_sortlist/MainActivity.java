@@ -18,13 +18,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<Mood> moodAdapter;
     ArrayList<Mood> moodDataList;
     LinearLayout filterLayout;
-    ArrayAdapter<Mood> filterAdapter;
+    //ArrayAdapter<Mood> filterAdapter;
     ArrayList<Mood> filterDataList;
     Button filter_button;
     Button filter_angry;
     Button filter_sad;
     Button filter_happy;
     Button filter_all;
+    static int chk=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
                         filterDataList.add(new Mood("Sad", emotionState, reason, time, date, socialState, username));
-
+                        chk = 1;
 
                     }
                 }
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
                         filterDataList.add(new Mood("Angry", emotionState, reason, time, date, socialState, username));
-
+                        chk = 1;
 
                     }
                 }
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
                         filterDataList.add(new Mood("Happy", emotionState, reason, time, date, socialState, username));
-
+                        chk = 1;
 
                     }
                 }
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 filterLayout.setVisibility(View.INVISIBLE);
                 filter_show(moodDataList);
+                chk = 0;
 
             }
         });
