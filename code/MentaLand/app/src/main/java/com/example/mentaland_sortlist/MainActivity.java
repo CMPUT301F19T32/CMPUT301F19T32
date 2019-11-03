@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private LocationManager locationManager;
     private double longitude;
     private double latitude;
-
+    Button map_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +73,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // for Activity#requestPermissions for more details.
             return;
         }
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider());
+        Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
         onLocationChanged(location);
         loc_func(location);
+        map_button = findViewById(R.id.map_button);
+        map_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
     }
     @Override
