@@ -9,6 +9,7 @@ public class Mood {
     private String socialState;
     private String username;
 
+
     public Mood(String emotionstr, String emotionState, String reason, String time, String date, String socialState, String username) {
         this.emotionstr = emotionstr;
         this.emotionState = emotionState;

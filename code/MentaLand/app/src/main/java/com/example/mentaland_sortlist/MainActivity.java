@@ -2,6 +2,9 @@ package com.example.mentaland_sortlist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener {
     ListView moodList;
     ArrayAdapter<Mood> moodAdapter;
     ArrayList<Mood> moodDataList;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button filter_happy;
     Button filter_all;
     static int chk=0;
+    Button map_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +150,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        map_button = findViewById(R.id.map_button);
+        map_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+
+
     }
 
     public void filter_show(ArrayList<Mood> myDataList){
@@ -153,4 +171,23 @@ public class MainActivity extends AppCompatActivity {
         moodList.setAdapter(moodAdapter);
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }
