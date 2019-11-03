@@ -3,8 +3,8 @@
     package="com.example.mentaland_sortlist.test" >
 
     <uses-sdk
-        android:minSdkVersion="24"
-        android:targetSdkVersion="28" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="29" />
 
     <instrumentation
         android:name="androidx.test.runner.AndroidJUnitRunner"

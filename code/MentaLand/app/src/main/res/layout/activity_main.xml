@@ -8,8 +8,8 @@
 
     <ListView
         android:id="@+id/mood_list"
-        android:layout_width="397dp"
-        android:layout_height="347dp"
+        android:layout_width="393dp"
+        android:layout_height="308dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,9 +77,9 @@
         android:id="@+id/textView"
         android:layout_width="197dp"
         android:layout_height="41dp"
-        android:gravity="center"
         android:text="User"
-        android:textSize="14sp"
+        android:gravity="center"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -99,6 +99,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delete_mood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
     <ListView
         android:id="@+id/filter_list"
         android:layout_width="86dp"
@@ -106,30 +118,6 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/mood_list"
         app:layout_constraintTop_toBottomOf="@+id/filter_button" />
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="239dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="Long click to delete a mood history"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mood_list" />
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="76dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/text"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.656" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
