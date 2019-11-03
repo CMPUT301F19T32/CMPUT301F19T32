@@ -29,7 +29,7 @@ public class CustomRequestList extends ArrayAdapter<Request> {
         View view = convertView;
 
         if (view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.content,parent,false);
+            view = LayoutInflater.from(context).inflate(R.layout.fr_mood_item,parent,false);
         }
         Request request = requests.get(position);
         TextView friendName = view.findViewById(R.id.requestViewFriendText);

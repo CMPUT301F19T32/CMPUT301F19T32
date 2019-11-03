@@ -50,6 +50,9 @@
         <activity
             android:name="com.example.mentaland_sortlist.MapsActivity"
             android:label="@string/title_activity_maps" />
+        <activity android:name="com.example.mentaland_sortlist.FriendMapActivity" />
+        <activity android:name="com.example.mentaland_sortlist.RequestActivity" />
+        <activity android:name="com.example.mentaland_sortlist.FriendActivity" />
         <activity android:name="com.example.mentaland_sortlist.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

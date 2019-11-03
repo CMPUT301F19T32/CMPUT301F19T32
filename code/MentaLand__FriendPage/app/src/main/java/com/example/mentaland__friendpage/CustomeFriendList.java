@@ -28,7 +28,7 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
         View view = convertView;
 
         if (view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.content,parent,false);
+            view = LayoutInflater.from(context).inflate(R.layout.fr_mood_item,parent,false);
         }
 
         Mood mood = moods.get(position);
