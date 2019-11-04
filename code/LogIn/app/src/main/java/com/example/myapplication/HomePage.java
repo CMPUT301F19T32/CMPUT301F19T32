@@ -58,6 +58,7 @@ public class HomePage extends AppCompatActivity {
     Button myProfileButton;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -137,6 +138,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentf = new Intent(HomePage.this,FriendActivity.class);
+                intentf.putExtra("user",usernameMain);
                 HomePage.this.startActivity(intentf);
             }
         });
