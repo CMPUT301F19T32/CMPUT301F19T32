@@ -97,23 +97,33 @@ public class HomePage extends AppCompatActivity {
             }
         });
         TextView name= findViewById(R.id.uname);
-        String []mood = {"Happy", "Angry", "Happy", "Sad", "Happy"};
+        final String []mood = {"Happy", "Angry", "Happy", "Sad", "Happy"};
         String []date = {"1010-09-01", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
         String []something = {"1", "2", "3", "4", "5"};
+
+        Geolocation geolocation;
+        double a = 100;
+        double b = 123;
+        geolocation = new Geolocation(a,b);
+
+
         name.setText(username);
         moodDataList = new ArrayList<>();
 
         for (int i = 00; i < mood.length; i++) {
-            moodDataList.add((new Mood(mood[i],something[i],something[i],something[i], date[i],something[i],something[i])));
+            moodDataList.add((new Mood(mood[i],something[i],something[i],something[i], date[i],something[i],something[i],geolocation)));
         }
         moodAdapter = new myMoodList(this,moodDataList);
         moodList.setAdapter(moodAdapter);
+
         textView = findViewById(R.id.location);
+
+
         map_button = findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this,MapsActivity.class);
+                Intent intent = new Intent(HomePage.this,MyHistotyMoodMap.class);
                 startActivity(intent);
             }
         });
@@ -157,7 +167,8 @@ public class HomePage extends AppCompatActivity {
                         String date = moodDataList.get(num).getDate();
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
-                        filterDataList.add(new Mood("Sad", emotionState, reason, time, date, socialState, username));
+                        Geolocation geolocation = moodDataList.get(num).getGeolocation();
+                        filterDataList.add(new Mood("Sad", emotionState, reason, time, date, socialState, username, geolocation));
                         chk = 1;
 
                     }
@@ -182,7 +193,8 @@ public class HomePage extends AppCompatActivity {
                         String date = moodDataList.get(num).getDate();
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
-                        filterDataList.add(new Mood("Angry", emotionState, reason, time, date, socialState, username));
+                        Geolocation geolocation = moodDataList.get(num).getGeolocation();
+                        filterDataList.add(new Mood("Angry", emotionState, reason, time, date, socialState, username,geolocation));
                         chk = 1;
 
                     }
@@ -207,7 +219,8 @@ public class HomePage extends AppCompatActivity {
                         String date = moodDataList.get(num).getDate();
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
-                        filterDataList.add(new Mood("Happy", emotionState, reason, time, date, socialState, username));
+                        Geolocation geolocation = moodDataList.get(num).getGeolocation();
+                        filterDataList.add(new Mood("Happy", emotionState, reason, time, date, socialState, username,geolocation));
                         chk = 1;
 
                     }

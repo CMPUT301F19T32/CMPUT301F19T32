@@ -8,8 +8,9 @@ public class Mood {
     private  String date;
     private String socialState;
     private String username;
+    private Geolocation geolocation;
 
-    public Mood(String emotionstr, String emotionState, String reason, String time, String date, String socialState, String username) {
+    public Mood(String emotionstr, String emotionState, String reason, String time, String date, String socialState, String username, Geolocation geolocation) {
         this.emotionstr = emotionstr;
         this.emotionState = emotionState;
         this.reason = reason;
@@ -17,6 +18,7 @@ public class Mood {
         this.date = date;
         this.socialState = socialState;
         this.username = username;
+        this.geolocation = geolocation;
     }
 
     public String getEmotionstr() {
@@ -45,6 +47,10 @@ public class Mood {
 
     public String getUsername() {
         return username;
+    }
+
+    public Geolocation getGeolocation() {
+        return geolocation;
     }
 
     public void setEmotionstr(String emotionstr) {

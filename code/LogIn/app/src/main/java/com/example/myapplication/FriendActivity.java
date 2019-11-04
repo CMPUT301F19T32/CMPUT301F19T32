@@ -45,7 +45,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
             @Override
             public void onClick(View v) {
-                Intent mapIntent  = new Intent(FriendActivity.this, FriendMapActivity.class );
+                Intent mapIntent  = new Intent(FriendActivity.this, FriendMoodMap.class );
                 Bundle mapBundle = new Bundle();
                 mapBundle.putSerializable("array", moodFrArrayList);
                 mapIntent.putExtras(mapBundle);
