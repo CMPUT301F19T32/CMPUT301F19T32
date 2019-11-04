@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="social_states">
-        <item>Alone</item>
-        <item>With one person</item>
-        <item>With two to several people</item>
-        <item>With a crowd</item>
-    </string-array>
-</resources>
