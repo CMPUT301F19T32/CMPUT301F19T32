@@ -24,8 +24,8 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_histoty_mood_map);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        Bundle bundle = getIntent().getExtras();
-        mapMood = (ArrayList<Mood>) bundle.getSerializable("array");
+        //Bundle bundle = getIntent().getExtras();
+        //mapMood = (ArrayList<Mood>) bundle.getSerializable("array");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
