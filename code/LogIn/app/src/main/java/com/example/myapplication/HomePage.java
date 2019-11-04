@@ -55,6 +55,8 @@ public class HomePage extends AppCompatActivity {
     private double latitude;
     Button followed;
 
+    Button myProfileButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,10 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Intent tohome = getIntent();
-        String username = tohome.getStringExtra("username");
+        final String usernameMain = tohome.getStringExtra("username");
+
         db = FirebaseFirestore.getInstance();
-        final DocumentReference docRef = db.collection("Account").document(username);
+        final DocumentReference docRef = db.collection("Account").document(usernameMain);
 
 
         moodList = findViewById(R.id.mood_list);
@@ -77,7 +80,7 @@ public class HomePage extends AppCompatActivity {
 
         add_button = findViewById(R.id.button);
         test= findViewById(R.id.test);
-        DocumentReference getdata = db.collection("Account").document(username);
+        DocumentReference getdata = db.collection("Account").document(usernameMain);
         getdata.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -107,7 +110,7 @@ public class HomePage extends AppCompatActivity {
         geolocation = new Geolocation(a,b);
 
 
-        name.setText(username);
+        name.setText(usernameMain);
         moodDataList = new ArrayList<>();
 
         for (int i = 00; i < mood.length; i++) {
@@ -239,6 +242,21 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+
+
+
+        /**** My Profile Button ***/
+        myProfileButton = findViewById(R.id.profile_button);
+        myProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMyProfile = new Intent(HomePage.this,MyProfile.class);
+                intentMyProfile.putExtra("usernameMyProfile",usernameMain);
+                HomePage.this.startActivity(intentMyProfile);
+            }
+        });
+
+
 
 
 
