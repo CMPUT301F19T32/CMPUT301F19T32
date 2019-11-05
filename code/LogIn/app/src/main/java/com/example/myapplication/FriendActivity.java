@@ -35,7 +35,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         user = toFriend.getStringExtra("user");
         moodFriendList = findViewById(R.id.friendLIstVeiw);
         moodFrArrayList = new ArrayList<>();
-
+        friendList = new ArrayList<>();
         for (int i = 0; i<friendList.size();i++){
             //找到 keyword = friendList.get(i)
             //找到 keyword 的 moodList.get(0)  mood = moodList.get(0)
@@ -102,6 +102,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             }
 
         }
+        // if 找不到 keyword 人名 toast3
         //Request update to firestore
     }
 
