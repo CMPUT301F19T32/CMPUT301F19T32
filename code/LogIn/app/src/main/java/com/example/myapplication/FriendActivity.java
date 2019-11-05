@@ -100,7 +100,12 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mood = moodFrArrayAdapter.getItem(position);
-
+                Intent viewIntent  = new Intent(FriendActivity.this, ViewActivity.class );
+                viewIntent.putExtra("username",mood.getUsername());
+                viewIntent.putExtra("emotion",mood.getEmotionstr());
+                viewIntent.putExtra("reason",mood.getReason());
+                viewIntent.putExtra("social",mood.getSocialState());
+                startActivity(viewIntent);
                 /// add new activity relatide to homepage
             }
         });

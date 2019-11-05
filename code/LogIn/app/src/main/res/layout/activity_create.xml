@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651"
+        app:layout_constraintVertical_bias="0.618"
         app:srcCompat="@drawable/empty" />
 
     <GridView
@@ -46,17 +46,16 @@
         android:id="@+id/imageView"
         android:layout_width="111dp"
         android:layout_height="90dp"
-        android:layout_marginBottom="96dp"
         android:background="#FFF"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222"
+        app:layout_constraintVertical_bias="0.188"
         app:srcCompat="@drawable/empty" />
 
     <TextView
@@ -80,7 +79,6 @@
         android:layout_width="189dp"
         android:layout_height="146dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="272dp"
         android:ems="10"
         android:hint="Reason"
         android:inputType="textPersonName"
@@ -89,20 +87,19 @@
         app:layout_constraintHorizontal_bias="0.912"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
+        app:layout_constraintVertical_bias="0.494" />
 
     <Button
         android:id="@+id/add_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
         android:text="image"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/submit"
@@ -130,7 +127,8 @@
         android:id="@+id/map_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/social" />
@@ -143,6 +141,8 @@
         android:layout_marginTop="14dp"
         android:text="Unknown"
         app:layout_constraintBottom_toTopOf="@+id/gridview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/map_bt"
         app:layout_constraintTop_toBottomOf="@+id/social"
         app:layout_constraintVertical_bias="0.0" />
