@@ -8,13 +8,21 @@ public class Account {
     private String password;
     private ArrayList moodHistory;
     private String emoji;
+    private ArrayList requestList;
 
 
-    Account(String username, String password, ArrayList moodHistory,String emoji) {
+
+    Account(String username, String password, ArrayList moodHistory,String emoji, ArrayList requestList) {
         this.username = username;
         this.password = password;
         this.moodHistory = moodHistory;
         this.emoji=emoji;
+        this.requestList = requestList;
+
+    }
+
+    public ArrayList getRequestList() {
+        return requestList;
     }
 
     public String getUsername() {

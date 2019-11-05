@@ -53,14 +53,14 @@ public class signUpPage extends AppCompatActivity {
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
 
-            final CollectionReference collectionReference = db.collection("Account");
+        final CollectionReference collectionReference = db.collection("Account");
 
         signUpButton2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 final String  username = usernameCreate.getText().toString();
                 final String password = passwordConfirm.getText().toString();
 
-                Account account = new Account(username,password,new ArrayList(),"");
+                Account account = new Account(username,password,new ArrayList(),"",new ArrayList());
                 db.collection("Account").document(username).set(account);
 
     /*
@@ -94,7 +94,7 @@ public class signUpPage extends AppCompatActivity {
                     passwordConfirm.setText("");
 
      */
-                }
+            }
 
 
 
@@ -111,7 +111,8 @@ public class signUpPage extends AppCompatActivity {
                     String password = (String) doc.getData().get("password");
                     ArrayList moodHistory = (ArrayList) doc.getData().get("moodHistory");
                     String emoji = (String) doc.getData().get("emoji");
-                    accountDataList.add(new Account(username,password,moodHistory,emoji));
+                    ArrayList requestList = (ArrayList) doc.getData().get("moodHistory");
+                    accountDataList.add(new Account(username,password,moodHistory,emoji,requestList));
                 }
 
                 //accountAdapter.notifyDataSetChanged();
