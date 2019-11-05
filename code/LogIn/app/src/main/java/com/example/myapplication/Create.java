@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static android.location.LocationManager.GPS_PROVIDER;
 import static android.location.LocationManager.NETWORK_PROVIDER;
 
 public class Create extends AppCompatActivity {
@@ -118,8 +119,7 @@ public class Create extends AppCompatActivity {
             public void onClick(View v) {
                 LatLng currentLocation = getCurrentLocation();
                 location = new Geolocation(currentLocation.latitude,currentLocation.longitude);
-                String s = getAddress(currentLocation) + currentLocation.latitude + currentLocation.longitude;
-
+                String s = getAddress(currentLocation);
                 location_view.setText(s);
 
 
@@ -140,7 +140,7 @@ public class Create extends AppCompatActivity {
             return new LatLng(0,0);
         }
 
-        Location myLocation = lm.getLastKnownLocation(NETWORK_PROVIDER);
+        Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
         if (myLocation == null) {
             return new LatLng(0,0);
         }
@@ -154,9 +154,10 @@ public class Create extends AppCompatActivity {
         Geocoder geocoder = new Geocoder(Create.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
-            String address_1 = addresses.get(0).getAddressLine(0);
-            address = addresses.get(0).getLocality();
 
+
+            // street name + city name
+            address = addresses.get(0).getThoroughfare() + ",\t" + addresses.get(0).getLocality();
 
         }catch (IOException e){
             e.printStackTrace();
