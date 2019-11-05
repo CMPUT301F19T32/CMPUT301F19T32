@@ -9,7 +9,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -113,6 +122,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
     @Override
     public void onOkPress(Request request) {
+        /*
 
         for (int i = 0; i < friendList.size(); i++){
             if (request.getReciveName() == friendList.get(i)){
@@ -127,8 +137,40 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             }
 
         }
+        */
         // if 找不到 keyword 人名 toast3
         //Request update to firestore
+        final Request requestInner = request;
+        FirebaseFirestore db;
+        db = FirebaseFirestore.getInstance();
+        final CollectionReference collectionReference = db.collection("Account");
+
+        final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName());
+        ReceiverRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        ReceiverRef
+                                .update("requestList", FieldValue.arrayUnion(requestInner));
+                        //Toast.makeText(getActivity(), "request sent successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //Log.d(TAG, "The user does not exist!");
+
+                        Toast.makeText(getApplicationContext(), "The user does not exist!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                /** else {
+                 Log.d(TAG, "Failed with: ", task.getException());
+                 } **/
+
+            }
+        });
+
+
     }
 
 

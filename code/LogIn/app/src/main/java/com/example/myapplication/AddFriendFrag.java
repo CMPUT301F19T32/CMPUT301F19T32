@@ -65,36 +65,6 @@ public class AddFriendFrag extends DialogFragment {
                         String toWhom = userToSent.getText().toString();
                         final Request requestIn = new Request(formWhom,toWhom,massage);
 
-                        /** firestore request list **/
-                        /*** store request to firebase ***/
-                        FirebaseFirestore db;
-                        db = FirebaseFirestore.getInstance();
-                        final CollectionReference collectionReference = db.collection("Account");
-
-                        final DocumentReference ReceiverRef = db.collection("Account").document(toWhom);
-                        ReceiverRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-
-                                        ReceiverRef
-                                                .update("requestList", FieldValue.arrayUnion(requestIn));
-                                        //Toast.makeText(getActivity(), "request sent successfully", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        //Log.d(TAG, "The user does not exist!");
-
-                                        Toast.makeText(getActivity(), "The user does not exist!", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-                                }
-                                /** else {
-                                 Log.d(TAG, "Failed with: ", task.getException());
-                                 } **/
-
-                            }
-                        });
 
                         listener.onOkPress(requestIn);
                     }
