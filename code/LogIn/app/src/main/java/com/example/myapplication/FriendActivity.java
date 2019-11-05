@@ -25,6 +25,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     String toast1 = "Already Friend";
     String toast2 = "Already Sent Earlier";
     String toast3 = "Already Sent";
+    Geolocation geolocation;
     private  Request request;
     //friendList get from fireStore
     @Override
@@ -36,6 +37,24 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         moodFriendList = findViewById(R.id.friendLIstVeiw);
         moodFrArrayList = new ArrayList<>();
         friendList = new ArrayList<>();
+
+        //some sample info (delete later)
+        final String []moods = {"Happy", "Angry", "Happy", "Sad", "Happy"};
+        String []date = {"1010-09-01", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
+        String []username = {"赵", "钱", "孙", "李", "周"};
+        String []time = {"12:00","11:45","15:20","04:20","05:30"};
+        String []something = {"1", "2", "3", "4", "5"};
+        double a = 100;
+        double b = 123;
+        geolocation = new Geolocation(a,b);
+
+
+        for (int i = 00; i < moods.length; i++) {
+            moodFrArrayList.add((new Mood(moods[i],something[i],something[i],time[i], date[i],something[i],username[i],geolocation)));
+        }
+
+
+
         for (int i = 0; i<friendList.size();i++){
             //找到 keyword = friendList.get(i)
             //找到 keyword 的 moodList.get(0)  mood = moodList.get(0)
@@ -81,6 +100,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mood = moodFrArrayAdapter.getItem(position);
+
                 /// add new activity relatide to homepage
             }
         });
