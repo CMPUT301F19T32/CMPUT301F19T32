@@ -21,8 +21,11 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_mood_map);
-        Bundle bundle = getIntent().getExtras();
-        mapMood = (ArrayList<Mood>) bundle.getSerializable("array");
+
+        //Bundle bundle = getIntent().getExtras();
+        //mapMood = (ArrayList<Mood>) bundle.getSerializable("array");
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

@@ -80,4 +80,8 @@ public class Mood {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public void setGeolocation(Geolocation geolocation){
+        this.geolocation = geolocation;
+    }
 }

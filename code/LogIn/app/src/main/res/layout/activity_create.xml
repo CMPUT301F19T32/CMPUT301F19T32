@@ -77,20 +77,19 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="206dp"
-        android:layout_height="182dp"
+        android:layout_width="189dp"
+        android:layout_height="146dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
         android:layout_marginBottom="272dp"
         android:ems="10"
         android:hint="Reason"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.912"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.932" />
 
     <Button
         android:id="@+id/add_image"
@@ -120,10 +119,31 @@
         android:id="@+id/social"
         android:layout_width="335dp"
         android:layout_height="70dp"
+        android:entries="@array/social_states"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751"
-        android:entries="@array/social_states"/>
+        app:layout_constraintVertical_bias="0.714" />
+
+    <Button
+        android:id="@+id/map_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/social" />
+
+    <TextView
+        android:id="@+id/mood_location"
+        android:layout_width="274dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:text="Unknown"
+        app:layout_constraintBottom_toTopOf="@+id/gridview"
+        app:layout_constraintStart_toEndOf="@+id/map_bt"
+        app:layout_constraintTop_toBottomOf="@+id/social"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
