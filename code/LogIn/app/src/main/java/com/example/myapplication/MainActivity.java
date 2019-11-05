@@ -66,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(usernameEditText.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please enter a name!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(passwordEditText.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please enter a password!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 final String  username = usernameEditText.getText().toString();
                 final String  password = passwordEditText.getText().toString();
                 DocumentReference docRef = db.collection("Account").document(username);

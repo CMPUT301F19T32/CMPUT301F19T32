@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,50 +57,36 @@ public class signUpPage extends AppCompatActivity {
 
         final CollectionReference collectionReference = db.collection("Account");
 
+        final Intent backToMainIntent = new Intent(this, MainActivity.class);
         signUpButton2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+
+                if(usernameCreate.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please enter a name!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(passwordCreate.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please enter a password!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!passwordConfirm.getText().toString().equals(passwordCreate.getText().toString())){
+                    Toast.makeText(getApplicationContext(),"Two password dont match, please check your password!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 final String  username = usernameCreate.getText().toString();
                 final String password = passwordConfirm.getText().toString();
 
                 Account account = new Account(username,password,new ArrayList(),"",new ArrayList());
                 db.collection("Account").document(username).set(account);
 
-    /*
-                HashMap<String, Object> data = new HashMap<>();
+                Toast.makeText(getApplicationContext(),"Succeffully signed up",Toast.LENGTH_SHORT).show();
+                // back to login page
+                startActivity(backToMainIntent);
 
-                if (username.length()>0 && password.length()>0){
-                    data.put("password_text",password);
-
-
-
-                    collectionReference
-                            .document(username)
-                            .set(data)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "dataaddition successful");
-                                }
-
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "Data addition failed" + e.toString());
-
-
-                                }
-                            });
-
-                    usernameCreate.setText("");
-                    passwordConfirm.setText("");
-
-     */
             }
-
-
-
-
         });
 
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
