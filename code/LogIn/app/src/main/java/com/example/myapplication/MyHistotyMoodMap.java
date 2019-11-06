@@ -12,7 +12,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
 
     private GoogleMap mMap;
     private ArrayList<Mood> mapMood;
+    private LatLngBounds mMapBoundary;
+    //private Geolocation location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,7 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         mapMood = (ArrayList<Mood>) bundle.getSerializable("mood");
-        Log.i("ff",mapMood.toString());
+        //Log.i("ff",mapMood.toString());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -53,24 +57,40 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //LatLng lastLat = new LatLng(0,0);
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
 
         for(int num = 0;num < mapMood.size();num++) {
             Mood mood = mapMood.get(num);
             Log.i("ff",mood.toString());
-            LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(),mood.getGeolocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()));
-            //lastLat = latLng;
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            if (mood.getGeolocation() != null) {
+                LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(), mood.getGeolocation().getLongitude());
 
+                if(mood.getEmotionstr().equals("Happy")) {
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                }else if (mood.getEmotionstr().equals("Angry")){
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                }else if(mood.getEmotionstr().equals("Sad")){
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                }
+                setCameraView(mood.getGeolocation());
+            }
 
         }
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLat));
 
+
+    }
+
+    private void setCameraView(Geolocation geolocation){
+        double bottomBoundary = geolocation.getLatitude() - 0.1;
+        double leftBoundary = geolocation.getLongitude()-0.1;
+        double topBoundary = geolocation.getLatitude()+0.1;
+        double rightBoundary = geolocation.getLongitude()+0.1;
+
+        mMapBoundary = new LatLngBounds(new LatLng(bottomBoundary,leftBoundary),new LatLng(topBoundary,rightBoundary));
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(mMapBoundary,0));
 
     }
 }

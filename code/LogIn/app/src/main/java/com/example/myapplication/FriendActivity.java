@@ -48,14 +48,15 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         friendList = new ArrayList<>();
 
         //some sample info (delete later)
-        final String []moods = {"Happy", "Angry", "Happy", "Sad", "Happy"};
-        String []date = {"2019-11-05", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
-        String []username = {"赵", "钱", "孙", "李", "周"};
-        String []time = {"12:00","11:45","15:20","04:20","05:30"};
-        String []something = {"1", "2", "3", "4", "5"};
+        final String []moods = {"Happy", "Angry", "Sad", "Sad"};
+        String []date = {"2019-11-05", "2018-08-06", "2015-10-17", "2015-09-18"};
+        String []username = {"赵", "钱", "孙", "李"};
+        String []time = {"12:00","11:45","15:20","04:20"};
+        String []something = {"1", "2", "3", "4"};
         Geolocation geolocation1;
         Geolocation geolocation2;
         Geolocation geolocation3;
+        Geolocation geolocation4;
         double a = 53.484310;
         double b = -113.506133;
         double c =  53.488036;
@@ -65,7 +66,8 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         geolocation1 = new Geolocation(a,b);
         geolocation2 = new Geolocation(c,d);
         geolocation3 = new Geolocation(e,f);
-        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3,null,null};
+        geolocation4 = null;
+        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3,geolocation4};
 
 
         for (int i = 00; i < moods.length; i++) {
@@ -99,11 +101,16 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
             @Override
             public void onClick(View v) {
+
                 Intent mapIntent  = new Intent(FriendActivity.this, FriendMoodMap.class );
-                //Bundle mapBundle = new Bundle();
-                //mapBundle.putSerializable("array", moodFrArrayList);
-                //mapIntent.putExtras(mapBundle);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("mood",moodFrArrayList);
+                //Log.e("ff",moodDataList.toString());
+                mapIntent.putExtras(bundle);
                 startActivity(mapIntent);
+
+
+
 
             }
         });
