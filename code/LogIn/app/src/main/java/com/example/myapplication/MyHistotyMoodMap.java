@@ -24,7 +24,7 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
     private GoogleMap mMap;
     private ArrayList<Mood> mapMood;
     private LatLngBounds mMapBoundary;
-    //private Geolocation location;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         mapMood = (ArrayList<Mood>) bundle.getSerializable("mood");
-        //Log.i("ff",mapMood.toString());
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -61,9 +61,13 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
 
         for(int num = 0;num < mapMood.size();num++) {
             Mood mood = mapMood.get(num);
-            Log.i("ff",mood.toString());
+
+            // if the mood has location, place a marker on map.
             if (mood.getGeolocation() != null) {
+
+
                 LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(), mood.getGeolocation().getLongitude());
+                // if Emotionstr is happy, the color of marker is orange, and red for angry, green for sad.
 
                 if(mood.getEmotionstr().equals("Happy")) {
                     mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
@@ -72,11 +76,12 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
                 }else if(mood.getEmotionstr().equals("Sad")){
                     mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                 }
+                // set view to clearly see the map
                 setCameraView(mood.getGeolocation());
             }
 
         }
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLat));
+
 
 
     }

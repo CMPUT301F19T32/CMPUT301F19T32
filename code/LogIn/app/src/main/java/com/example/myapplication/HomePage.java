@@ -50,10 +50,7 @@ public class HomePage extends AppCompatActivity {
     FirebaseFirestore db;
     TextView test;
     String TAG = "sample";
-    private TextView textView;
-    private LocationManager locationManager;
-    private double longitude;
-    private double latitude;
+
     Button followed;
 
     Button myProfileButton;
@@ -102,6 +99,9 @@ public class HomePage extends AppCompatActivity {
             }
         });
         TextView name= findViewById(R.id.uname);
+
+
+        // test case
         final String []mood = {"Happy", "Angry", "Sad", "Happy"};
         String []date = {"2019-11-05", "2019-11-04", "2019-11-13","2019-11-20"};
         String []something = {"1", "2", "3","4"};
@@ -131,7 +131,7 @@ public class HomePage extends AppCompatActivity {
         moodAdapter = new myMoodList(this,moodDataList);
         moodList.setAdapter(moodAdapter);
 
-        textView = findViewById(R.id.location);
+
 
         //click on map button on home page to show the moods that have locations.
 
@@ -140,18 +140,13 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(HomePage.this,MyHistotyMoodMap.class);
+                Intent intent = new Intent(HomePage.this,MyHistotyMoodMap.class); // go to map activity.
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("mood",moodDataList);
-                //Log.e("ff",moodDataList.toString());
+
+                bundle.putSerializable("mood",moodDataList);                        // put mood Array list into Bundle.
                 intent.putExtras(bundle);
+
                 startActivity(intent);
-
-
-
-
-
-
             }
         });
 
@@ -165,6 +160,7 @@ public class HomePage extends AppCompatActivity {
                 HomePage.this.startActivity(intentf);
             }
         });
+
         //Switch to Create Activity after click "Add Mood" button
         final Intent intent = new Intent(this,Create.class);
         add_button.setOnClickListener(new View.OnClickListener() {

@@ -29,6 +29,8 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_friend_mood_map);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+
+
         mapMood = (ArrayList<Mood>) bundle.getSerializable("mood");
 
 
@@ -54,10 +56,14 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
 
         for (int num = 0; num < mapMood.size(); num++) {
             Mood mood = mapMood.get(num);
-            Log.i("ff", mood.toString());
+
+
+            // if the mood has location, place a marker on map.
             if (mood.getGeolocation() != null) {
                 LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(), mood.getGeolocation().getLongitude());
 
+
+                // if Emotionstr is happy, the color of marker is orange, and red for angry, green for sad.
                 if(mood.getEmotionstr().equals("Happy")) {
                     mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername() + ":" + mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                 }else if (mood.getEmotionstr().equals("Angry")){
@@ -65,12 +71,15 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
                 }else if(mood.getEmotionstr().equals("Sad")){
                     mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername() + ":" + mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                 }
+
+                // set view to clearly see the map
                 setCameraView(mood.getGeolocation());
             }
         }
     }
 
     private void setCameraView(Geolocation geolocation){
+
         double bottomBoundary = geolocation.getLatitude() - 0.1;
         double leftBoundary = geolocation.getLongitude()-0.1;
         double topBoundary = geolocation.getLatitude()+0.1;
