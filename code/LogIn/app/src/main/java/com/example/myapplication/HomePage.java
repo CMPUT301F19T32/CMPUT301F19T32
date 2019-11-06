@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -102,33 +103,53 @@ public class HomePage extends AppCompatActivity {
         });
         TextView name= findViewById(R.id.uname);
         final String []mood = {"Happy", "Angry", "Happy", "Sad", "Happy"};
-        String []date = {"1010-09-01", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
+        String []date = {"2019-11-05", "2019-11-04", "2019-11-13", "2015-09-18", "2015-10-21"};
         String []something = {"1", "2", "3", "4", "5"};
-
-        Geolocation geolocation;
-        double a = 100;
-        double b = 123;
-        geolocation = new Geolocation(a,b);
+        Geolocation geolocation1;
+        Geolocation geolocation2;
+        Geolocation geolocation3;
+        double a = 53.484310;
+        double b = -113.506133;
+        double c =  53.488036;
+        double d =  -113.514072;
+        double e = 53.486592;
+        double f = -113.502130;
+        geolocation1 = new Geolocation(a,b);
+        geolocation2 = new Geolocation(c,d);
+        geolocation3 = new Geolocation(e,f);
+        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3,null,null};
 
 
         name.setText(usernameMain);
         moodDataList = new ArrayList<>();
 
         for (int i = 00; i < mood.length; i++) {
-            moodDataList.add((new Mood(mood[i],something[i],something[i],something[i], date[i],something[i],something[i],geolocation)));
+            moodDataList.add((new Mood(mood[i],something[i],something[i],something[i], date[i],something[i],something[i],geolocations[i])));
         }
         moodAdapter = new myMoodList(this,moodDataList);
         moodList.setAdapter(moodAdapter);
 
         textView = findViewById(R.id.location);
 
+        //click on map button on home page to show the moods that have locations.
 
         map_button = findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(HomePage.this,MyHistotyMoodMap.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("mood",moodDataList);
+                //Log.e("ff",moodDataList.toString());
+                intent.putExtras(bundle);
                 startActivity(intent);
+
+
+
+
+
+
             }
         });
 

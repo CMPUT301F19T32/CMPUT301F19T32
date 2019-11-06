@@ -34,7 +34,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     String toast1 = "Already Friend";
     String toast2 = "Already Sent Earlier";
     String toast3 = "Already Sent";
-    Geolocation geolocation;
+
     private  Request request;
     //friendList get from fireStore
     @Override
@@ -49,17 +49,27 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         //some sample info (delete later)
         final String []moods = {"Happy", "Angry", "Happy", "Sad", "Happy"};
-        String []date = {"1010-09-01", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
+        String []date = {"2019-11-05", "1115-08-06", "2015-10-17", "2015-09-18", "2015-10-21"};
         String []username = {"赵", "钱", "孙", "李", "周"};
         String []time = {"12:00","11:45","15:20","04:20","05:30"};
         String []something = {"1", "2", "3", "4", "5"};
-        double a = 100;
-        double b = 123;
-        geolocation = new Geolocation(a,b);
+        Geolocation geolocation1;
+        Geolocation geolocation2;
+        Geolocation geolocation3;
+        double a = 53.484310;
+        double b = -113.506133;
+        double c =  53.488036;
+        double d =  -113.514072;
+        double e = 53.486592;
+        double f = -113.502130;
+        geolocation1 = new Geolocation(a,b);
+        geolocation2 = new Geolocation(c,d);
+        geolocation3 = new Geolocation(e,f);
+        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3,null,null};
 
 
         for (int i = 00; i < moods.length; i++) {
-            moodFrArrayList.add((new Mood(moods[i],something[i],something[i],time[i], date[i],something[i],username[i],geolocation)));
+            moodFrArrayList.add((new Mood(moods[i],something[i],something[i],time[i], date[i],something[i],username[i],geolocations[i])));
         }
 
 

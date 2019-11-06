@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
-public class Mood {
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Mood implements Serializable {
     private String emotionstr;
     private String emotionState;
     private String reason;

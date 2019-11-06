@@ -3,8 +3,11 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,11 +27,17 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_histoty_mood_map);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        //Bundle bundle = getIntent().getExtras();
-        //mapMood = (ArrayList<Mood>) bundle.getSerializable("array");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        mapMood = (ArrayList<Mood>) bundle.getSerializable("mood");
+        Log.i("ff",mapMood.toString());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+
+
     }
 
 
@@ -44,10 +53,24 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        //LatLng lastLat = new LatLng(0,0);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //LatLng sydney = new LatLng(-34, 151);
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        for(int num = 0;num < mapMood.size();num++) {
+            Mood mood = mapMood.get(num);
+            Log.i("ff",mood.toString());
+            LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(),mood.getGeolocation().getLongitude());
+            mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState()));
+            //lastLat = latLng;
+
+
+
+        }
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLat));
+
+
     }
 }
