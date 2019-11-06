@@ -102,9 +102,9 @@ public class HomePage extends AppCompatActivity {
             }
         });
         TextView name= findViewById(R.id.uname);
-        final String []mood = {"Happy", "Angry", "Happy", "Sad", "Happy"};
-        String []date = {"2019-11-05", "2019-11-04", "2019-11-13", "2015-09-18", "2015-10-21"};
-        String []something = {"1", "2", "3", "4", "5"};
+        final String []mood = {"Happy", "Angry", "Sad"};
+        String []date = {"2019-11-05", "2019-11-04", "2019-11-13"};
+        String []something = {"1", "2", "3"};
         Geolocation geolocation1;
         Geolocation geolocation2;
         Geolocation geolocation3;
@@ -117,7 +117,7 @@ public class HomePage extends AppCompatActivity {
         geolocation1 = new Geolocation(a,b);
         geolocation2 = new Geolocation(c,d);
         geolocation3 = new Geolocation(e,f);
-        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3,null,null};
+        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3};
 
 
         name.setText(usernameMain);

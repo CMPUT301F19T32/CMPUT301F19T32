@@ -63,9 +63,9 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
             Mood mood = mapMood.get(num);
             Log.i("ff",mood.toString());
             LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(),mood.getGeolocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState()));
+            mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionstr()));
             //lastLat = latLng;
-
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
 
         }
