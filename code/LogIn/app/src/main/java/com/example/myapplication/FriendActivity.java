@@ -50,7 +50,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         //some sample info (delete later)
         final String []moods = {"Happy", "Angry", "Sad", "Sad"};
         String []date = {"2019-11-05", "2018-08-06", "2015-10-17", "2015-09-18"};
-        String []username = {"赵", "钱", "孙", "李"};
+        String []username = {"Zhao", "Qian", "Li", "Sun"};
         String []time = {"12:00","11:45","15:20","04:20"};
         String []something = {"1", "2", "3", "4"};
         Geolocation geolocation1;
@@ -77,8 +77,8 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
 
         for (int i = 0; i<friendList.size();i++){
-            //找到 keyword = friendList.get(i)
-            //找到 keyword 的 moodList.get(0)  mood = moodList.get(0)
+            //find keyword = friendList.get(i)
+            //find keyword  moodList.get(0)  mood = moodList.get(0)
             //moodFriendList.add()mood
         }
 
@@ -155,7 +155,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         }
         */
-        // if 找不到 keyword 人名 toast3
+        // if not found keyword username toast3
         //Request update to firestore
         final Request requestInner = request;
         FirebaseFirestore db;

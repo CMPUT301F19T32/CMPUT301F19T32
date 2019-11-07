@@ -47,7 +47,7 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
         // remove onClick  request in fireStore.
         if (state == 1){
 
-            //in Firestore, find keyword = request.getSentName(),  keyword user 的 friendList in firestore add  username.
+            //in Firestore, find keyword = request.getSentName(),  keyword user  friendList in firestore add  username.
         }
     }
 }

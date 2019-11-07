@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 public class Mood implements Serializable {
