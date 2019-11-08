@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03a97c80-5130-4a3c-a309-082267bdcd4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Edit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,6 +51,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Mood.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="366">
@@ -63,37 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/AddFriendFrag.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Edit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1583">
-              <caret line="130" column="63" lean-forward="true" selection-start-line="130" selection-start-column="63" selection-end-line="130" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3299#5504#0" expanded="true" />
-                <element signature="e#5503#5504#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="62" column="62" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="62" />
+            <state relative-caret-position="-170">
+              <caret line="49" column="63" selection-start-line="49" selection-start-column="63" selection-end-line="49" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,20 +85,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="2812">
-              <caret line="148" column="51" selection-start-line="148" selection-start-column="51" selection-end-line="148" selection-end-column="51" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyHistotyMoodMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="538">
+              <caret line="110" column="177" selection-start-line="110" selection-start-column="177" selection-end-line="110" selection-end-column="177" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/myMoodList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
+            <state relative-caret-position="399">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,18 +118,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/CustomeFriendList.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+            <state relative-caret-position="76">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/request_layout.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Request.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="34" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="517">
+              <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -211,7 +214,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/CustomeFriendList.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyHistotyMoodMap.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/HomePage.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Create.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_friend.xml" />
@@ -220,6 +222,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ViewActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Edit.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java" />
       </list>
     </option>
   </component>
@@ -259,13 +262,14 @@
             <path>
               <item name="My Application" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="myapplication" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="My Application" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="myapplication" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -479,6 +483,14 @@
       <option name="presentableId" value="Default" />
       <updated>1572865906232</updated>
     </task>
+    <task id="LOCAL-00001" summary="location update function completed">
+      <created>1573202159257</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573202159257</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -508,9 +520,9 @@
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.80597013" weight="0.3452116" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49946696" weight="0.32850778" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32577905" />
-      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4989339" weight="0.32962137" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50319827" side_tool="true" visible="true" weight="0.32850778" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4968017" visible="true" weight="0.32850778" />
+      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49840087" visible="true" weight="0.32962137" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50159913" side_tool="true" visible="true" weight="0.32962137" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4968017" weight="0.32850778" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49573562" weight="0.21937639" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32962137" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.329718" />
@@ -522,6 +534,10 @@
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="right" id="Assistant" order="6" weight="0.3298887" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="location update function completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="location update function completed" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/widget/Toast.java" />
@@ -626,34 +642,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ImageAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/myMoodList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/CustomRequestList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -687,40 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Mood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Geolocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyHistotyMoodMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2090">
-          <caret line="110" column="177" selection-start-line="110" selection-start-column="177" selection-end-line="110" selection-end-column="177" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Create.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3458">
@@ -731,26 +689,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2622">
-          <caret line="164" column="46" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_mood.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/HomePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5491">
-          <caret line="325" column="59" selection-start-line="325" selection-start-column="59" selection-end-line="325" selection-end-column="59" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_friend.xml">
       <provider editor-type-id="android-designer2" />
@@ -781,31 +722,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ViewActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-          <folding>
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2812">
+          <caret line="148" column="51" selection-start-line="148" selection-start-column="51" selection-end-line="148" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/signUpPage.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Edit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="-581">
+          <caret line="242" column="20" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3299#5504#0" expanded="true" />
+            <element signature="e#5503#5504#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/RequestActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+        <state relative-caret-position="538">
+          <caret line="164" column="46" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7124#7829#0" expanded="true" />
+            <element signature="e#7828#7829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Geolocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/HomePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="325" column="59" selection-start-line="325" selection-start-column="59" selection-end-line="325" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ImageAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -819,32 +785,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_edit.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="2812">
-          <caret line="148" column="51" selection-start-line="148" selection-start-column="51" selection-end-line="148" selection-end-column="51" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Mood.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyHistotyMoodMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="62" column="62" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="62" />
+        <state relative-caret-position="538">
+          <caret line="110" column="177" selection-start-line="110" selection-start-column="177" selection-end-line="110" selection-end-column="177" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Edit.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/myMoodList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1583">
-          <caret line="130" column="63" lean-forward="true" selection-start-line="130" selection-start-column="63" selection-end-line="130" selection-end-column="63" />
+        <state relative-caret-position="399">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3299#5504#0" expanded="true" />
-            <element signature="e#5503#5504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MyProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/RequestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/signUpPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ViewActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+          <folding>
+            <element signature="e#429#430#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/FriendMoodMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="49" column="63" selection-start-line="49" selection-start-column="63" selection-end-line="49" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

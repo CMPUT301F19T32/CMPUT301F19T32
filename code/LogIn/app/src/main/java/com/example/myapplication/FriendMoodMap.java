@@ -60,8 +60,7 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
 
             // if the mood has location, place a marker on map.
             if (!mood.getLatitude().equals("0.0") && !mood.getLongitude().equals("0.0")) {
-                LatLng latLng = new LatLng(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLatitude()));
-                System.out.println(latLng.toString());
+                LatLng latLng = new LatLng(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLongitude()));
                 // if Emotionstr is happy, the color of marker is green, and red for angry, blue for sad.
                 if(mood.getEmotionState().equals("happy")) {
                     mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
@@ -72,7 +71,7 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
                 }
 
                 // set view to clearly see the map
-                Geolocation geo = new Geolocation(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLatitude()));
+                Geolocation geo = new Geolocation(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLongitude()));
                 setCameraView(geo);            }
         }
     }
