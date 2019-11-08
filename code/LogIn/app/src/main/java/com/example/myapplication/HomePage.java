@@ -209,7 +209,7 @@ public class HomePage extends AppCompatActivity {
         moodAdapter = new myMoodList(HomePage.this,moodDataList);
         moodList.setAdapter(moodAdapter);
 
-        final Intent edit = new Intent(HomePage.this,Edit.class);
+        final Intent edit = new Intent(HomePage.this, EditMoodActivity.class);
         moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

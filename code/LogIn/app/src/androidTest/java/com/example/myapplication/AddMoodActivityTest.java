@@ -39,8 +39,8 @@ import org.junit.Rule;
 public class AddMoodActivityTest {
     private Solo solo;
     @Rule
-    public ActivityTestRule<MainActivity> rule =
-            new ActivityTestRule<>(MainActivity.class, true, true);
+    public ActivityTestRule<AddMoodActivity> rule =
+            new ActivityTestRule<>(AddMoodActivity.class, true, true);
     /**
      * Runs before all tests and creates solo instance.
      * @throws Exception
@@ -60,16 +60,17 @@ public class AddMoodActivityTest {
 
 
     /**
-     * Add a username to the EditText view and check the username using assertTrue
+     * Add a mood to the EditText view and check the username using assertTrue
 
      */
     @Test
     public void checkAddMood(){
-        // Asserts that the current activity is the MainActivity. Otherwise, show “Wrong Activity”
+        /*
         solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
         solo.enterText((EditText) solo.getView(R.id.password_field), "123");
         solo.clickOnButton("SIGN IN");
         solo.clickOnButton("ADD MOOD");
+        */
         solo.assertCurrentActivity("Wrong Activity", AddMoodActivity.class);
 
         View view1 = solo.getView("imageView");
@@ -86,12 +87,6 @@ public class AddMoodActivityTest {
         solo.clickOnView(view3);
 
         solo.clickOnButton("submit");
-
-
-
-
-
-
 
 
 
