@@ -1,5 +1,7 @@
 package com.example.myapplication;
-
+/**
+ * contain the information of a request.
+ */
 public class Request {
     private String sentName;
     private String reciveName;

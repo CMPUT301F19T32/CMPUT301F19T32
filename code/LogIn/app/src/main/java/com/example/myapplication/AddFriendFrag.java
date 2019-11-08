@@ -36,7 +36,7 @@ public class AddFriendFrag extends DialogFragment {
     }
 
     /**
-     *
+     *  Make sure the OnFragmentInteractionListener implement
      * @param context
      */
     @Override
@@ -53,6 +53,11 @@ public class AddFriendFrag extends DialogFragment {
     public AddFriendFrag(String userNamein){this.userName = userNamein;}
 
 
+    /**
+     * create the fregment
+     * @param savedInstanceState
+     * @return
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog( Bundle savedInstanceState) {

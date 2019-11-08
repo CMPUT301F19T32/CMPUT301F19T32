@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-
+/**
+ * This will be the mood custom List in RequestActivity that will shown.
+ */
 public class CustomRequestList extends ArrayAdapter<Request> {
     private ArrayList<Request> requests;
     private Context context;

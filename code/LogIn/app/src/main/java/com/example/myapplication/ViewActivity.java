@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This Activity shows the details of the friend mood that is selected
+ */
 public class ViewActivity extends AppCompatActivity {
     public TextView view_username;
     public TextView view_emotion;

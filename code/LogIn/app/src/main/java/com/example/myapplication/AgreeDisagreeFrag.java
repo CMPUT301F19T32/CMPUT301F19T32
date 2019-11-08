@@ -18,10 +18,17 @@ public class AgreeDisagreeFrag extends DialogFragment {
     private TextView massage;
     private OnFragmentInteractionListener listener;
     private Request request;
+    /**
+     * contains the onAgreePressed method
+     */
     public interface OnFragmentInteractionListener {
         void onAgreePressed(Integer state);
     }
 
+    /**
+     *  Make sure the OnFragmentInteractionListener implement
+     * @param context
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -34,6 +41,11 @@ public class AgreeDisagreeFrag extends DialogFragment {
     }
     public AgreeDisagreeFrag(Request request){ this.request = request; };
 
+    /**
+     * create the fragment
+     * @param savedInstanceState
+     * @return
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

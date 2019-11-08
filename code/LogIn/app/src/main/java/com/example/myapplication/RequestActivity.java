@@ -101,7 +101,11 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
     }
 
 
-
+    /**
+     * If agree(1), the friend list of the user who sent request will add the current user.
+     * Both agree and disagree will delete the request in firestore.
+     * @param state
+     */
     @Override
     public void onAgreePressed(Integer state) {
         // remove onClick  request in fireStore.

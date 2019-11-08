@@ -34,8 +34,8 @@ import org.junit.Rule;
 public class AddMoodActivityTest {
     private Solo solo;
     @Rule
-    public ActivityTestRule<AddMoodActivity> rule =
-            new ActivityTestRule<>(AddMoodActivity.class, true, true);
+    public ActivityTestRule<MainActivity> rule =
+            new ActivityTestRule<>(MainActivity.class, true, true);
     /**
      * Runs before all tests and creates solo instance.
      * @throws Exception

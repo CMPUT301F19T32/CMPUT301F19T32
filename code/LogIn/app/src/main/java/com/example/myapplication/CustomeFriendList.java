@@ -13,6 +13,9 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ * This will be the mood custom List in FriendActivity that will shown.
+ */
 public class CustomeFriendList extends ArrayAdapter<Mood> {
     private ArrayList<Mood> moods;
     private Context context;
