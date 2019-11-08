@@ -1,0 +1,24 @@
+WARNING: This app could only run on API29, or app will crash due to gps access problem.
+when user wants to create a new mood, in other words, when programs goes to AddMoodActivity, it may crash. (We are still figuring out why this happens).
+
+WARNING: Accesses of location permission and GPS are needed for this app. When users first install this app, the app will ask users to enable location if location function is unabled, and will ask users to give permisson 
+of using location for this app. If two accesses is not granted, users cannot use this app. 
+
+
+Bug:
+
+1. Sometimes if users click MAP button, 
+it won't set a creat view to markers and place any markers, 
+users may need to try serval times to get a right display. 
+Maybe the program cannot receive data from firestore sometimes,  
+or need more times to wait data from firestore (this problem would happens only in MyhistoryMoodMap, but not for FriendMoodMap, 
+since data for FriendMoodMap is get from bundle while  MyhistoryMoodMap uses firestore, we are figuring out which one is better for data transmitting among activities).
+
+2. If you first install this app or just close your location then enable it when app ask you, when you tap LOCATION button in AddMoodActivity or EditMoodActivity,
+app will crash (it is fixed right now). Since this method 
+getLastKnownLocation(GPS_PROVIDER);  it needs your phone's location last time, if you just enable GPS, 
+it is null, app cannot get your location. User needs to click button twice that to get location (right now the app will not crash but still need double click).
+
+
+3. The friendList sometime will show more than on same mood for one friend(very little chance). Still work in this problem. 
+4 sometime the lsiview will show 0.0(flashing). Not sure it is our program's problem or the virtua machine's problem.
