@@ -30,7 +30,7 @@ import org.junit.Rule;
  * Test class for FriendActivity, add, request, . All the UI tests are written here. Robotium test framework is
  used
  */
-public class FriendActivityTest {
+public class FriendFunctionTest {
     private Solo solo;
     @Rule
     public ActivityTestRule<MainActivity> rule =
@@ -51,6 +51,10 @@ public class FriendActivityTest {
         Activity activity = rule.getActivity();
     }
 
+    /**
+     * run for app to get friendPage
+     * to tell if the button lead app to friend page.
+     */
     @Test
     public void CheckFriendShow() {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
@@ -62,6 +66,11 @@ public class FriendActivityTest {
         solo.assertCurrentActivity("Wrong Activity", FriendActivity.class);
     }
 
+    /**
+     * run for app to show if the friend is show.
+     * the user1 can see Zhob last mood sine Zhob allow user1 to see.
+     * check if the mood for zhob is show when click
+     */
     @Test
     public void CheckFriendMood() {
         solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
@@ -69,8 +78,17 @@ public class FriendActivityTest {
         solo.clickOnButton("SIGN IN");
         solo.clickOnButton("Followed");
         assertTrue(solo.waitForText("Zhob", 1, 2000));
+        solo.clickInList(1);
+        assertTrue(solo.waitForText("Zhob", 1, 2000));
+        solo.assertCurrentActivity("Wrong Activity", ViewActivity.class);
     }
 
+    /**
+     * run to go to RequestActivity from FriendActivity
+     * Wu is sent a request with message 123.
+     * Check if get Wu's request and click on it.
+     * Check the message too.
+     */
     @Test
     public void CheckRequest() {
         solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
@@ -83,6 +101,25 @@ public class FriendActivityTest {
         solo.clickInList(1);
         assertTrue(solo.waitForText("Wu", 1, 2000));
         assertTrue(solo.waitForText("123", 1, 2000));
+    }
+
+    /**
+     * This test the add friend Function.
+     * with sent a request to Wu(not in firestore, the part of test on firestore are tested
+     * by hand.
+     */
+    @Test
+    public void ChechAddfriend() {
+        solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
+        solo.enterText((EditText) solo.getView(R.id.password_field), "123");
+        solo.clickOnButton("SIGN IN");
+        solo.clickOnButton("Followed");
+        solo.clickOnButton("ADDFRIEND");
+        solo.enterText((EditText) solo.getView(R.id.UserNameToSent), "Wu");
+        solo.enterText((EditText) solo.getView(R.id.MassageToSent), "123");
+        solo.clickOnButton("Sent");
+        solo.assertCurrentActivity("Wrong Activity", FriendActivity.class);
+
     }
 
     @After
