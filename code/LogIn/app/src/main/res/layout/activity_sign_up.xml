@@ -20,7 +20,7 @@
             android:id="@+id/username_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="8"
+            android:ems="7"
             android:textColor="@android:color/background_light"
             android:textColorHint="@android:color/background_light"
             android:hint="username" />
