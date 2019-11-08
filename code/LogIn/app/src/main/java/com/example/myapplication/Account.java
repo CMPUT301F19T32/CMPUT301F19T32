@@ -19,7 +19,6 @@ public class Account {
 
     public Account() {
     }
-
     public Account(String emoji, ArrayList<Mood> moodHistory, String password, ArrayList requestList, String username) {
         this.emoji = emoji;
         this.moodHistory = moodHistory;
