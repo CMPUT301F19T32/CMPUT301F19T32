@@ -211,7 +211,7 @@ public class Create extends AppCompatActivity {
             return new LatLng(0,0);
         }
 
-        Location myLocation = lm.getLastKnownLocation(NETWORK_PROVIDER);
+        Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
         if (myLocation == null) {
             return new LatLng(0,0);
         }
