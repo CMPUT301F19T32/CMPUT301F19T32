@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -24,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     ArrayList<Account> accountDataList;
 
-    Request requ;
+
     String TAG = "sample";
     EditText usernameCreate;
     EditText passwordCreate;
@@ -55,6 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
+
                 if(usernameCreate.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please enter a name!",Toast.LENGTH_SHORT).show();
                     return;
@@ -70,16 +76,33 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                final String  username = usernameCreate.getText().toString();
-                final String password = passwordConfirm.getText().toString();
+                final DocumentReference SignUpRef = db.collection("Account").document(usernameCreate.getText().toString());
+                SignUpRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
 
-                Account account = new Account("",new ArrayList<Mood>(),password,new ArrayList<Request>(),username);
-                db.collection("Account").document(username).set(account);
-                requ=new Request("1","2","3");
-                db.collection("Account").document(username).collection("Request").document("initial").set(requ);
-                Toast.makeText(getApplicationContext(),"Succeffully signed up",Toast.LENGTH_SHORT).show();
-                // back to login page
-                startActivity(backToMainIntent);
+                                Toast.makeText(getApplicationContext(),"The username already exists, please enter a different name!",Toast.LENGTH_SHORT).show();
+                            }
+
+                            else{
+                                final String  username = usernameCreate.getText().toString();
+                                final String password = passwordConfirm.getText().toString();
+
+                                Account account = new Account("",new ArrayList<Mood>(),password,new ArrayList<Request>(),username);
+                                db.collection("Account").document(username).set(account);
+
+                                Toast.makeText(getApplicationContext(),"Succeffully signed up",Toast.LENGTH_SHORT).show();
+                                // back to login page
+                                startActivity(backToMainIntent);
+                            }
+                        }
+
+                    }
+                });
+
 
             }
         });
