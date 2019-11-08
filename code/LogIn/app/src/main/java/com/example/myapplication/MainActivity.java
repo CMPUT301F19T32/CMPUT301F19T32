@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                             StringBuilder fields = new StringBuilder("");
                             fields.append(document.get("password"));
                             String inputpassword=fields.toString();
-                            Toast.makeText(getApplicationContext(), inputpassword, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), inputpassword, Toast.LENGTH_SHORT).show();
                             if (document.exists()&&inputpassword.equals(password)) {
 
                                 Toast.makeText(getApplicationContext(), "Account Match", Toast.LENGTH_SHORT).show();

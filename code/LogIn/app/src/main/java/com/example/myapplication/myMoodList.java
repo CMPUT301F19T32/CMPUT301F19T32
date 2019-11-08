@@ -46,6 +46,14 @@ public class myMoodList extends ArrayAdapter<Mood> {
         mood_text.setText(mood.getEmotionState());
         date_text.setText(mood.getTime());
 
+        Collections.sort(moods, new Comparator<Mood>() {
+            public int compare(Mood first, Mood second)  {
+                return second.getTime().compareTo(first.getTime());
+            }
+        });
+
+        context.moodAdapter.notifyDataSetChanged();
+
         return view;
 
     }

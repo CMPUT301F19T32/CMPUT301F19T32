@@ -254,7 +254,6 @@ public class HomePage extends AppCompatActivity {
 
 
 
-/*
         filter_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,15 +268,15 @@ public class HomePage extends AppCompatActivity {
                 filterDataList = new ArrayList<>();
 
                 for(int num = 0;num < moodDataList.size();num++) {
-                    if (moodDataList.get(num).getEmotionState().equals("Sad")) {
+                    if (moodDataList.get(num).getEmotionState().equals("sad")) {
                         String emotionState = moodDataList.get(num).getEmotionState();
                         String reason = moodDataList.get(num).getReason();
                         String time = moodDataList.get(num).getTime();
-                        String date = moodDataList.get(num).getDate();
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
-                        Geolocation geolocation = moodDataList.get(num).getGeolocation();
-                        filterDataList.add(new Mood("Sad", emotionState, reason, time, date, socialState, username, geolocation));
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
                         chk = 1;
 
                     }
@@ -287,6 +286,7 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+
 
         filter_angry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,15 +295,15 @@ public class HomePage extends AppCompatActivity {
                 filterDataList = new ArrayList<>();
 
                 for(int num = 0;num < moodDataList.size();num++) {
-                    if (moodDataList.get(num).getEmotionstr().equals("Angry")) {
+                    if (moodDataList.get(num).getEmotionState().equals("angry")) {
                         String emotionState = moodDataList.get(num).getEmotionState();
                         String reason = moodDataList.get(num).getReason();
                         String time = moodDataList.get(num).getTime();
-                        String date = moodDataList.get(num).getDate();
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
-                        Geolocation geolocation = moodDataList.get(num).getGeolocation();
-                        filterDataList.add(new Mood("Angry", emotionState, reason, time, date, socialState, username,geolocation));
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
                         chk = 1;
 
                     }
@@ -313,7 +313,6 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
-
         filter_happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -321,15 +320,15 @@ public class HomePage extends AppCompatActivity {
                 filterDataList = new ArrayList<>();
 
                 for(int num = 0;num < moodDataList.size();num++) {
-                    if (moodDataList.get(num).getEmotionstr().equals("Happy")) {
+                    if (moodDataList.get(num).getEmotionState().equals("happy")) {
                         String emotionState = moodDataList.get(num).getEmotionState();
                         String reason = moodDataList.get(num).getReason();
                         String time = moodDataList.get(num).getTime();
-                        String date = moodDataList.get(num).getDate();
                         String socialState = moodDataList.get(num).getSocialState();
                         String username = moodDataList.get(num).getUsername();
-                        Geolocation geolocation = moodDataList.get(num).getGeolocation();
-                        filterDataList.add(new Mood("Happy", emotionState, reason, time, date, socialState, username,geolocation));
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
                         chk = 1;
 
                     }
@@ -352,14 +351,14 @@ public class HomePage extends AppCompatActivity {
         });
 
 
-*/
+
 
     }
 
-    /*
+
     public void filter_show(ArrayList<Mood> myDataList){
         moodAdapter = new myMoodList(this, myDataList);
         moodList.setAdapter(moodAdapter);
     }
-*/
+
 }
