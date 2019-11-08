@@ -40,6 +40,10 @@ public class HomePageTest {
         Activity activity = rule.getActivity();
     }
 
+
+    /**
+     * sign in and check if the username appear on the page
+     */
     @Test
     public void usernameTest(){
         //go to homepage activity after sign in
@@ -53,6 +57,14 @@ public class HomePageTest {
         assertTrue(solo.searchText("user1"));
     }
 
+    /**
+     * sign in the account test_filter
+     * check the visibility of buttons after press Filter button
+     * check if the filter happy works
+     * check if the filter sad works
+     * check if the filter angry works
+     * check if the filter all works
+     */
     @Test
     public void filterTest(){
         //go to homepage activity after sign in
