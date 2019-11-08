@@ -299,11 +299,14 @@ public class EditMoodActivity extends AppCompatActivity {
 
     public String getAddress(LatLng latLng){
         String address = "";
+        if (latLng.latitude==0.0 && latLng.longitude==0.0){
+            return "Unknown";
+        }
         Geocoder geocoder = new Geocoder(EditMoodActivity.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
-            //String address_1 = addresses.get(0).getAddressLine(0);
-            address = addresses.get(0).getThoroughfare()+",\t"+addresses.get(0).getLocality();
+
+            address = addresses.get(0).getThoroughfare() + ",\t" + addresses.get(0).getLocality();
 
 
         }catch (IOException e){

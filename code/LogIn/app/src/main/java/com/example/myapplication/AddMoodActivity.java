@@ -189,12 +189,6 @@ public class AddMoodActivity extends AppCompatActivity {
 
 
     }
-
-    /**
-     *  Use GPS to return current Latitude and Longitude
-     * @return LatLng
-     */
-
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,
@@ -204,12 +198,11 @@ public class AddMoodActivity extends AppCompatActivity {
 
             return new LatLng(0,0);
         }
-        final Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
+
         lm.requestLocationUpdates(GPS_PROVIDER, 1000, 1, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                myLocation.setLatitude(location.getLatitude());
-                myLocation.setLongitude(location.getLongitude());
+
             }
 
             @Override
@@ -228,7 +221,7 @@ public class AddMoodActivity extends AppCompatActivity {
             }
         });
 
-
+        Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
 
 
         if (myLocation == null) {
@@ -239,15 +232,19 @@ public class AddMoodActivity extends AppCompatActivity {
         return new LatLng(latitude, longitude);
     }
 
+
     /**
      *  Use latitude and longitude to get address
      * @param latLng
      * @return String
      */
 
+
     public String getAddress(LatLng latLng){
         String address = "";
-
+        if (latLng.latitude==0.0 && latLng.longitude==0.0){
+            return "Unknown";
+        }
         Geocoder geocoder = new Geocoder(AddMoodActivity.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);

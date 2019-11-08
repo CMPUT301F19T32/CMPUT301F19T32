@@ -60,7 +60,6 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
                         String socialState = (String) doc.getData().get("socialState");
                         String time = (String) doc.getData().get("time");
                         mapMood.add(new Mood(emotionState, reason, time, socialState, user, latitude, longitude));
-                        System.out.println("*******************");
 
                        }
                     System.out.println(mapMood.size());
