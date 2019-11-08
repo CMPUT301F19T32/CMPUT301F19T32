@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class signUpPage extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     ArrayList<Account> accountDataList;
 

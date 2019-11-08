@@ -45,7 +45,7 @@
         <activity android:name=".Create" />
         <activity android:name=".HomePage" />
         <activity android:name=".ViewActivity" />
-        <activity android:name=".signUpPage" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

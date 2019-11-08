@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_field);
 
         db = FirebaseFirestore.getInstance();
-        final Intent intent = new Intent(this, signUpPage.class);
+        final Intent intent = new Intent(this, SignUpActivity.class);
         signUpButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(intent);
