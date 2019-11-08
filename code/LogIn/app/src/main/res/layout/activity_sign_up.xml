@@ -48,7 +48,7 @@
             android:id="@+id/signUp_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up" />
+            android:text="SIGN UP" />
 
 
     </LinearLayout>

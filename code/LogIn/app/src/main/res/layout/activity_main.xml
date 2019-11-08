@@ -41,13 +41,13 @@
             android:id="@+id/signIn_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In" />
+            android:text="SIGN IN" />
 
         <Button
             android:id="@+id/signUp_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up" />
+            android:text="SIGN UP" />
 
 
     </LinearLayout>
