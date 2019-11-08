@@ -37,6 +37,8 @@ import org.w3c.dom.Document;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -153,6 +155,13 @@ public class HomePage extends AppCompatActivity {
                         }
 
                     }
+                    for (int i =0; i < moodDataList.size(); i++){
+                        Collections.sort(moodDataList, new Comparator<Mood>() {
+                            public int compare(Mood first, Mood second)  {
+                                return second.getTime().compareTo(first.getTime());
+                            }
+                        });
+                    }
                     moodAdapter.notifyDataSetChanged();
                 }
             }
@@ -252,6 +261,20 @@ public class HomePage extends AppCompatActivity {
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
                 filterLayout.setVisibility(View.INVISIBLE);
 
+<<<<<<< HEAD
+=======
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionState().equals("sad")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
+                        chk = 1;
+>>>>>>> 9a42cace9c3616fc8643136ec62df1111a60a183
 
 
             }
@@ -262,10 +285,29 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+<<<<<<< HEAD
                 filter="angry";
                 final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+=======
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionState().equals("angry")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
+                        chk = 1;
+
+                    }
+                }
+>>>>>>> 9a42cace9c3616fc8643136ec62df1111a60a183
                 filterLayout.setVisibility(View.INVISIBLE);
 
             }
@@ -274,10 +316,29 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+<<<<<<< HEAD
                 filter="happy";
                 final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+=======
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionState().equals("happy")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
+                        chk = 1;
+
+                    }
+                }
+>>>>>>> 9a42cace9c3616fc8643136ec62df1111a60a183
                 filterLayout.setVisibility(View.INVISIBLE);
 
             }
@@ -296,7 +357,21 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
     }
 
 
+=======
+
+
+
+    }
+
+
+    public void filter_show(ArrayList<Mood> myDataList){
+        moodAdapter = new myMoodList(this, myDataList);
+        moodList.setAdapter(moodAdapter);
+    }
+
+>>>>>>> 9a42cace9c3616fc8643136ec62df1111a60a183
 }
