@@ -21,7 +21,7 @@ import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
 
-public class MyProfile extends AppCompatActivity {
+public class MyProfileActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     TextView usernameProfile;

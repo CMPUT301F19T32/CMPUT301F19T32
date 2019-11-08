@@ -259,7 +259,7 @@ public class HomePage extends AppCompatActivity {
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentMyProfile = new Intent(HomePage.this,MyProfile.class);
+                Intent intentMyProfile = new Intent(HomePage.this, MyProfileActivity.class);
                 intentMyProfile.putExtra("usernameMyProfile",usernameMain);
                 HomePage.this.startActivity(intentMyProfile);
             }

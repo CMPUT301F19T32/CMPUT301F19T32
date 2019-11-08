@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EditMoodActivity"></activity>
-        <activity android:name=".MyProfile" />
+        <activity android:name=".MyProfileActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
