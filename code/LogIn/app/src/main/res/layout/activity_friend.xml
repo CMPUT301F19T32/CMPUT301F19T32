@@ -8,6 +8,19 @@
     tools:context=".FriendActivity">
 
 
+    <Button
+        android:id="@+id/refresh2"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="664dp"
+        android:text="REFRESH"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
@@ -44,8 +57,8 @@
         app:layout_constraintEnd_toStartOf="@+id/map_fr"
         app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
-        app:layout_constraintVertical_bias="0.277" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878" />
 
     <Button
         android:id="@+id/map_fr"
@@ -57,7 +70,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
-        app:layout_constraintVertical_bias="0.277" />
+        app:layout_constraintVertical_bias="0.278" />
 
     <Button
         android:id="@+id/addFriend"
@@ -68,8 +81,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.746"
         app:layout_constraintStart_toEndOf="@+id/map_fr"
-        app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
-        app:layout_constraintVertical_bias="0.277" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

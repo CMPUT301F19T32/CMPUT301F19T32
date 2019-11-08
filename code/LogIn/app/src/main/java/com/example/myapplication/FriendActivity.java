@@ -177,6 +177,17 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             }
         });
 
+        Button refresh=findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
+
     }
 
     @Override
@@ -204,17 +215,48 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         //final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
 
-        DocumentReference docIdRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
+        DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName());
         docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Toast.makeText(FriendActivity.this, "Already sent", Toast.LENGTH_SHORT).show();
+                        DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName());
+                        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        Toast.makeText(FriendActivity.this, "Already sent", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName()).collection("Friend").document(requestInner.getSentName());
+                                        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document.exists()) {
+                                                        Toast.makeText(FriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                    else {
+                                                        db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName()).set(requestInner);
+                                                    }
+                                                } else {
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else {
+                                }
+                            }
+                        });
                     }
                     else {
-                        db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName()).set(requestInner);
+                        Toast.makeText(FriendActivity.this, "Can't find this person", Toast.LENGTH_SHORT).show();
+
                     }
                 } else {
                 }

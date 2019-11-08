@@ -13,6 +13,12 @@
         android:text="REQUEST"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REFRESH" />
+
     <ListView
         android:id="@+id/requestListView"
         android:layout_width="409dp"
