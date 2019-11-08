@@ -122,6 +122,11 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+    /**
+     *  set Google Map to a appropriate view to see displayed markers
+     * @param geolocation
+     */
+
     private void setCameraView(Geolocation geolocation){
         double bottomBoundary = geolocation.getLatitude() - 0.1;
         double leftBoundary = geolocation.getLongitude()-0.1;

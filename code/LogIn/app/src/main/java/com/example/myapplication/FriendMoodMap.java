@@ -76,6 +76,11 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
         }
     }
 
+    /**
+     *  set Google Map to a appropriate view to see displayed markers
+     * @param geolocation
+     */
+
     private void setCameraView(Geolocation geolocation){
 
         double bottomBoundary = geolocation.getLatitude() - 0.1;

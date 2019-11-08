@@ -240,6 +240,12 @@ public class EditMoodActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     *  Use GPS to return current Latitude and Longitude
+     * @return LatLng
+     */
+
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,
@@ -283,6 +289,13 @@ public class EditMoodActivity extends AppCompatActivity {
         double latitude = myLocation.getLatitude();
         return new LatLng(latitude, longitude);
     }
+
+    /**
+     *  Use latitude and longitude to get address
+     * @param latLng
+     * @return String
+     */
+
 
     public String getAddress(LatLng latLng){
         String address = "";

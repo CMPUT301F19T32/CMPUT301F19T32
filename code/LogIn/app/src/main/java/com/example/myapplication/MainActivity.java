@@ -114,6 +114,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     *  Check whether google map service is available
+     * @return boolean
+     */
+
     private boolean checkMapServices(){
         if(isServicesOK()){
             if(isMapsEnabled()){
@@ -122,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+    /**
+     *  show alert message
+     * @return void
+     */
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -137,6 +147,11 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
+    /**
+     *  check google map availability
+     * @return boolean
+     */
+
     public boolean isMapsEnabled(){
         final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
 
@@ -146,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    /**
+     *  ask user to get GPS permissions
+     * @return void
+     */
 
     private void getLocationPermission() {
         /*
@@ -163,6 +183,12 @@ public class MainActivity extends AppCompatActivity {
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
+
+    /**
+     *  check google service
+     * @return boolean
+     */
+
 
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
@@ -183,6 +209,13 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     *  check whether user enables location
+     * @return void
+     */
+
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
@@ -198,6 +231,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     *  check whether user enables GPS
+     * @return void
+     */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -215,6 +253,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    /**
+     *  wait for check
+     * @return void
+     */
+
     @Override
     protected void onResume() {
         super.onResume();
