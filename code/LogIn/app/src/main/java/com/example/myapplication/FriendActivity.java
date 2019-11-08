@@ -68,8 +68,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         db = FirebaseFirestore.getInstance();
 
 
-
-
+        /**
+         * The following part iterate the friendList of current user in firestore and get the last mood of friend.
+         */
         final CollectionReference collectionReference =  cloudstorage.collection("Account").document(user).collection("Friend");
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -78,12 +79,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         String friend = (String) doc.getId();
                         friendList.add(friend);
-                        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX+"+friendList.size());
 
                     }
                     for (int i = 0; i<friendList.size();i++){
-
-                        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                         final CollectionReference collectionReferences =  db.collection("Account").document(friendList.get(i)).collection("moodHistory");
                         collectionReferences.addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
@@ -119,6 +117,10 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         final Button map = findViewById(R.id.map_fr);
         Button addFriend = findViewById(R.id.addFriend);
         Button refresh=findViewById(R.id.refresh);
+
+        /**
+         * refresh button will refresh the activity.
+         */
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +130,10 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 overridePendingTransition(0, 0);
             }
         });
+
+        /**
+         * The add button will call a fragment to ask information for the friend.
+         */
         addFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +142,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
             }
         });
-
+        /**
+         * THE MAP BUTTON WILL GO TO ANOTHER ACTIVITY TO SHOW MAP OF FRIEND.
+          */
         map.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -154,6 +162,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
             }
         });
+        /**
+         * THE REQUEST BUTTON WILL GO TO Request Activity to show requests.
+         */
         requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,6 +173,10 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 startActivity(requestIntent);
             }
         });
+
+        /**
+         * When click the mood of a friend, the detail will show.
+         */
         moodFriendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -178,6 +193,13 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
     }
 
+    /**
+     * This method is called when user sent a request
+     * if the user wants to sent another user that is already friend,
+     * or the user already sent request,
+     * or there is no match user to  sent. different Toast will appear and the request is ignore.
+     * @param request
+     */
     @Override
     public void onOkPress(Request request) {
 

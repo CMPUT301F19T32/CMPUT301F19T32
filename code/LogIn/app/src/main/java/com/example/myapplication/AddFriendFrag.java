@@ -28,10 +28,17 @@ public class AddFriendFrag extends DialogFragment {
     private OnFragmentInteractionListener listener;
     private Request request;
 
+    /**
+     * contains the onOkPress method
+     */
     public interface OnFragmentInteractionListener {
         void onOkPress(Request request);
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
