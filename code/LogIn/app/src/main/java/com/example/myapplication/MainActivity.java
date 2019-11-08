@@ -177,8 +177,6 @@ public class MainActivity extends AppCompatActivity {
         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
             //an error occured but we can resolve it
             Log.d(TAG, "isServicesOK: an error occured but we can fix it");
-            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, Constant.ERROR_DIALOG_REQUEST);
-            dialog.show();
         }else{
             Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
         }
@@ -222,7 +220,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if(checkMapServices()){
             if(mLocationPermissionGranted){
-
             }
             else{
                 getLocationPermission();

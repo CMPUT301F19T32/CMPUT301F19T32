@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MoodTest {
 
     private Mood createTestMood(){
-        Mood mood = new Mood("Happy", "1", "happy", "11:09",
-                "2019-11-05", "Single", "puquan", new Geolocation(53.484310, -113.506133));
-
+        Mood mood = new Mood("happy","nihao","19:20",);
+        53.484310, -113.506133));
         return mood;
     }
 

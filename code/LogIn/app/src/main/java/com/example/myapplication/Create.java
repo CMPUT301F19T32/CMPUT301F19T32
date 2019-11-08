@@ -211,7 +211,7 @@ public class Create extends AppCompatActivity {
             return new LatLng(0,0);
         }
 
-        Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
+        Location myLocation = lm.getLastKnownLocation(NETWORK_PROVIDER);
         if (myLocation == null) {
             return new LatLng(0,0);
         }
@@ -222,6 +222,7 @@ public class Create extends AppCompatActivity {
 
     public String getAddress(LatLng latLng){
         String address = "";
+
         Geocoder geocoder = new Geocoder(Create.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
