@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
@@ -197,6 +198,8 @@ public class AddMoodActivity extends AppCompatActivity {
 
             return new LatLng(0,0);
         }
+
+
 
         Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
         if (myLocation == null) {
