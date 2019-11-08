@@ -2,8 +2,13 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -59,49 +64,35 @@ public class AddMoodActivityTest {
 
      */
     @Test
-    public void checkSignIn(){
+    public void checkAddMood(){
         // Asserts that the current activity is the MainActivity. Otherwise, show “Wrong Activity”
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        // test empty input
-        solo.enterText((EditText) solo.getView(R.id.username_field), "");
-        solo.clickOnButton("SIGN IN");
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        solo.clearEditText((EditText) solo.getView(R.id.username_field));
-
-        // test wrong username
-        solo.enterText((EditText) solo.getView(R.id.username_field), "WrongUser");
-        solo.clickOnButton("SIGN IN");
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-
-
-        // test wrong password
-        solo.enterText((EditText) solo.getView(R.id.password_field), "password");
-        solo.clickOnButton("SIGN IN");
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        solo.clearEditText((EditText) solo.getView(R.id.username_field));
-        solo.clearEditText((EditText) solo.getView(R.id.password_field));
-
-        // input correct username
         solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
-        solo.clickOnButton("SIGN IN");
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-
-        // test wrong password
-        solo.enterText((EditText) solo.getView(R.id.password_field), "WrongPassword");
-        solo.clickOnButton("SIGN IN");
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        solo.clearEditText((EditText) solo.getView(R.id.password_field));
-
-        // test empty password
-        solo.enterText((EditText) solo.getView(R.id.password_field), "");
-        solo.clickOnButton("SIGN IN");
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        solo.clearEditText((EditText) solo.getView(R.id.password_field));
-
-        // test correct password
         solo.enterText((EditText) solo.getView(R.id.password_field), "123");
         solo.clickOnButton("SIGN IN");
-        //solo.assertCurrentActivity("Wrong Activity", HomePage.class);
+        solo.clickOnButton("ADD MOOD");
+        solo.assertCurrentActivity("Wrong Activity", AddMoodActivity.class);
+
+        View view1 = solo.getView("imageView");
+
+        solo.clickOnView(view1);
+        GridView gridview = (GridView) solo.getView("gridview");
+        ImageView img = (ImageView) gridview.getChildAt(0);
+        solo.clickOnView(img);
+
+        solo.enterText((EditText) solo.getView(R.id.reason), "heavy school work");
+
+        // 0 is the first spinner in the layout
+        View view3 = solo.getView(Spinner.class, 0);
+        solo.clickOnView(view3);
+
+        solo.clickOnButton("submit");
+
+
+
+
+
+
+
 
 
 
