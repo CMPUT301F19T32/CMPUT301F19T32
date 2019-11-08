@@ -27,11 +27,5 @@ public class GeoLocationTest {
 
     }
 
-    //@Ignore("null case cannot be tested")
-    //@Test
-    //void test(){
-    //Geolocation geolocation = null;
-    //assertEquals(geolocation.getLongitude(),null);
 
-    //}
 }
