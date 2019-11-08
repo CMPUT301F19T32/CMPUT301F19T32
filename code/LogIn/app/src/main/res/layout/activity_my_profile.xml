@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MyProfile"
     android:orientation="vertical">
 
@@ -13,9 +14,10 @@
         android:layout_width="214dp"
         android:layout_height="62dp"
         android:layout_marginTop="68dp"
+        android:textStyle="bold"
         android:gravity="center"
         android:text="username"
-        android:textSize="30sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

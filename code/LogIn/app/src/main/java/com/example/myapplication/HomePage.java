@@ -37,6 +37,8 @@ import org.w3c.dom.Document;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -96,9 +98,6 @@ public class HomePage extends AppCompatActivity {
     StringBuilder longitudef = new StringBuilder("");
     StringBuilder reasonf = new StringBuilder("");
 
-    String filter="all";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -119,7 +118,47 @@ public class HomePage extends AppCompatActivity {
         filter_all = findViewById(R.id.filter_all);
 
         add_button = findViewById(R.id.button);
+        /*
+        db.collection("Account").document(usernameMain).collection("moodHistory")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
 
+                                socialf.append(document.get("socialState"));
+                                socialList.add(socialf.toString());
+                                socialf.setLength(0);
+                                timef.append(document.get("time"));
+                                timeList.add(timef.toString());
+                                timef.setLength(0);
+                                emotionf.append(document.get("emotionState"));
+                                emotionList.add(emotionf.toString());
+                                emotionf.setLength(0);
+                                latitudef.append(document.get("latitude"));
+                                latitudeList.add(latitudef.toString());
+                                latitudef.setLength(0);
+                                longitudef.append(document.get("longitude"));
+                                longitudeList.add(latitudef.toString());
+                                longitudef.setLength(0);
+                                reasonf.append(document.get("reason"));
+                                reasonList.add(reasonf.toString());
+                                reasonf.setLength(0);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                        for (int i = 0; i < emotionList.size(); i++) {
+                            System.out.println("******************************************\n");
+                            moodDataList.add((new Mood(emotionList.get(i),reasonList.get(i),timeList.get(i),socialList.get(i),usernameMain,latitudeList.get(i),longitudeList.get(i))));
+                        }
+                        moodAdapter.notifyDataSetChanged();
+                    }
+                });
+
+
+         */
         final CollectionReference collectionReference =  db.collection("Account").document(usernameMain).collection("moodHistory");
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -133,25 +172,14 @@ public class HomePage extends AppCompatActivity {
                         String reason = (String) doc.getData().get("reason");
                         String socialState = (String) doc.getData().get("socialState");
                         String time = (String) doc.getData().get("time");
-                        if(filter.equals("angry")){
-                            if (emotionState.equals("angry")){
-                                moodDataList.add(new Mood(emotionState, reason, time, socialState, usernameMain, latitude, longitude));
+                        moodDataList.add(new Mood(emotionState, reason, time, socialState, usernameMain, latitude, longitude));
+                    }
+                    for (int i =0; i < moodDataList.size(); i++){
+                        Collections.sort(moodDataList, new Comparator<Mood>() {
+                            public int compare(Mood first, Mood second)  {
+                                return second.getTime().compareTo(first.getTime());
                             }
-                        }
-                        if(filter.equals("sad")){
-                            if (emotionState.equals("sad")){
-                                moodDataList.add(new Mood(emotionState, reason, time, socialState, usernameMain, latitude, longitude));
-                            }
-                        }
-                        if(filter.equals("happy")){
-                            if (emotionState.equals("happy")){
-                                moodDataList.add(new Mood(emotionState, reason, time, socialState, usernameMain, latitude, longitude));
-                            }
-                        }
-                        if(filter.equals("all")){
-                            moodDataList.add(new Mood(emotionState, reason, time, socialState, usernameMain, latitude, longitude));
-                        }
-
+                        });
                     }
                     moodAdapter.notifyDataSetChanged();
                 }
@@ -246,13 +274,24 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                filter="sad";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionState().equals("sad")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
+                        chk = 1;
+
+                    }
+                }
                 filterLayout.setVisibility(View.INVISIBLE);
-
-
+                filter_show(filterDataList);
 
             }
         });
@@ -262,11 +301,24 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                filter="angry";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionState().equals("angry")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
+                        chk = 1;
+
+                    }
+                }
                 filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(filterDataList);
 
             }
         });
@@ -274,11 +326,24 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                filter="happy";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filterDataList = new ArrayList<>();
+
+                for(int num = 0;num < moodDataList.size();num++) {
+                    if (moodDataList.get(num).getEmotionState().equals("happy")) {
+                        String emotionState = moodDataList.get(num).getEmotionState();
+                        String reason = moodDataList.get(num).getReason();
+                        String time = moodDataList.get(num).getTime();
+                        String socialState = moodDataList.get(num).getSocialState();
+                        String username = moodDataList.get(num).getUsername();
+                        String latitude = moodDataList.get(num).getLatitude();
+                        String longitude = moodDataList.get(num).getLongitude();
+                        filterDataList.add(new Mood(emotionState, reason, time, socialState, username, latitude, longitude));
+                        chk = 1;
+
+                    }
+                }
                 filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(filterDataList);
 
             }
         });
@@ -287,16 +352,22 @@ public class HomePage extends AppCompatActivity {
         filter_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filter="all";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
-                db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
                 filterLayout.setVisibility(View.INVISIBLE);
+                filter_show(moodDataList);
+                chk = 0;
 
             }
         });
 
+
+
+
     }
 
+
+    public void filter_show(ArrayList<Mood> myDataList){
+        moodAdapter = new myMoodList(this, myDataList);
+        moodList.setAdapter(moodAdapter);
+    }
 
 }

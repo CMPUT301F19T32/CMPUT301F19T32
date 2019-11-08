@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Create">
 
     <ImageView
@@ -84,6 +85,7 @@
     <TextView
         android:id="@+id/view_username"
         android:layout_width="238dp"
+        android:textStyle="bold"
         android:layout_height="76dp"
         android:gravity="center"
         android:text="Username"

@@ -16,11 +16,11 @@
 
     <TextView
         android:id="@+id/date_text"
-        android:layout_width="206dp"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="Date"
-        android:textSize="30sp">
+        android:textSize="23sp">
 
     </TextView>
 

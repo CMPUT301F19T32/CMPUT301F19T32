@@ -4,32 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".FriendActivity">
+
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="134dp"
+        android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_gravity="center"
         android:text="FRIEND"
         android:textSize="36sp"
+        android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039" />
-
+        app:layout_constraintVertical_bias="0.09" />
 
     <ListView
         android:id="@+id/friendLIstVeiw"
         android:layout_width="409dp"
         android:layout_height="433dp"
+        android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.035"></ListView>
+        app:layout_constraintVertical_bias="0.142"></ListView>
 
     <Button
         android:id="@+id/request"
@@ -66,19 +70,6 @@
         app:layout_constraintStart_toEndOf="@+id/map_fr"
         app:layout_constraintTop_toBottomOf="@+id/friendLIstVeiw"
         app:layout_constraintVertical_bias="0.277" />
-
-    <Button
-        android:id="@+id/refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="REFRESH"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
