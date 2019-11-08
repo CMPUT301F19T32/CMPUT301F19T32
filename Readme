@@ -1,3 +1,5 @@
+Code: The main code is in LogIn folder.
+
 WARNING: This app could only run on API29, or app will crash due to gps access problem.
 when user wants to create a new mood, in other words, when programs goes to AddMoodActivity, it may crash. (We are still figuring out why this happens).
 
