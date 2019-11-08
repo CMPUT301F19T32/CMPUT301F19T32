@@ -3,35 +3,35 @@ package com.example.myapplication;
 public class Request {
     private String sentName;
     private String reciveName;
-    private String massageSent;
+    private String messageSent;
 
-    public Request(String userName, String friendName, String massageSent) {
-        this.sentName = userName;
-        this.reciveName = friendName;
-        this.massageSent = massageSent;
+    public Request(String sentName, String reciveName, String messageSent) {
+        this.sentName = sentName;
+        this.reciveName = reciveName;
+        this.messageSent = messageSent;
     }
 
     public String getSentName() {
         return sentName;
     }
 
-    public String getReciveName() {
-        return reciveName;
-    }
-
-    public String getMassageSent() {
-        return massageSent;
-    }
-
     public void setSentName(String sentName) {
         this.sentName = sentName;
+    }
+
+    public String getReciveName() {
+        return reciveName;
     }
 
     public void setReciveName(String reciveName) {
         this.reciveName = reciveName;
     }
 
-    public void setMassageSent(String massageSent) {
-        this.massageSent = massageSent;
+    public String getMessageSent() {
+        return messageSent;
+    }
+
+    public void setMessageSent(String messageSent) {
+        this.messageSent = messageSent;
     }
 }

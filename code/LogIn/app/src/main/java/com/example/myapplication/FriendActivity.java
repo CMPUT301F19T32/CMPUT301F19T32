@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,8 +19,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -29,11 +35,17 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     private int index;
     private String user;
     private Mood mood;
+    private ArrayList<Mood> friendMoodList;
     ArrayList<String> friendList;
     ArrayList<Request> requestsList;
     String toast1 = "Already Friend";
     String toast2 = "Already Sent Earlier";
     String toast3 = "Already Sent";
+    private Mood currentMood;
+    Geolocation geolocation;
+    FirebaseFirestore db;
+    FirebaseFirestore cloudstorage;
+
 
     private  Request request;
     //friendList get from fireStore
@@ -46,41 +58,59 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         moodFriendList = findViewById(R.id.friendLIstVeiw);
         moodFrArrayList = new ArrayList<>();
         friendList = new ArrayList<>();
+        cloudstorage= FirebaseFirestore.getInstance();
 
         //some sample info (delete later)
-        final String []moods = {"Happy", "Angry", "Sad", "Sad"};
-        String []date = {"2019-11-05", "2018-08-06", "2015-10-17", "2015-09-18"};
-        String []username = {"Zhao", "Qian", "Li", "Sun"};
-        String []time = {"12:00","11:45","15:20","04:20"};
-        String []something = {"1", "2", "3", "4"};
-        Geolocation geolocation1;
-        Geolocation geolocation2;
-        Geolocation geolocation3;
-        Geolocation geolocation4;
-        double a = 53.484310;
-        double b = -113.506133;
-        double c =  53.488036;
-        double d =  -113.514072;
-        double e = 53.486592;
-        double f = -113.502130;
-        geolocation1 = new Geolocation(a,b);
-        geolocation2 = new Geolocation(c,d);
-        geolocation3 = new Geolocation(e,f);
-        geolocation4 = null;
-        Geolocation[]geolocations = {geolocation1,geolocation2,geolocation3,geolocation4};
 
-
-        for (int i = 00; i < moods.length; i++) {
-            moodFrArrayList.add((new Mood(moods[i],something[i],something[i],time[i], date[i],something[i],username[i],geolocations[i])));
-        }
+        double a = 100;
+        double b = 123;
+        geolocation = new Geolocation(a,b);
+        db = FirebaseFirestore.getInstance();
 
 
 
-        for (int i = 0; i<friendList.size();i++){
-            //find keyword = friendList.get(i)
-            //find keyword  moodList.get(0)  mood = moodList.get(0)
-            //moodFriendList.add()mood
-        }
+
+        final CollectionReference collectionReference =  cloudstorage.collection("Account").document(user).collection("Friend");
+        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (queryDocumentSnapshots != null) {
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        String friend = (String) doc.getId();
+                        friendList.add(friend);
+                        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX+"+friendList.size());
+
+                    }
+                    for (int i = 0; i<friendList.size();i++){
+
+                        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                        final CollectionReference collectionReferences =  db.collection("Account").document(friendList.get(i)).collection("moodHistory");
+                        collectionReferences.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                if (queryDocumentSnapshots != null) {
+                                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+
+                                        System.out.println(friendList.size());
+                                        String emotionState = (String) doc.getData().get("emotionState");
+                                        String latitude = (String) doc.getData().get("latitude");
+                                        String longitude = (String) doc.getData().get("longitude");
+                                        String reason = (String) doc.getData().get("reason");
+                                        String socialState = (String) doc.getData().get("socialState");
+                                        String time = (String) doc.getData().get("time");
+                                        String username= (String)doc.getData().get("username");
+                                        currentMood=new Mood(emotionState, reason, time, socialState, username, latitude, longitude);
+                                        System.out.println(currentMood.getUsername());
+                                    }
+                                    moodFrArrayList.add(currentMood);
+                                    moodFrArrayAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
 
 
         moodFrArrayAdapter = new CustomeFriendList(this, moodFrArrayList);
@@ -128,13 +158,14 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 mood = moodFrArrayAdapter.getItem(position);
                 Intent viewIntent  = new Intent(FriendActivity.this, ViewActivity.class );
                 viewIntent.putExtra("username",mood.getUsername());
-                viewIntent.putExtra("emotion",mood.getEmotionstr());
+                viewIntent.putExtra("emotion",mood.getEmotionState());
                 viewIntent.putExtra("reason",mood.getReason());
                 viewIntent.putExtra("social",mood.getSocialState());
                 startActivity(viewIntent);
                 /// add new activity relatide to homepage
             }
         });
+
     }
 
     @Override
@@ -155,37 +186,32 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         }
         */
-        // if not found keyword username toast3
+        // if 找不到 keyword 人名 toast3
         //Request update to firestore
         final Request requestInner = request;
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
-        final CollectionReference collectionReference = db.collection("Account");
 
-        final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName());
-        ReceiverRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        //final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
+
+        DocumentReference docIdRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
+        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-
-                        ReceiverRef
-                                .update("requestList", FieldValue.arrayUnion(requestInner));
-                        //Toast.makeText(getActivity(), "request sent successfully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //Log.d(TAG, "The user does not exist!");
-
-                        Toast.makeText(getApplicationContext(), "The user does not exist!", Toast.LENGTH_SHORT).show();
-                        return;
+                        Toast.makeText(FriendActivity.this, "Already sent", Toast.LENGTH_SHORT).show();
                     }
+                    else {
+                        db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName()).set(requestInner);
+                    }
+                } else {
                 }
-                /** else {
-                 Log.d(TAG, "Failed with: ", task.getException());
-                 } **/
-
             }
         });
+
+
+
 
 
     }

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -34,8 +35,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -47,7 +53,7 @@ import java.util.Locale;
 import static android.location.LocationManager.GPS_PROVIDER;
 import static android.location.LocationManager.NETWORK_PROVIDER;
 
-public class Create extends AppCompatActivity {
+public class Edit extends AppCompatActivity {
     private ImageView image;
     private void initComponent() {
         image = (ImageView) findViewById(R.id.imageView);
@@ -64,20 +70,66 @@ public class Create extends AppCompatActivity {
     double a;
     double b;
     private String user;
-
-
-
-
+    String emotionState ;
+    String latitude ;
+    String longitude ;
+    String reasonS;
+    String socialState;
+    String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create);
+        setContentView(R.layout.activity_edit);
         initComponent();
-        Intent intentc = getIntent();
-        user = intentc.getStringExtra("user");
+        Intent edit = getIntent();
+        Bundle extras = edit.getExtras();
+        final String key = extras.getString("key");
+        user = extras.getString("user");
+        db = FirebaseFirestore.getInstance();
+        final Spinner social = (Spinner) findViewById(R.id.social);
 
+        DocumentReference docRef = db.collection("Account").document(user).collection("moodHistory").document(key);
+        Source source = Source.CACHE;
+        docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    emotion = (String) doc.getData().get("emotionState");
+                    latitude = (String) doc.getData().get("latitude");
+                    longitude = (String) doc.getData().get("longitude");
+                    reasonS = (String) doc.getData().get("reason");
+                    socialstate = (String) doc.getData().get("socialState");
+                    time = (String) doc.getData().get("time");
+                    reason.setText(reasonS);
+                    if(emotion.equals("happy")){
+                        image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
+                    }
+                    if(emotion.equals("angry")){
+                        image.setImageDrawable( getResources().getDrawable(R.drawable.img2));
+                    }
+                    if(emotion.equals("sad")){
+                        image.setImageDrawable( getResources().getDrawable(R.drawable.img3));
+                    }
+                    if(socialstate.equals("Alone")){
+                        social.setSelection(0);
+                    }
+                    if(socialstate.equals("With one person")){
+                        social.setSelection(1);
+                    }
+                    if(socialstate.equals("With two to several people")){
+                        social.setSelection(2);
+                    }
+                    if(socialstate.equals("With a crowd")){
+                        social.setSelection(3);
+                    }
+                }
+                else {
+                }
+            }
+
+        });
 
 //Get GridView in layout
         final GridView gridview = (GridView) findViewById(R.id.gridview);
@@ -85,7 +137,7 @@ public class Create extends AppCompatActivity {
         gridview.setAdapter(new ImageAdapter(this));
 // Set the background
         gridview.setBackgroundResource(R.drawable.ic_launcher_background);
-        Spinner social = (Spinner) findViewById(R.id.social);
+
         social.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
@@ -121,20 +173,20 @@ public class Create extends AppCompatActivity {
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion = "happy";
-                    Toast.makeText(Create.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Edit.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
 
                 }
                 if(position==1){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img2));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion= "angry";
-                    Toast.makeText(Create.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Edit.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
                 }
                 if(position==2){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img3));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion="sad";
-                    Toast.makeText(Create.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Edit.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -157,9 +209,8 @@ public class Create extends AppCompatActivity {
             public void onClick(View v) {
                 LatLng currentLocation = getCurrentLocation();
                 location = new Geolocation(currentLocation.latitude,currentLocation.longitude);
-                String s = getAddress(currentLocation) ;
-                a=getCurrentLocation().latitude;
-                b=getCurrentLocation().longitude;
+                String s = getAddress(currentLocation);
+
                 location_view.setText(s);
 
 
@@ -175,25 +226,16 @@ public class Create extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(emotion==null){
-                    Toast.makeText(Create.this, "At least enter emotion", Toast.LENGTH_SHORT).show();
-                }
-                else{
-
-
-                    geolocation = new Geolocation(a,b);
-                    final Mood moodhistory =new Mood(emotion,reason.getText().toString(),dateFormat.format(date),socialstate,user,Double.toString(a),Double.toString(b));
-                    FirebaseFirestore db;
-                    db = FirebaseFirestore.getInstance();
-                    //final CollectionReference collectionReference = db.collection("Account");
-
-                    //final DocumentReference ReceiverRef = db.collection("Account").document(user);
-                    db.collection("Account").document(user).collection("moodHistory").document(moodhistory.getTime()).set(moodhistory);
-                    //startActivity(back);
-                    //overridePendingTransition(0, 0);
-                    finish();
-
-                }
+                Toast.makeText(Edit.this, emotion, Toast.LENGTH_SHORT).show();
+                a=getCurrentLocation().latitude;
+                b=getCurrentLocation().longitude;
+                db.collection("Account").document(user).collection("moodHistory").document(key)
+                        .update(
+                                "emotionState", emotion,
+                                "socialState", socialstate,
+                                "reason",reason.getText().toString()
+                        );
+                finish();
 
             }
         });
@@ -222,11 +264,11 @@ public class Create extends AppCompatActivity {
 
     public String getAddress(LatLng latLng){
         String address = "";
-        Geocoder geocoder = new Geocoder(Create.this, Locale.getDefault());
+        Geocoder geocoder = new Geocoder(Edit.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
-
-            address = addresses.get(0).getThoroughfare() + ",\t" + addresses.get(0).getLocality();
+            String address_1 = addresses.get(0).getAddressLine(0);
+            address = addresses.get(0).getLocality();
 
 
         }catch (IOException e){

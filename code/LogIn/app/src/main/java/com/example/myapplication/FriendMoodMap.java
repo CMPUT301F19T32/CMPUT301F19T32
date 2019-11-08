@@ -59,22 +59,21 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
 
 
             // if the mood has location, place a marker on map.
-            if (mood.getGeolocation() != null) {
-                LatLng latLng = new LatLng(mood.getGeolocation().getLatitude(), mood.getGeolocation().getLongitude());
-
-
-                // if Emotionstr is happy, the color of marker is orange, and red for angry, green for sad.
-                if(mood.getEmotionstr().equals("Happy")) {
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername() + ":" + mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                }else if (mood.getEmotionstr().equals("Angry")){
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername() + ":" + mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                }else if(mood.getEmotionstr().equals("Sad")){
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername() + ":" + mood.getEmotionstr()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+            if (!mood.getLatitude().equals("0.0") && !mood.getLongitude().equals("0.0")) {
+                LatLng latLng = new LatLng(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLatitude()));
+                System.out.println(latLng.toString());
+                // if Emotionstr is happy, the color of marker is green, and red for angry, blue for sad.
+                if(mood.getEmotionState().equals("happy")) {
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                }else if (mood.getEmotionState().equals("angry")){
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                }else if(mood.getEmotionState().equals("sad")){
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 }
 
                 // set view to clearly see the map
-                setCameraView(mood.getGeolocation());
-            }
+                Geolocation geo = new Geolocation(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLatitude()));
+                setCameraView(geo);            }
         }
     }
 

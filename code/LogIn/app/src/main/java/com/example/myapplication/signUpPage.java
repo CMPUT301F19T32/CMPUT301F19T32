@@ -30,7 +30,7 @@ public class signUpPage extends AppCompatActivity {
 
     ArrayList<Account> accountDataList;
 
-
+    Request requ;
     String TAG = "sample";
     EditText usernameCreate;
     EditText passwordCreate;
@@ -79,9 +79,10 @@ public class signUpPage extends AppCompatActivity {
                 final String  username = usernameCreate.getText().toString();
                 final String password = passwordConfirm.getText().toString();
 
-                Account account = new Account(username,password,new ArrayList(),"",new ArrayList());
+                Account account = new Account("",new ArrayList<Mood>(),password,new ArrayList<Request>(),username);
                 db.collection("Account").document(username).set(account);
-
+                requ=new Request("1","2","3");
+                db.collection("Account").document(username).collection("Request").document("initial").set(requ);
                 Toast.makeText(getApplicationContext(),"Succeffully signed up",Toast.LENGTH_SHORT).show();
                 // back to login page
                 startActivity(backToMainIntent);
@@ -100,7 +101,7 @@ public class signUpPage extends AppCompatActivity {
                     ArrayList moodHistory = (ArrayList) doc.getData().get("moodHistory");
                     String emoji = (String) doc.getData().get("emoji");
                     ArrayList requestList = (ArrayList) doc.getData().get("moodHistory");
-                    accountDataList.add(new Account(username,password,moodHistory,emoji,requestList));
+                    accountDataList.add(new Account(emoji,moodHistory,password,requestList,username));
                 }
 
                 //accountAdapter.notifyDataSetChanged();

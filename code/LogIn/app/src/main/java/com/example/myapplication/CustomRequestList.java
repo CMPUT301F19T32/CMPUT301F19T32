@@ -29,11 +29,11 @@ public class CustomRequestList extends ArrayAdapter<Request> {
         View view = convertView;
 
         if (view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.fr_mood_item,parent,false);
+            view = LayoutInflater.from(context).inflate(R.layout.request_list_layout,parent,false);
         }
-        Request request = requests.get(position);
+        final Request request = requests.get(position);
         TextView friendName = view.findViewById(R.id.requestViewFriendText);
-        friendName.setText(request.getSentName() + "has sent a request");
+        friendName.setText(request.getSentName());
 
         return view;
     }

@@ -35,13 +35,11 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
 
         TextView userName = view.findViewById(R.id.UserName_fr);
         TextView moodText = view.findViewById(R.id.moodtext_fr);
-        TextView dateText = view.findViewById(R.id.date_fr);;
         TextView timeText = view.findViewById(R.id.time_fr);
 
         userName.setText(mood.getUsername());
         timeText.setText(mood.getTime());
-        dateText.setText(mood.getDate());
-        moodText.setText(mood.getEmotionstr());
+        moodText.setText(mood.getEmotionState());
         return view;
     }
 }
