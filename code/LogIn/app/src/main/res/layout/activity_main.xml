@@ -6,36 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/login_back"
     tools:context=".MainActivity"
-
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/username_field"
-            android:layout_width="188dp"
-            android:layout_height="58dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="8"
-            android:hint="username"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorAccent"
-            android:textSize="25dp" />
+            android:hint="username" />
 
         <EditText
             android:id="@+id/password_field"
-            android:layout_width="171dp"
-            android:layout_height="62dp"
-            android:ems="7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="password"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorAccent"
-            android:textSize="25dp" />
+            android:ems="7"/>
 
         <Button
             android:id="@+id/signIn_button"
@@ -45,9 +36,9 @@
 
         <Button
             android:id="@+id/signUp_button"
+            android:text="Sign Up"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up" />
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>

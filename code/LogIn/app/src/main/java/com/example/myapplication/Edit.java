@@ -268,7 +268,7 @@ public class Edit extends AppCompatActivity {
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
             String address_1 = addresses.get(0).getAddressLine(0);
-            address = addresses.get(0).getLocality();
+            address = addresses.get(0).getThoroughfare()+",\t"+addresses.get(0).getLocality();
 
 
         }catch (IOException e){

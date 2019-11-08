@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,23 +45,6 @@ public class myMoodList extends ArrayAdapter<Mood> {
 
         mood_text.setText(mood.getEmotionState());
         date_text.setText(mood.getTime());
-
-        if(moods.get(position).getEmotionState().equals("sad")){
-            mood_text.setTextColor(Color.BLUE);
-            date_text.setTextColor(Color.BLUE);
-        }
-        if(moods.get(position).getEmotionState().equals("happy")){
-            mood_text.setTextColor(Color.GREEN);
-            date_text.setTextColor(Color.GREEN);
-        }
-        if(moods.get(position).getEmotionState().equals("angry")){
-            mood_text.setTextColor(Color.RED);
-            date_text.setTextColor(Color.RED);
-        }
-
-
-
-        //context.moodAdapter.notifyDataSetChanged();
 
         return view;
 

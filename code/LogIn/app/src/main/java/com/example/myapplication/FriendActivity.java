@@ -27,8 +27,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class FriendActivity extends AppCompatActivity implements AddFriendFrag.OnFragmentInteractionListener{
     ListView moodFriendList;
@@ -104,17 +102,8 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                         currentMood=new Mood(emotionState, reason, time, socialState, username, latitude, longitude);
                                         System.out.println(currentMood.getUsername());
                                     }
-
                                     moodFrArrayList.add(currentMood);
-                                    for (int i =0; i < moodFrArrayList.size(); i++){
-                                        Collections.sort(moodFrArrayList, new Comparator<Mood>() {
-                                            public int compare(Mood first, Mood second)  {
-                                                return second.getTime().compareTo(first.getTime());
-                                            }
-                                        });
-                                    }
                                     moodFrArrayAdapter.notifyDataSetChanged();
-
                                 }
                             }
                         });
