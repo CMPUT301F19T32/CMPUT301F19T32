@@ -198,10 +198,33 @@ public class AddMoodActivity extends AppCompatActivity {
 
             return new LatLng(0,0);
         }
+        final Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
+        lm.requestLocationUpdates(GPS_PROVIDER, 1000, 1, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                myLocation.setLatitude(location.getLatitude());
+                myLocation.setLongitude(location.getLongitude());
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        });
 
 
 
-        Location myLocation = lm.getLastKnownLocation(GPS_PROVIDER);
+
         if (myLocation == null) {
             return new LatLng(0,0);
         }
@@ -209,6 +232,8 @@ public class AddMoodActivity extends AppCompatActivity {
         double latitude = myLocation.getLatitude();
         return new LatLng(latitude, longitude);
     }
+
+
 
     public String getAddress(LatLng latLng){
         String address = "";
