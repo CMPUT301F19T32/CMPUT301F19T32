@@ -100,8 +100,11 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                         currentMood=new Mood(emotionState, reason, time, socialState, username, latitude, longitude);
                                         System.out.println(currentMood.getUsername());
                                     }
-                                    moodFrArrayList.add(currentMood);
-                                    moodFrArrayAdapter.notifyDataSetChanged();
+                                    if(currentMood!=null){
+                                        moodFrArrayList.add(currentMood);
+                                        moodFrArrayAdapter.notifyDataSetChanged();
+                                    }
+
                                 }
                             }
                         });
