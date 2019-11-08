@@ -42,7 +42,7 @@ public class MyProfile extends AppCompatActivity {
 
 
 
-        DocumentReference docRef = db.collection("Account").document("Wang").collection("Profile").document("Introduction");
+        DocumentReference docRef = db.collection("Account").document(username_profile).collection("Profile").document("Introduction");
         Source source = Source.CACHE;
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -79,6 +79,7 @@ public class MyProfile extends AppCompatActivity {
                         }
                     }
                 });
+                finish();
             }
         });
 
