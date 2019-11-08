@@ -21,6 +21,10 @@ import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
 
+/**
+ * my profile activity
+ * user can add an introduction here
+ */
 public class MyProfileActivity extends AppCompatActivity {
     FirebaseFirestore db;
 

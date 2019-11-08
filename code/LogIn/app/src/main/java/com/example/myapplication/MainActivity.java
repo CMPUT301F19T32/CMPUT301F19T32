@@ -30,7 +30,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import static com.example.myapplication.Constant.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
 import static com.example.myapplication.Constant.PERMISSIONS_REQUEST_ENABLE_GPS;
 
-
+/**
+ * Main Activity
+ * This activity is the sign in user interface
+ * user sign in of choose sign up from here
+ */
 public class MainActivity extends AppCompatActivity {
     Button signInButton;
     Button signUpButton;
@@ -62,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final Intent tohome = new Intent(MainActivity.this,HomePage.class);
+
+        /**
+         * sign in
+         */
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

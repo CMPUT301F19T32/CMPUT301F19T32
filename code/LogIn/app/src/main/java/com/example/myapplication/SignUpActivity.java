@@ -25,6 +25,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * sign up activity
+ * user can sign up a new account here
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     ArrayList<Account> accountDataList;
@@ -57,6 +61,11 @@ public class SignUpActivity extends AppCompatActivity {
         final CollectionReference collectionReference = db.collection("Account");
 
         final Intent backToMainIntent = new Intent(this, MainActivity.class);
+
+        /**
+         * sign up
+         * upload information to firestore
+         */
         signUpButton2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
