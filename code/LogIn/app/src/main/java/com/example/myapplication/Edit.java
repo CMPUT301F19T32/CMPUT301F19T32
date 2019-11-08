@@ -124,7 +124,11 @@ public class Edit extends AppCompatActivity {
                     if(socialstate.equals("With a crowd")){
                         social.setSelection(3);
                     }
-
+                    if (latitude.equals("0.0")&&longitude.equals("0.0")){
+                        location_view.setText("Unknown");}else{
+                        LatLng originLatLng = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
+                        String originLocation = getAddress(originLatLng);
+                        location_view.setText(originLocation);}
                 }
                 else {
                 }
@@ -205,14 +209,16 @@ public class Edit extends AppCompatActivity {
         map_bt = findViewById(R.id.map_bt);
         location_view = findViewById(R.id.mood_location);
 
+
         map_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LatLng currentLocation = getCurrentLocation();
                 location = new Geolocation(currentLocation.latitude,currentLocation.longitude);
                 String s = getAddress(currentLocation);
-
                 location_view.setText(s);
+
+
 
 
             }
@@ -234,7 +240,9 @@ public class Edit extends AppCompatActivity {
                         .update(
                                 "emotionState", emotion,
                                 "socialState", socialstate,
-                                "reason",reason.getText().toString()
+                                "reason",reason.getText().toString(),
+                                "latitude",Double.toString(getCurrentLocation().latitude),
+                                "longitude",Double.toString(getCurrentLocation().longitude)
                         );
                 finish();
 
@@ -268,7 +276,7 @@ public class Edit extends AppCompatActivity {
         Geocoder geocoder = new Geocoder(Edit.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
-            String address_1 = addresses.get(0).getAddressLine(0);
+            //String address_1 = addresses.get(0).getAddressLine(0);
             address = addresses.get(0).getThoroughfare()+",\t"+addresses.get(0).getLocality();
 
 
