@@ -4,21 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MoodTest {
 
-    private Mood createTestMood(){
-        Mood mood = new Mood("happy","nihao","19:20",);
-        53.484310, -113.506133));
-        return mood;
-    }
+    //private Mood createTestMood(){
+        //Mood mood = new Mood("happy","nihao","19:20",);
+        //53.484310, -113.506133));
+        //return mood;
+    //}
 
-    @Test
-    void testEmotionstr(){
-        Mood mood = createTestMood();
-        assertEquals(mood.getEmotionstr(),"Happy");
 
-        mood.setEmotionstr("Angry");
-        assertEquals(mood.getEmotionstr(),"Angry");
-
-    }
 
     @Test
     void testEmotionState(){
