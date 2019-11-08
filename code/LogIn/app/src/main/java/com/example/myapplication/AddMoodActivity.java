@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -21,20 +20,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
+import com.google.android.gms.maps.model.LatLng;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
@@ -45,9 +33,8 @@ import java.util.List;
 import java.util.Locale;
 
 import static android.location.LocationManager.GPS_PROVIDER;
-import static android.location.LocationManager.NETWORK_PROVIDER;
 
-public class Create extends AppCompatActivity {
+public class AddMoodActivity extends AppCompatActivity {
     private ImageView image;
     private void initComponent() {
         image = (ImageView) findViewById(R.id.imageView);
@@ -121,20 +108,20 @@ public class Create extends AppCompatActivity {
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion = "happy";
-                    Toast.makeText(Create.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
 
                 }
                 if(position==1){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img2));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion= "angry";
-                    Toast.makeText(Create.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
                 }
                 if(position==2){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img3));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion="sad";
-                    Toast.makeText(Create.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -176,7 +163,7 @@ public class Create extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(emotion==null){
-                    Toast.makeText(Create.this, "At least enter emotion", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddMoodActivity.this, "At least enter emotion", Toast.LENGTH_SHORT).show();
                 }
                 else{
 
@@ -223,7 +210,7 @@ public class Create extends AppCompatActivity {
     public String getAddress(LatLng latLng){
         String address = "";
 
-        Geocoder geocoder = new Geocoder(Create.this, Locale.getDefault());
+        Geocoder geocoder = new Geocoder(AddMoodActivity.this, Locale.getDefault());
         try{
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
 
