@@ -3,6 +3,12 @@ package com.example.myapplication;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class Acccount
+ * This calss is used to store user account information.
+ * Some of features may not used here,
+ * as they are used in the class themselves
+ */
 public class Account {
 
     private String emoji;
