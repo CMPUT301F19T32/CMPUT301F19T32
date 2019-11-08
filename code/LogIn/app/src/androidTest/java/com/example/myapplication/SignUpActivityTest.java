@@ -84,6 +84,7 @@ public class SignUpActivityTest {
 
     }
 
+    // delete the test account
     public void deleteTestAccount(String key){
         FirebaseFirestore db;
         final String TAG = "sample";
