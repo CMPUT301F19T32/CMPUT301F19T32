@@ -39,6 +39,10 @@ public class AgreeDisagreeFrag extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.agree_disagree_layout, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        fromUser = view.findViewById(R.id.FromUser);
+        massage = view.findViewById(R.id.MasssageGet);
+        fromUser.setText(request.getSentName());
+        massage.setText(request.getMessageSent());
         return builder
                 .setView(view)
                 .setTitle("Request")
