@@ -45,7 +45,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     Geolocation geolocation;
     FirebaseFirestore db;
     FirebaseFirestore cloudstorage;
-
+    Request requestInner;
 
     private  Request request;
     //friendList get from fireStore
@@ -118,6 +118,16 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         Button requestButton = findViewById(R.id.request);
         final Button map = findViewById(R.id.map_fr);
         Button addFriend = findViewById(R.id.addFriend);
+        Button refresh=findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
         addFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,7 +198,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         */
         // if 找不到 keyword 人名 toast3
         //Request update to firestore
-        final Request requestInner = request;
+        requestInner = request;
 
 
         //final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
@@ -203,7 +213,22 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                         Toast.makeText(FriendActivity.this, "Already sent", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName()).set(requestInner);
+                        DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName()).collection("Friend").document(requestInner.getSentName());
+                        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        Toast.makeText(FriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName()).set(requestInner);
+                                    }
+                                } else {
+                                }
+                            }
+                        });
                     }
                 } else {
                 }

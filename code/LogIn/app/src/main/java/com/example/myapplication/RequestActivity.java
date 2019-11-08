@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -46,6 +47,16 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
         requestArrayAdapter = new CustomRequestList(this,requestArrayList);
         requestVeiw.setAdapter(requestArrayAdapter);
         db = FirebaseFirestore.getInstance();
+        Button refresh=findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
         final CollectionReference collectionReferences =  db.collection("Account").document(username).collection("Request");
         collectionReferences.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
