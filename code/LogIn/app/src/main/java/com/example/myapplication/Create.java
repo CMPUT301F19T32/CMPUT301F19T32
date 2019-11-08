@@ -84,7 +84,7 @@ public class Create extends AppCompatActivity {
 
         gridview.setAdapter(new ImageAdapter(this));
 // Set the background
-        gridview.setBackgroundResource(R.drawable.ic_launcher_background);
+        gridview.setBackgroundResource(R.color.common_google_signin_btn_text_dark);
         Spinner social = (Spinner) findViewById(R.id.social);
         social.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
