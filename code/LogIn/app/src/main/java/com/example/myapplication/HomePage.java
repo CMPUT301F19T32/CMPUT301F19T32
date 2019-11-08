@@ -37,6 +37,8 @@ import org.w3c.dom.Document;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -171,6 +173,13 @@ public class HomePage extends AppCompatActivity {
                         String socialState = (String) doc.getData().get("socialState");
                         String time = (String) doc.getData().get("time");
                         moodDataList.add(new Mood(emotionState, reason, time, socialState, usernameMain, latitude, longitude));
+                    }
+                    for (int i =0; i < moodDataList.size(); i++){
+                        Collections.sort(moodDataList, new Comparator<Mood>() {
+                            public int compare(Mood first, Mood second)  {
+                                return second.getTime().compareTo(first.getTime());
+                            }
+                        });
                     }
                     moodAdapter.notifyDataSetChanged();
                 }

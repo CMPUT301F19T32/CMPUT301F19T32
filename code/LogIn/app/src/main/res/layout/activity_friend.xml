@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".FriendActivity">
+
 
     <TextView
         android:id="@+id/textView"
@@ -18,18 +20,18 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039" />
-
+        app:layout_constraintVertical_bias="0.09" />
 
     <ListView
         android:id="@+id/friendLIstVeiw"
         android:layout_width="409dp"
         android:layout_height="433dp"
+        android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.035"></ListView>
+        app:layout_constraintVertical_bias="0.142"></ListView>
 
     <Button
         android:id="@+id/request"
