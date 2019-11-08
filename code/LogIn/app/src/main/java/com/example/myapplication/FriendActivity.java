@@ -27,8 +27,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class FriendActivity extends AppCompatActivity implements AddFriendFrag.OnFragmentInteractionListener{
     ListView moodFriendList;
@@ -47,7 +45,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     Geolocation geolocation;
     FirebaseFirestore db;
     FirebaseFirestore cloudstorage;
-
+    Request requestInner;
 
     private  Request request;
     //friendList get from fireStore
@@ -104,17 +102,8 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                         currentMood=new Mood(emotionState, reason, time, socialState, username, latitude, longitude);
                                         System.out.println(currentMood.getUsername());
                                     }
-
                                     moodFrArrayList.add(currentMood);
-                                    for (int i =0; i < moodFrArrayList.size(); i++){
-                                        Collections.sort(moodFrArrayList, new Comparator<Mood>() {
-                                            public int compare(Mood first, Mood second)  {
-                                                return second.getTime().compareTo(first.getTime());
-                                            }
-                                        });
-                                    }
                                     moodFrArrayAdapter.notifyDataSetChanged();
-
                                 }
                             }
                         });
@@ -129,6 +118,16 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         Button requestButton = findViewById(R.id.request);
         final Button map = findViewById(R.id.map_fr);
         Button addFriend = findViewById(R.id.addFriend);
+        Button refresh=findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
         addFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,17 +176,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             }
         });
 
-        Button refresh=findViewById(R.id.refresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(getIntent());
-                overridePendingTransition(0, 0);
-            }
-        });
-
     }
 
     @Override
@@ -210,11 +198,11 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         */
         // if 找不到 keyword 人名 toast3
         //Request update to firestore
-        final Request requestInner = request;
+        requestInner = request;
+
 
 
         //final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
-
         DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName());
         docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -262,6 +250,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 }
             }
         });
+
 
 
 
