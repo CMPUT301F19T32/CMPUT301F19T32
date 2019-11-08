@@ -10,7 +10,7 @@ For university students or staff that participate in using the app, this could a
 
 # Project Contents
 * [Project Part 2](https://github.com/CMPUT301F19T32/MentaLand/wiki/Project-Part-2)
-* [Project Part 3]()
+* [Project Part 3](https://github.com/CMPUT301F19T32/MentaLand/wiki/Project-Part-3)
 
 
 
