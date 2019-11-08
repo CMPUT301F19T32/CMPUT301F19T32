@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,23 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
         userName.setText(mood.getUsername());
         timeText.setText(mood.getTime());
         moodText.setText(mood.getEmotionState());
+
+        if(moods.get(position).getEmotionState().equals("sad")){
+            timeText.setTextColor(Color.BLUE);
+            moodText.setTextColor(Color.BLUE);
+            userName.setTextColor(Color.BLUE);
+        }
+        if(moods.get(position).getEmotionState().equals("happy")){
+            timeText.setTextColor(Color.GREEN);
+            moodText.setTextColor(Color.GREEN);
+            userName.setTextColor(Color.GREEN);
+        }
+        if(moods.get(position).getEmotionState().equals("angry")){
+            timeText.setTextColor(Color.RED);
+            moodText.setTextColor(Color.RED);
+            userName.setTextColor(Color.RED);
+        }
+
         return view;
     }
 }
