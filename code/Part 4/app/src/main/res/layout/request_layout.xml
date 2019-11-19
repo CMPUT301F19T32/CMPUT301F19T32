@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="REQUEST"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REFRESH" />
+
+    <ListView
+        android:id="@+id/requestListView"
+        android:layout_width="409dp"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
