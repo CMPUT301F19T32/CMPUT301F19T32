@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,7 +47,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     FirebaseFirestore db;
     FirebaseFirestore cloudstorage;
     Request requestInner;
-
+    Handler mHandler ;
     private  Request request;
     //friendList get from fireStore
     @Override
@@ -67,6 +68,8 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         geolocation = new Geolocation(a,b);
         db = FirebaseFirestore.getInstance();
 
+        this.mHandler = new Handler();
+        this.mHandler.postDelayed(m_Runnable,5000);
 
         /**
          * The following part iterate the friendList of current user in firestore and get the last mood of friend.
@@ -270,6 +273,15 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
 
     }
+
+    private  final Runnable m_Runnable = new Runnable() {
+        @Override
+        public void run() {
+            Toast.makeText(FriendActivity.this,"in runnable",Toast.LENGTH_SHORT).show();
+
+            FriendActivity.this.mHandler.postDelayed(m_Runnable, 5000);
+        }
+    };
 
 
 }
