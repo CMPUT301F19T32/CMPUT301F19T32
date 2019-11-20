@@ -67,10 +67,10 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         double b = 123;
         geolocation = new Geolocation(a,b);
         db = FirebaseFirestore.getInstance();
-
+/**
         this.mHandler = new Handler();
         this.mHandler.postDelayed(m_Runnable,5000);
-
+*/
         /**
          * The following part iterate the friendList of current user in firestore and get the last mood of friend.
          */
@@ -273,15 +273,16 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
 
     }
-
+    /**
     private  final Runnable m_Runnable = new Runnable() {
         @Override
         public void run() {
-            Toast.makeText(FriendActivity.this,"in runnable",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(FriendActivity.this,"in runnable",Toast.LENGTH_SHORT).show();
 
             FriendActivity.this.mHandler.postDelayed(m_Runnable, 5000);
         }
     };
 
+ */
 
 }
