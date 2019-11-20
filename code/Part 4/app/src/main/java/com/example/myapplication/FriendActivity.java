@@ -101,7 +101,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                         String time = (String) doc.getData().get("time");
                                         String username= (String)doc.getData().get("username");
                                         currentMood=new Mood(emotionState, reason, time, socialState, username, latitude, longitude);
-                                        System.out.println(currentMood.getUsername());
+                                        //System.out.println(currentMood.getUsername());
                                     }
                                     if(currentMood!=null){
                                         moodFrArrayList.add(currentMood);

@@ -12,7 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03a97c80-5130-4a3c-a309-082267bdcd4b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Part 4/app/src/main/java/com/example/myapplication/AddMoodActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Part 4/app/src/main/java/com/example/myapplication/AddMoodActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Part 4/app/src/main/java/com/example/myapplication/FriendActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Part 4/app/src/main/java/com/example/myapplication/FriendActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part 4/app/src/main/res/layout/agree_disagree_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Part 4/app/src/main/res/layout/agree_disagree_layout.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
