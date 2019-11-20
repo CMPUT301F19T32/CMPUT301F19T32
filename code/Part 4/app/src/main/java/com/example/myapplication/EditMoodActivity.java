@@ -46,6 +46,7 @@ public class EditMoodActivity extends AppCompatActivity {
     private void initComponent() {
         image = (ImageView) findViewById(R.id.imageView);
     }
+    private ImageView img_from_gallary;
     FirebaseFirestore db;
     Button map_bt;
     TextView location_view;
@@ -76,6 +77,7 @@ public class EditMoodActivity extends AppCompatActivity {
         user = extras.getString("user");
         db = FirebaseFirestore.getInstance();
         final Spinner social = (Spinner) findViewById(R.id.social);
+        img_from_gallary = findViewById(R.id.imageView2);
 
         DocumentReference docRef = db.collection("Account").document(user).collection("moodHistory").document(key);
         Source source = Source.CACHE;
