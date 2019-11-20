@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -11,6 +12,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -43,6 +45,7 @@ public class AddMoodActivity extends AppCompatActivity {
     private void initComponent() {
         image = (ImageView) findViewById(R.id.imageView);
     }
+    private ImageView img_from_gallary;
     FirebaseFirestore db;
     Button map_bt;
     TextView location_view;
@@ -55,6 +58,7 @@ public class AddMoodActivity extends AppCompatActivity {
     double a;
     double b;
     private String user;
+    static final int GALLERY_REQUEST_CODE=0;
 
 
 
@@ -72,6 +76,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
 //Get GridView in layout
         final GridView gridview = (GridView) findViewById(R.id.gridview);
+        img_from_gallary = findViewById(R.id.imageView2);
 
         gridview.setAdapter(new ImageAdapter(this));
 // Set the background
@@ -136,6 +141,19 @@ public class AddMoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gridview.setVisibility(View.VISIBLE);
+            }
+        });
+
+        img_from_gallary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                String[] mimeTypes = {"image/jpeg", "image/png"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+                // Launching the Intent
+                startActivityForResult(intent,GALLERY_REQUEST_CODE);
+
             }
         });
 
@@ -306,6 +324,19 @@ public class AddMoodActivity extends AppCompatActivity {
             et.setFilters(new InputFilter[0]);
             filter = null;
         }
+    }
+
+    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        // Result code is RESULT_OK only if the user selects an Image
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case GALLERY_REQUEST_CODE:
+                    //data.getData returns the content URI for the selected Image
+                    Uri selectedImage = data.getData();
+                    img_from_gallary.setImageURI(selectedImage);
+                    break;
+            }
     }
 
 
