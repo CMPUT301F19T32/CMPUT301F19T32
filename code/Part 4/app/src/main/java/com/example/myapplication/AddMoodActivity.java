@@ -181,9 +181,12 @@ public class AddMoodActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 int wordsLength = countWords(s.toString());// words.length;
                 // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 2) {
+                if (count == 0 && wordsLength >= 2 ) {
                     setCharLimit(reason, reason.getText().length());
                 } else {
+                    removeFilter(reason);
+                }
+                if ( reason.getText().length() > 20){
                     removeFilter(reason);
                 }
 
@@ -256,6 +259,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onProviderEnabled(String provider) {
 
@@ -315,7 +319,7 @@ public class AddMoodActivity extends AppCompatActivity {
     private InputFilter filter;
 
     private void setCharLimit(EditText et, int max) {
-        filter = new InputFilter.LengthFilter(20);
+        filter = new InputFilter.LengthFilter(max);
         et.setFilters(new InputFilter[] { filter });
     }
 
