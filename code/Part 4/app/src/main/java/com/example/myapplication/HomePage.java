@@ -282,6 +282,7 @@ public class HomePage extends AppCompatActivity {
                 final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filter_button.setText("SAD");
                 filterLayout.setVisibility(View.INVISIBLE);
 
 
@@ -298,6 +299,7 @@ public class HomePage extends AppCompatActivity {
                 final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filter_button.setText("ANGRY");
                 filterLayout.setVisibility(View.INVISIBLE);
 
             }
@@ -310,6 +312,7 @@ public class HomePage extends AppCompatActivity {
                 final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filter_button.setText("HAPPY");
                 filterLayout.setVisibility(View.INVISIBLE);
 
             }
@@ -323,6 +326,7 @@ public class HomePage extends AppCompatActivity {
                 final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
+                filter_button.setText("Filter");
                 filterLayout.setVisibility(View.INVISIBLE);
 
             }
