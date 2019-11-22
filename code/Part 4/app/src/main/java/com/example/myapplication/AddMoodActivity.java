@@ -315,7 +315,7 @@ public class AddMoodActivity extends AppCompatActivity {
     private InputFilter filter;
 
     private void setCharLimit(EditText et, int max) {
-        filter = new InputFilter.LengthFilter(max);
+        filter = new InputFilter.LengthFilter(20);
         et.setFilters(new InputFilter[] { filter });
     }
 
