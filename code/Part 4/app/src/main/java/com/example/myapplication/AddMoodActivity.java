@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,6 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -175,40 +177,28 @@ public class AddMoodActivity extends AppCompatActivity {
             }
         });
         reason=findViewById(R.id.reason);
-
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
+
         reason.addTextChangedListener(new TextWatcher() {
-            CharSequence temp;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                int wordsLength = countWords(s.toString());// words.length;
-                // count == 0 means a new word is going to start
-                if (  count == 0 && wordsLength >= 2 ) {
-                    setCharLimit(reason, reason.getText().length());
-                } else {
-                    removeFilter(reason);
-                }
-
 
             }
 
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                temp = s;
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                int editStart = reason.getSelectionStart();
-                int editEnd = reason.getSelectionEnd();
-                if (temp.length() > 20) {
-                    s.delete(editStart-1, editEnd);
-                    int tempSelection = editStart;
-                    reason.setText(s);
-                    reason.setSelection(tempSelection);
-                }
+                String[] strings;
+                String string = reason.getText().toString();
+                strings = string.split("\\s");
+                if (reason.getText().toString().split("\\s").length > 3)
 
+                    reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
+                    reason.setSelection(reason.getText().length());
             }
         });
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -317,26 +307,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
         return address;
     }
-    private int countWords(String s) {
-        String trim = s.trim();
-        if (trim.isEmpty())
-            return 0;
-        return trim.split("\\s+").length; // separate string around spaces
-    }
 
-    private InputFilter filter;
-
-    private void setCharLimit(EditText et, int max) {
-        filter = new InputFilter.LengthFilter(max);
-        et.setFilters(new InputFilter[] { filter });
-    }
-
-    private void removeFilter(EditText et) {
-        if (filter != null) {
-            et.setFilters(new InputFilter[0]);
-            filter = null;
-        }
-    }
 
     public void onActivityResult(int requestCode,int resultCode,Intent data) {
         // Result code is RESULT_OK only if the user selects an Image
