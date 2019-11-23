@@ -175,6 +175,7 @@ public class AddMoodActivity extends AppCompatActivity {
             }
         });
         reason=findViewById(R.id.reason);
+        reason.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
         reason.addTextChangedListener(new TextWatcher() {
             @Override
@@ -186,9 +187,7 @@ public class AddMoodActivity extends AppCompatActivity {
                 } else {
                     removeFilter(reason);
                 }
-                if ( reason.getText().length() > 20){
-                    removeFilter(reason);
-                }
+
 
             }
 
