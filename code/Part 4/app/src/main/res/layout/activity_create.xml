@@ -85,7 +85,6 @@
         android:hint="Reason"
         android:inputType="textPersonName"
         android:maxLength="20"
-        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/social"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.912"

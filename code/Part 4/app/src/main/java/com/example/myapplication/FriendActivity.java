@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -260,7 +263,13 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             });
         }
         else{
-            Toast.makeText(FriendActivity.this, "Enter a person please", Toast.LENGTH_SHORT).show();
+            Toast toast =  Toast.makeText(FriendActivity.this, "Enter a person please", Toast.LENGTH_SHORT);
+            LinearLayout toastLayout = (LinearLayout) toast.getView();
+            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(24);
+            toastTV.setTextColor(Color.RED);
+            toast.show();
+
         }
 
 
