@@ -175,14 +175,15 @@ public class AddMoodActivity extends AppCompatActivity {
             }
         });
         reason=findViewById(R.id.reason);
-        reason.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
+
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
         reason.addTextChangedListener(new TextWatcher() {
+            CharSequence temp;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 int wordsLength = countWords(s.toString());// words.length;
                 // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 2 ) {
+                if (  count == 0 && wordsLength >= 2 ) {
                     setCharLimit(reason, reason.getText().length());
                 } else {
                     removeFilter(reason);
@@ -194,11 +195,19 @@ public class AddMoodActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                temp = s;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                int editStart = reason.getSelectionStart();
+                int editEnd = reason.getSelectionEnd();
+                if (temp.length() > 20) {
+                    s.delete(editStart-1, editEnd);
+                    int tempSelection = editStart;
+                    reason.setText(s);
+                    reason.setSelection(tempSelection);
+                }
 
             }
         });
