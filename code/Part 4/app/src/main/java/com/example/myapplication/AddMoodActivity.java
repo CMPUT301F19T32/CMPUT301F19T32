@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -16,9 +19,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,15 +33,22 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.database.collection.*;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import io.grpc.Context;
 
 import static android.location.LocationManager.GPS_PROVIDER;
 
@@ -49,6 +59,7 @@ public class AddMoodActivity extends AppCompatActivity {
     }
     private ImageView img_from_gallary;
     FirebaseFirestore db;
+
     Button map_bt;
     TextView location_view;
     Geolocation location;
@@ -61,11 +72,9 @@ public class AddMoodActivity extends AppCompatActivity {
     double b;
     private String user;
     static final int GALLERY_REQUEST_CODE=0;
-
-
-
-
-
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef ;
+    public Uri imguri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -74,6 +83,8 @@ public class AddMoodActivity extends AppCompatActivity {
         initComponent();
         Intent intentc = getIntent();
         user = intentc.getStringExtra("user");
+        storageRef=FirebaseStorage.getInstance().getReference(user);
+
 
 
 //Get GridView in layout
@@ -82,7 +93,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
         gridview.setAdapter(new ImageAdapter(this));
 // Set the background
-        //gridview.setBackgroundResource(R.color.common_google_signin_btn_text_dark);
+        gridview.setBackgroundResource(R.color.common_google_signin_btn_text_dark);
         Spinner social = (Spinner) findViewById(R.id.social);
         social.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -149,13 +160,16 @@ public class AddMoodActivity extends AppCompatActivity {
         img_from_gallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                String[] mimeTypes = {"image/jpeg", "image/png"};
-                intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
-                // Launching the Intent
-                startActivityForResult(intent,GALLERY_REQUEST_CODE);
+                /**
+                 * Intent intent = new Intent(Intent.ACTION_PICK);
+                 *                 intent.setType("image/*");
+                 *                 String[] mimeTypes = {"image/jpeg", "image/png"};
+                 *                 intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+                 *                 // Launching the Intent
+                 *                 startActivityForResult(intent,GALLERY_REQUEST_CODE);
+                 */
 
+                Filechooser();
             }
         });
 
@@ -171,19 +185,26 @@ public class AddMoodActivity extends AppCompatActivity {
                 String s = getAddress(currentLocation) ;
                 a=getCurrentLocation().latitude;
                 b=getCurrentLocation().longitude;
-                location_view.setText("YOUR ADDRESS: "+s);
+                location_view.setText(s);
 
 
             }
         });
         reason=findViewById(R.id.reason);
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
-
         reason.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int wordsLength = countWords(s.toString());// words.length;
+                // count == 0 means a new word is going to start
+                if (count == 0 && wordsLength >= 2) {
+                    setCharLimit(reason, reason.getText().length());
+                } else {
+                    removeFilter(reason);
+                }
 
             }
+
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -192,13 +213,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String[] strings;
-                String string = reason.getText().toString();
-                strings = string.split("\\s");
-                if (reason.getText().toString().split("\\s").length > 3)
 
-                    reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
-                    reason.setSelection(reason.getText().length());
             }
         });
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -214,28 +229,77 @@ public class AddMoodActivity extends AppCompatActivity {
                     Toast.makeText(AddMoodActivity.this, "At least enter emotion", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
-
                     geolocation = new Geolocation(a,b);
-                    final Mood moodhistory =new Mood(emotion,reason.getText().toString(),dateFormat.format(date),socialstate,user,Double.toString(a),Double.toString(b));
+                    String add_date=dateFormat.format(date);
+                    final Mood moodhistory =new Mood(emotion,reason.getText().toString(),add_date,socialstate,user,Double.toString(a),Double.toString(b));
                     FirebaseFirestore db;
                     db = FirebaseFirestore.getInstance();
                     //final CollectionReference collectionReference = db.collection("Account");
 
                     //final DocumentReference ReceiverRef = db.collection("Account").document(user);
                     db.collection("Account").document(user).collection("moodHistory").document(moodhistory.getTime()).set(moodhistory);
+                    Fileuploader(add_date);
                     //startActivity(back);
                     //overridePendingTransition(0, 0);
                     finish();
-
                 }
-
             }
         });
+    }
 
 
+
+    private String getExtension(Uri uri){
+        ContentResolver cr=getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
+    }
+    private void Fileuploader(String date){
+        StorageReference Ref = storageRef.child(date+"."+getExtension(imguri));
+
+        Ref.putFile(imguri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(AddMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                });
+    }
+    private void Filechooser(){
+        Intent intent =new Intent();
+        intent.setType("image/'");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
+    /*
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode==1 && requestCode==RESULT_OK && data!=null && data.getData()!=null){
+            imguri=data.getData();
+            img_from_gallary.setImageURI(imguri);
+        }
 
     }
+    */
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+            imguri=data.getData();
+            img_from_gallary.setImageURI(imguri);
+        }
+    }
+
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,
@@ -256,7 +320,6 @@ public class AddMoodActivity extends AppCompatActivity {
             public void onStatusChanged(String provider, int status, Bundle extras) {
 
             }
-
 
             @Override
             public void onProviderEnabled(String provider) {
@@ -307,8 +370,27 @@ public class AddMoodActivity extends AppCompatActivity {
 
         return address;
     }
+    private int countWords(String s) {
+        String trim = s.trim();
+        if (trim.isEmpty())
+            return 0;
+        return trim.split("\\s+").length; // separate string around spaces
+    }
 
+    private InputFilter filter;
 
+    private void setCharLimit(EditText et, int max) {
+        filter = new InputFilter.LengthFilter(20);
+        et.setFilters(new InputFilter[] { filter });
+    }
+
+    private void removeFilter(EditText et) {
+        if (filter != null) {
+            et.setFilters(new InputFilter[0]);
+            filter = null;
+        }
+    }
+/*
     public void onActivityResult(int requestCode,int resultCode,Intent data) {
         // Result code is RESULT_OK only if the user selects an Image
         super.onActivityResult(requestCode, resultCode, data);
@@ -322,7 +404,7 @@ public class AddMoodActivity extends AppCompatActivity {
             }
     }
 
-
+*/
 
 
 }

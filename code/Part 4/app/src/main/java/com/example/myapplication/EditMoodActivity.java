@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -12,8 +14,10 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,14 +27,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Source;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -65,7 +75,10 @@ public class EditMoodActivity extends AppCompatActivity {
     String reasonS;
     String socialState;
     String time;
-
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef ;
+    StorageReference storageReference;
+    public Uri imguri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +91,10 @@ public class EditMoodActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         final Spinner social = (Spinner) findViewById(R.id.social);
         img_from_gallary = findViewById(R.id.imageView2);
-
+        storageReference=FirebaseStorage.getInstance().getReference(user);
         DocumentReference docRef = db.collection("Account").document(user).collection("moodHistory").document(key);
         Source source = Source.CACHE;
+
         docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -92,6 +106,26 @@ public class EditMoodActivity extends AppCompatActivity {
                     reasonS = (String) doc.getData().get("reason");
                     socialstate = (String) doc.getData().get("socialState");
                     time = (String) doc.getData().get("time");
+                    //StorageReference storageReference = FirebaseStorage.getInstance().getReference("Images").child("123.jpg");
+
+                    storageReference.child(time+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Toast.makeText(EditMoodActivity.this,"Image successfully find",Toast.LENGTH_LONG).show();
+                            Uri downloadUrl = uri;
+                            String fileUrl = downloadUrl.toString();
+                            Glide.with(EditMoodActivity.this /* context */)
+
+                                    .load(fileUrl)
+                                    .into(img_from_gallary);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(EditMoodActivity.this,"Failed",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                     reason.setText(reasonS);
                     if(emotion.equals("happy")){
                         image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
@@ -187,7 +221,21 @@ public class EditMoodActivity extends AppCompatActivity {
 
             }
         });
+        img_from_gallary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * Intent intent = new Intent(Intent.ACTION_PICK);
+                 *                 intent.setType("image/*");
+                 *                 String[] mimeTypes = {"image/jpeg", "image/png"};
+                 *                 intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+                 *                 // Launching the Intent
+                 *                 startActivityForResult(intent,GALLERY_REQUEST_CODE);
+                 */
 
+                Filechooser();
+            }
+        });
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,6 +282,7 @@ public class EditMoodActivity extends AppCompatActivity {
                                 "latitude",Double.toString(getCurrentLocation().latitude),
                                 "longitude",Double.toString(getCurrentLocation().longitude)
                         );
+                Fileuploader(time);
                 finish();
 
             }
@@ -247,7 +296,44 @@ public class EditMoodActivity extends AppCompatActivity {
      *  Use GPS to return current Latitude and Longitude
      * @return LatLng
      */
+    private String getExtension(Uri uri){
+        ContentResolver cr=getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
+    }
+    private void Fileuploader(String date){
+        StorageReference Ref = storageReference.child(date+"."+getExtension(imguri));
 
+        Ref.putFile(imguri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(EditMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                });
+    }
+    private void Filechooser(){
+        Intent intent =new Intent();
+        intent.setType("image/'");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+            imguri=data.getData();
+            img_from_gallary.setImageURI(imguri);
+        }
+    }
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,
