@@ -82,7 +82,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
         gridview.setAdapter(new ImageAdapter(this));
 // Set the background
-        gridview.setBackgroundResource(R.color.common_google_signin_btn_text_dark);
+        //gridview.setBackgroundResource(R.color.common_google_signin_btn_text_dark);
         Spinner social = (Spinner) findViewById(R.id.social);
         social.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -171,7 +171,7 @@ public class AddMoodActivity extends AppCompatActivity {
                 String s = getAddress(currentLocation) ;
                 a=getCurrentLocation().latitude;
                 b=getCurrentLocation().longitude;
-                location_view.setText(s);
+                location_view.setText("YOUR ADDRESS: "+s);
 
 
             }
