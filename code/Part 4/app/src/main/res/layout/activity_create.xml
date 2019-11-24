@@ -68,6 +68,7 @@
         android:layout_marginRight="68dp"
         android:text="Emotion State"
         android:textSize="24sp"
+        android:background="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.988"
@@ -77,20 +78,21 @@
 
     <EditText
         android:id="@+id/reason"
-        android:layout_width="189dp"
-        android:layout_height="146dp"
+        android:layout_width="187dp"
+        android:layout_height="85dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="37dp"
+        android:background="@color/cardview_light_background"
         android:ems="10"
         android:hint="Reason"
         android:inputType="textPersonName"
         android:maxLength="20"
         app:layout_constraintBottom_toTopOf="@+id/social"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emotion"
-        app:layout_constraintVertical_bias="0.833" />
+        app:layout_constraintVertical_bias="0.726" />
 
     <Button
         android:id="@+id/submit"
@@ -106,6 +108,7 @@
     <Spinner
         android:id="@+id/social"
         android:layout_width="335dp"
+        android:background="@color/cardview_light_background"
         android:layout_height="70dp"
         android:entries="@array/social_states"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +133,9 @@
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="14dp"
+        android:background="@color/cardview_light_background"
         android:text="Unknown"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/gridview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
