@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".AddMoodActivity">
 
     <ImageView
@@ -22,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.902"
-        app:srcCompat="@drawable/empty" />
+        app:srcCompat="@drawable/empty2" />
 
     <GridView
         android:id="@+id/gridview"
@@ -57,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.188"
-        app:srcCompat="@drawable/empty" />
+        app:srcCompat="@drawable/empty1" />
 
     <TextView
         android:id="@+id/emotion"
@@ -66,9 +65,9 @@
         android:layout_marginTop="132dp"
         android:layout_marginEnd="68dp"
         android:layout_marginRight="68dp"
+        android:textColor="@color/colorPrimaryDark"
         android:text="Emotion State"
         android:textSize="24sp"
-        android:background="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.988"
@@ -82,7 +81,7 @@
         android:layout_height="85dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="37dp"
-        android:background="@color/cardview_light_background"
+        android:textColor="@color/colorPrimaryDark"
         android:ems="10"
         android:hint="Reason"
         android:inputType="textPersonName"
@@ -102,13 +101,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="submit"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/social"
         android:layout_width="335dp"
-        android:background="@color/cardview_light_background"
         android:layout_height="70dp"
         android:entries="@array/social_states"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -129,13 +128,13 @@
 
     <TextView
         android:id="@+id/mood_location"
-        android:layout_width="274dp"
-        android:layout_height="51dp"
+        android:layout_width="266dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="14dp"
-        android:background="@color/cardview_light_background"
-        android:text="Unknown"
-        android:textSize="25dp"
+        android:text="Click on location button to get current location"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/gridview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
