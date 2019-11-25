@@ -108,7 +108,7 @@ public class EditMoodActivity extends AppCompatActivity {
                     time = (String) doc.getData().get("time");
                     //StorageReference storageReference = FirebaseStorage.getInstance().getReference("Images").child("123.jpg");
 
-                    storageReference.child(time+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    storageReference.child(time).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             Toast.makeText(EditMoodActivity.this,"Image successfully find",Toast.LENGTH_LONG).show();
@@ -302,7 +302,7 @@ public class EditMoodActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
     }
     private void Fileuploader(String date){
-        StorageReference Ref = storageReference.child(date+"."+getExtension(imguri));
+        StorageReference Ref = storageReference.child(date);
 
         Ref.putFile(imguri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

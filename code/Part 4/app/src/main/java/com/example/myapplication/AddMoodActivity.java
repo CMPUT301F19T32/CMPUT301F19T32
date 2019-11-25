@@ -255,7 +255,7 @@ public class AddMoodActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
     }
     private void Fileuploader(String date){
-        StorageReference Ref = storageRef.child(date+"."+getExtension(imguri));
+        StorageReference Ref = storageRef.child(date);
 
         Ref.putFile(imguri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
