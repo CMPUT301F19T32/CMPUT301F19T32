@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".AddMoodActivity">
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="114dp"
-        android:layout_height="103dp"
-        android:layout_marginBottom="55dp"
+        android:layout_width="147dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="#FFF"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/social"
         app:layout_constraintEnd_toStartOf="@+id/reason"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.902"
+        app:layout_constraintVertical_bias="0.756"
         app:srcCompat="@drawable/empty2" />
 
     <GridView
@@ -45,18 +47,18 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="111dp"
-        android:layout_height="90dp"
+        android:layout_width="145dp"
+        android:layout_height="109dp"
         android:background="#FFF"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.188"
+        app:layout_constraintVertical_bias="0.186"
         app:srcCompat="@drawable/empty1" />
 
     <TextView
@@ -64,14 +66,12 @@
         android:layout_width="164dp"
         android:layout_height="79dp"
         android:layout_marginTop="132dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
-        android:textColor="@color/colorPrimaryDark"
         android:text="Emotion State"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -80,19 +80,18 @@
         android:id="@+id/reason"
         android:layout_width="187dp"
         android:layout_height="85dp"
-        android:layout_marginEnd="28dp"
         android:layout_marginBottom="37dp"
-        android:textColor="@color/colorPrimaryDark"
         android:ems="10"
         android:hint="Reason"
         android:inputType="textPersonName"
         android:maxLength="20"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/social"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emotion"
-        app:layout_constraintVertical_bias="0.726" />
+        app:layout_constraintVertical_bias="0.647" />
 
     <Button
         android:id="@+id/submit"
@@ -113,16 +112,17 @@
         android:entries="@array/social_states"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.618"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintVertical_bias="0.645" />
 
     <Button
         android:id="@+id/map_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="48dp"
         android:text="location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/social" />
@@ -141,5 +141,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/map_bt"
         app:layout_constraintTop_toBottomOf="@+id/social"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.287" />
 </androidx.constraintlayout.widget.ConstraintLayout>
