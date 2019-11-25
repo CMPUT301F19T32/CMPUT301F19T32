@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -46,12 +47,10 @@ public class HomePage extends AppCompatActivity {
     Button filter_all;
     static int chk=0;
     Button map_button;
-
-    Button add_button;
+    FloatingActionButton add_button;
     FirebaseFirestore db;
     TextView test;
     String TAG = "sample";
-    private TextView textView;
     private LocationManager locationManager;
     private double longitude;
     private double latitude;
@@ -191,7 +190,6 @@ public class HomePage extends AppCompatActivity {
         });
         TextView name= findViewById(R.id.uname);
         name.setText(usernameMain);
-        textView = findViewById(R.id.location);
         map_button = findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener(){
             @Override
