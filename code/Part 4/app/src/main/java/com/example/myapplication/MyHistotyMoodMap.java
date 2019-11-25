@@ -34,8 +34,7 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
     private GoogleMap mMap;
     ArrayList<Mood> mapMood;
     private LatLngBounds mMapBoundary;
-    FirebaseFirestore db;
-    String user;
+
 
 
 
@@ -43,32 +42,14 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_histoty_mood_map);
-        db = FirebaseFirestore.getInstance();
+
+
         Intent intent = getIntent();
-        user = intent.getStringExtra("user");
-        mapMood= new ArrayList<Mood>();
-        final CollectionReference collectionReference =  db.collection("Account").document(user).collection("moodHistory");
-        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (queryDocumentSnapshots != null) {
-                       for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        String emotionState = (String) doc.getData().get("emotionState");
-                        String latitude = (String) doc.getData().get("latitude");
-                        String longitude = (String) doc.getData().get("longitude");
-                        String reason = (String) doc.getData().get("reason");
-                        String socialState = (String) doc.getData().get("socialState");
-                        String time = (String) doc.getData().get("time");
-                        mapMood.add(new Mood(emotionState, reason, time, socialState, user, latitude, longitude));
+        Bundle bundle = intent.getExtras();
 
-                       }
-                    System.out.println(mapMood.size());
-                }
-                System.out.println(mapMood.size());
 
-            }
-        });
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        mapMood = (ArrayList<Mood>) bundle.getSerializable("mood");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

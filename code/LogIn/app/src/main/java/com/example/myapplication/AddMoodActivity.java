@@ -189,7 +189,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
 
     }
-    public LatLng getCurrentLocation() {
+    private LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -240,7 +240,7 @@ public class AddMoodActivity extends AppCompatActivity {
      */
 
 
-    public String getAddress(LatLng latLng){
+    private String getAddress(LatLng latLng){
         String address = "";
         if (latLng.latitude==0.0 && latLng.longitude==0.0){
             return "Unknown";

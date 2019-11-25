@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -60,7 +61,7 @@ public class EditMoodActivity extends AppCompatActivity {
     }
     private ImageView img_from_gallary;
     FirebaseFirestore db;
-    Button map_bt;
+    ImageButton map_bt;
     TextView location_view;
     Geolocation location;
     String emotion;

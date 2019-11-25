@@ -195,9 +195,15 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(HomePage.this,MyHistotyMoodMap.class); // go to map activity.
-                intent.putExtra("user",usernameMain);
-                startActivity(intent);
+
+
+                Intent mapIntent  = new Intent(HomePage.this, MyHistotyMoodMap.class );
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("mood",moodDataList);
+                mapIntent.putExtras(bundle);
+                startActivity(mapIntent);
+
+
             }
         });
 

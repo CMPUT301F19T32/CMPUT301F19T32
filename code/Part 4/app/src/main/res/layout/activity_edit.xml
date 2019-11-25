@@ -117,13 +117,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.645" />
 
-    <Button
+    <ImageButton
         android:id="@+id/map_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="location"
+        android:layout_width="52dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        android:background="#0000"
+        android:src="@drawable/location_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/social" />
 
@@ -138,8 +139,8 @@
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/gridview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toEndOf="@+id/map_bt"
         app:layout_constraintTop_toBottomOf="@+id/social"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.206" />
 </androidx.constraintlayout.widget.ConstraintLayout>
