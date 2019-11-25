@@ -267,6 +267,9 @@ public class AddMoodActivity extends AppCompatActivity {
                     Toast toast_submit = Toast.makeText(AddMoodActivity.this, "Successfully submitted", Toast.LENGTH_SHORT);
                     LinearLayout toastLayout = (LinearLayout) toast_submit.getView();
                     TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_submit.show();
                     //startActivity(back);
                     //overridePendingTransition(0, 0);
                     if (imguri!=null){
