@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,12 +77,7 @@ public class MyProfileActivity extends AppCompatActivity {
                             if (document.exists()) {
                                 final Introduction introduction = new Introduction(introductionProfile.getText().toString());
                                 db.collection("Account").document(username_profile).collection("Profile").document("Introduction").set(introduction);
-                                Toast toast_my_profile = Toast.makeText(MyProfileActivity.this, "My Profile updated", Toast.LENGTH_SHORT);
-                                LinearLayout toastLayout = (LinearLayout) toast_my_profile.getView();
-                                TextView toastTV = (TextView) toastLayout.getChildAt(0);
-                                toastTV.setTextSize(24);
-                                toastTV.setTextColor(Color.BLUE);
-                                toast_my_profile.show();
+                                Toast.makeText(getApplicationContext(),"Introduction uploaded",Toast.LENGTH_SHORT).show();
                             } else{
                             }
                         }
