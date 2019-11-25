@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,7 +113,7 @@ public class EditMoodActivity extends AppCompatActivity {
                     storageReference.child(time).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Toast.makeText(EditMoodActivity.this,"Image successfully find",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(EditMoodActivity.this,"Image successfully find",Toast.LENGTH_LONG).show();
                             Uri downloadUrl = uri;
                             String fileUrl = downloadUrl.toString();
                             Glide.with(EditMoodActivity.this /* context */)
@@ -122,7 +124,7 @@ public class EditMoodActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            Toast.makeText(EditMoodActivity.this,"Failed",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(EditMoodActivity.this,"Failed",Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -202,20 +204,35 @@ public class EditMoodActivity extends AppCompatActivity {
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion = "happy";
-                    Toast.makeText(EditMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_happy = Toast.makeText(EditMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_happy.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_happy.show();
 
                 }
                 if(position==1){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img2));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion= "angry";
-                    Toast.makeText(EditMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_anger = Toast.makeText(EditMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_anger.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_anger.show();
                 }
                 if(position==2){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img3));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion="sad";
-                    Toast.makeText(EditMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_sad = Toast.makeText(EditMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_sad.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_sad.show();
                 }
 
 
@@ -273,8 +290,12 @@ public class EditMoodActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EditMoodActivity.this, emotion, Toast.LENGTH_SHORT).show();
-
+                Toast toast_submit = Toast.makeText(EditMoodActivity.this, "Mood history has been updated", Toast.LENGTH_SHORT);
+                LinearLayout toastLayout = (LinearLayout) toast_submit.getView();
+                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                toastTV.setTextSize(24);
+                toastTV.setTextColor(Color.BLUE);
+                toast_submit.show();
                 db.collection("Account").document(user).collection("moodHistory").document(key)
                         .update(
                                 "emotionState", emotion,
@@ -313,7 +334,7 @@ public class EditMoodActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
                         //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(EditMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(EditMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

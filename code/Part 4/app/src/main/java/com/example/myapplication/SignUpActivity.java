@@ -5,11 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,17 +74,32 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                 if(usernameCreate.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please enter a name!",Toast.LENGTH_SHORT).show();
+                    Toast toast_no_name = Toast.makeText(SignUpActivity.this, "Please enter a name!", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_no_name.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_no_name.show();
                     return;
                 }
 
                 if(passwordCreate.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please enter a password!",Toast.LENGTH_SHORT).show();
+                    Toast toast_no_password = Toast.makeText(SignUpActivity.this, "Please enter a password!", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_no_password.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_no_password.show();
                     return;
                 }
 
                 if(!passwordConfirm.getText().toString().equals(passwordCreate.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"Two password dont match, please check your password!",Toast.LENGTH_SHORT).show();
+                    Toast toast_password_unmatch = Toast.makeText(SignUpActivity.this, "Two password do not match, please check your password", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_password_unmatch.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_password_unmatch.show();
                     return;
                 }
 
@@ -93,7 +111,12 @@ public class SignUpActivity extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
 
-                                Toast.makeText(getApplicationContext(),"The username already exists, please enter a different name!",Toast.LENGTH_SHORT).show();
+                                Toast toast_username_fail = Toast.makeText(SignUpActivity.this, "The username has already exists, please enter a different name!", Toast.LENGTH_SHORT);
+                                LinearLayout toastLayout = (LinearLayout) toast_username_fail.getView();
+                                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                toastTV.setTextSize(24);
+                                toastTV.setTextColor(Color.RED);
+                                toast_username_fail.show();
                             }
 
                             else{
@@ -103,7 +126,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 Account account = new Account("",new ArrayList<Mood>(),password,new ArrayList<Request>(),username);
                                 db.collection("Account").document(username).set(account);
 
-                                Toast.makeText(getApplicationContext(),"Succeffully signed up",Toast.LENGTH_SHORT).show();
+                                Toast toast_signup = Toast.makeText(SignUpActivity.this, "Successfully signed up!", Toast.LENGTH_SHORT);
+                                LinearLayout toastLayout = (LinearLayout) toast_signup.getView();
+                                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                toastTV.setTextSize(24);
+                                toastTV.setTextColor(Color.BLUE);
+                                toast_signup.show();
                                 // back to login page
                                 startActivity(backToMainIntent);
                             }

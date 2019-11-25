@@ -11,12 +11,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -75,12 +78,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(usernameEditText.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please enter a name!",Toast.LENGTH_SHORT).show();
+                    Toast toast_no_username = Toast.makeText(MainActivity.this, "Please enter a username!", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_no_username.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_no_username.show();
                     return;
                 }
 
                 if(passwordEditText.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please enter a password!",Toast.LENGTH_SHORT).show();
+                    Toast toast_no_password = Toast.makeText(MainActivity.this, "Please enter a password!", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_no_password.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_no_password.show();
                     return;
                 }
 
@@ -97,19 +110,33 @@ public class MainActivity extends AppCompatActivity {
                             StringBuilder fields = new StringBuilder("");
                             fields.append(document.get("password"));
                             String inputpassword=fields.toString();
-                            //Toast.makeText(getApplicationContext(), inputpassword, Toast.LENGTH_SHORT).show();
                             if (document.exists()&&inputpassword.equals(password)) {
 
-                                Toast.makeText(getApplicationContext(), "Account Match", Toast.LENGTH_SHORT).show();
+                                Toast toast_login = Toast.makeText(MainActivity.this, "Login succeed", Toast.LENGTH_SHORT);
+                                LinearLayout toastLayout = (LinearLayout) toast_login.getView();
+                                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                toastTV.setTextSize(24);
+                                toastTV.setTextColor(Color.BLUE);
+                                toast_login.show();
                                 tohome.putExtra("username",username);
                                 startActivity(tohome);
                             }
                             else if (document.exists()&&!inputpassword.equals(password)){
-                                Toast.makeText(getApplicationContext(), "Account doesn't match the password", Toast.LENGTH_SHORT).show();
+                                Toast toast_not_match = Toast.makeText(MainActivity.this, "Account doesn't match the password", Toast.LENGTH_SHORT);
+                                LinearLayout toastLayout = (LinearLayout) toast_not_match.getView();
+                                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                toastTV.setTextSize(24);
+                                toastTV.setTextColor(Color.RED);
+                                toast_not_match.show();
                             }
 
                             else {
-                                Toast.makeText(getApplicationContext(), "Account doesn't exist", Toast.LENGTH_SHORT).show();
+                                Toast toast_not_exist = Toast.makeText(MainActivity.this, "Account doesn't exist", Toast.LENGTH_SHORT);
+                                LinearLayout toastLayout = (LinearLayout) toast_not_exist.getView();
+                                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                toastTV.setTextSize(24);
+                                toastTV.setTextColor(Color.RED);
+                                toast_not_exist.show();
                             }
 
                         } else {
@@ -212,7 +239,12 @@ public class MainActivity extends AppCompatActivity {
             //an error occured but we can resolve it
             Log.d(TAG, "isServicesOK: an error occured but we can fix it");
         }else{
-            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
+            Toast toast_map_fail = Toast.makeText(MainActivity.this, "You can't make map requests", Toast.LENGTH_SHORT);
+            LinearLayout toastLayout = (LinearLayout) toast_map_fail.getView();
+            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(24);
+            toastTV.setTextColor(Color.RED);
+            toast_map_fail.show();
         }
         return false;
     }

@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -27,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -130,20 +132,35 @@ public class AddMoodActivity extends AppCompatActivity {
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion = "happy";
-                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_happy = Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_happy.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_happy.show();
 
                 }
                 if(position==1){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img2));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion= "angry";
-                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_anger = Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_anger.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_anger.show();
                 }
                 if(position==2){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img3));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion="sad";
-                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_sad = Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_sad.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_sad.show();
                 }
 
 
@@ -225,7 +242,12 @@ public class AddMoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(emotion==null){
-                    Toast.makeText(AddMoodActivity.this, "At least enter emotion", Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion = Toast.makeText(AddMoodActivity.this, "At least enter emotion", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_emotion.show();
                 }
                 else{
                     geolocation = new Geolocation(a,b);
@@ -267,7 +289,7 @@ public class AddMoodActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
                         //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(AddMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
