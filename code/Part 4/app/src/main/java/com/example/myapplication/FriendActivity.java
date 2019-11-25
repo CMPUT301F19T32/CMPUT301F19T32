@@ -228,7 +228,12 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
-                                            Toast.makeText(FriendActivity.this, "Already sent", Toast.LENGTH_SHORT).show();
+                                            Toast toast_sent = Toast.makeText(FriendActivity.this, "Already sent", Toast.LENGTH_SHORT);
+                                            LinearLayout toastLayout = (LinearLayout) toast_sent.getView();
+                                            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                            toastTV.setTextSize(24);
+                                            toastTV.setTextColor(Color.RED);
+                                            toast_sent.show();
                                         }
                                         else {
                                             DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName()).collection("Friend").document(requestInner.getSentName());
@@ -238,10 +243,21 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                                     if (task.isSuccessful()) {
                                                         DocumentSnapshot document = task.getResult();
                                                         if (document.exists()) {
-                                                            Toast.makeText(FriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
+                                                            Toast toast_friend = Toast.makeText(FriendActivity.this, "Already friend", Toast.LENGTH_SHORT);
+                                                            LinearLayout toastLayout = (LinearLayout) toast_friend.getView();
+                                                            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                                            toastTV.setTextSize(24);
+                                                            toastTV.setTextColor(Color.RED);
+                                                            toast_friend.show();
                                                         }
                                                         else {
                                                             db.collection("Account").document(requestInner.getReciveName()).collection("Request").document(requestInner.getSentName()).set(requestInner);
+                                                            Toast toast_friend = Toast.makeText(FriendActivity.this, "Friend request sent", Toast.LENGTH_SHORT);
+                                                            LinearLayout toastLayout = (LinearLayout) toast_friend.getView();
+                                                            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                                                            toastTV.setTextSize(24);
+                                                            toastTV.setTextColor(Color.BLUE);
+                                                            toast_friend.show();
                                                         }
                                                     } else {
                                                     }
@@ -254,8 +270,12 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                             });
                         }
                         else {
-                            Toast.makeText(FriendActivity.this, "Can't find this person", Toast.LENGTH_SHORT).show();
-
+                            Toast toast_no_person = Toast.makeText(FriendActivity.this, "Can't find this person", Toast.LENGTH_SHORT);
+                            LinearLayout toastLayout = (LinearLayout) toast_no_person.getView();
+                            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                            toastTV.setTextSize(24);
+                            toastTV.setTextColor(Color.RED);
+                            toast_no_person.show();
                         }
                     } else {
                     }
@@ -263,12 +283,12 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             });
         }
         else{
-            Toast toast =  Toast.makeText(FriendActivity.this, "Enter a person please", Toast.LENGTH_SHORT);
-            LinearLayout toastLayout = (LinearLayout) toast.getView();
+            Toast toast_nothing =  Toast.makeText(FriendActivity.this, "Enter a person please", Toast.LENGTH_SHORT);
+            LinearLayout toastLayout = (LinearLayout) toast_nothing.getView();
             TextView toastTV = (TextView) toastLayout.getChildAt(0);
             toastTV.setTextSize(24);
             toastTV.setTextColor(Color.RED);
-            toast.show();
+            toast_nothing.show();
 
         }
 

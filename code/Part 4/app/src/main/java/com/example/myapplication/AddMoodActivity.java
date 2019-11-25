@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -27,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -130,20 +132,36 @@ public class AddMoodActivity extends AppCompatActivity {
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion = "happy";
-                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_happy = Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_happy.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_happy.show();
+
 
                 }
                 if(position==1){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img2));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion= "angry";
-                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_anger = Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_anger.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_anger.show();
                 }
                 if(position==2){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img3));
                     gridview.setVisibility(View.INVISIBLE);
                     emotion="sad";
-                    Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion_sad = Toast.makeText(AddMoodActivity.this, "Feel "   + emotion, Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion_sad.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_emotion_sad.show();
                 }
 
 
@@ -216,7 +234,8 @@ public class AddMoodActivity extends AppCompatActivity {
 
             }
         });
-
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        final Date date = new Date();
 
 
         final Intent back = new Intent(this,HomePage.class);
@@ -225,11 +244,16 @@ public class AddMoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(emotion==null){
-                    Toast.makeText(AddMoodActivity.this, "At least enter emotion", Toast.LENGTH_SHORT).show();
+                    Toast toast_emotion = Toast.makeText(AddMoodActivity.this, "At least enter emotion", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_emotion.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_emotion.show();
                 }
                 else{
                     geolocation = new Geolocation(a,b);
-                    final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH://overridePendingTransition(0, 0);mm:ss");
                     final Date date = new Date();
                     String add_date=dateFormat.format(date);
                     final Mood moodhistory =new Mood(emotion,reason.getText().toString(),add_date,socialstate,user,Double.toString(a),Double.toString(b));
@@ -239,7 +263,10 @@ public class AddMoodActivity extends AppCompatActivity {
 
                     //final DocumentReference ReceiverRef = db.collection("Account").document(user);
                     db.collection("Account").document(user).collection("moodHistory").document(moodhistory.getTime()).set(moodhistory);
-
+                    Fileuploader(add_date);
+                    Toast toast_submit = Toast.makeText(AddMoodActivity.this, "Successfully submitted", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_submit.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
                     //startActivity(back);
                     //overridePendingTransition(0, 0);
                     if (imguri!=null){
@@ -261,22 +288,7 @@ public class AddMoodActivity extends AppCompatActivity {
     private void Fileuploader(String date){
         StorageReference Ref = storageRef.child(date);
 
-        Ref.putFile(imguri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(AddMoodActivity.this,"Image uploaded successfully",Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        // ...
-                    }
-                });
+        Ref.putFile(imguri);
     }
     private void Filechooser(){
         Intent intent =new Intent();
