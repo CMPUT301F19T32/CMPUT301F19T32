@@ -282,7 +282,9 @@ public class EditMoodActivity extends AppCompatActivity {
                                 "latitude",Double.toString(getCurrentLocation().latitude),
                                 "longitude",Double.toString(getCurrentLocation().longitude)
                         );
-                Fileuploader(time);
+                if (imguri!=null){
+                    Fileuploader(time);
+                }
                 finish();
 
             }
