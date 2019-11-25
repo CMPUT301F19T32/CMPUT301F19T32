@@ -252,6 +252,12 @@ public class AddMoodActivity extends AppCompatActivity {
                     toast_emotion.show();
                 }
                 else{
+                    Toast toast_submit = Toast.makeText(AddMoodActivity.this, "Successfully submitted", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_submit.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.BLUE);
+                    toast_submit.show();
                     geolocation = new Geolocation(a,b);
                     final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH://overridePendingTransition(0, 0);mm:ss");
                     final Date date = new Date();
@@ -260,16 +266,10 @@ public class AddMoodActivity extends AppCompatActivity {
                     FirebaseFirestore db;
                     db = FirebaseFirestore.getInstance();
                     //final CollectionReference collectionReference = db.collection("Account");
-
                     //final DocumentReference ReceiverRef = db.collection("Account").document(user);
                     db.collection("Account").document(user).collection("moodHistory").document(moodhistory.getTime()).set(moodhistory);
                     Fileuploader(add_date);
-                    Toast toast_submit = Toast.makeText(AddMoodActivity.this, "Successfully submitted", Toast.LENGTH_SHORT);
-                    LinearLayout toastLayout = (LinearLayout) toast_submit.getView();
-                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
-                    toastTV.setTextSize(24);
-                    toastTV.setTextColor(Color.BLUE);
-                    toast_submit.show();
+
                     //startActivity(back);
                     //overridePendingTransition(0, 0);
                     if (imguri!=null){
