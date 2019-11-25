@@ -238,9 +238,12 @@ public class AddMoodActivity extends AppCompatActivity {
 
                     //final DocumentReference ReceiverRef = db.collection("Account").document(user);
                     db.collection("Account").document(user).collection("moodHistory").document(moodhistory.getTime()).set(moodhistory);
-                    Fileuploader(add_date);
+
                     //startActivity(back);
                     //overridePendingTransition(0, 0);
+                    if (imguri!=null){
+                        Fileuploader(add_date);
+                    }
                     finish();
                 }
             }
