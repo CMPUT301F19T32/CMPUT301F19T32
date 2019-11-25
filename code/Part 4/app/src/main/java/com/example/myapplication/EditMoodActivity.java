@@ -254,6 +254,8 @@ public class EditMoodActivity extends AppCompatActivity {
                 LatLng currentLocation = getCurrentLocation();
                 location = new Geolocation(currentLocation.latitude,currentLocation.longitude);
                 String s = getAddress(currentLocation);
+                a=getCurrentLocation().latitude;
+                b=getCurrentLocation().longitude;
                 location_view.setText(s);
 
 
@@ -272,15 +274,14 @@ public class EditMoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(EditMoodActivity.this, emotion, Toast.LENGTH_SHORT).show();
-                a=getCurrentLocation().latitude;
-                b=getCurrentLocation().longitude;
+
                 db.collection("Account").document(user).collection("moodHistory").document(key)
                         .update(
                                 "emotionState", emotion,
                                 "socialState", socialstate,
                                 "reason",reason.getText().toString(),
-                                "latitude",Double.toString(getCurrentLocation().latitude),
-                                "longitude",Double.toString(getCurrentLocation().longitude)
+                                "latitude",Double.toString(a),
+                                "longitude",Double.toString(b)
                         );
                 if (imguri!=null){
                     Fileuploader(time);
