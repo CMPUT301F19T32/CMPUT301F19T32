@@ -216,8 +216,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
             }
         });
-        final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        final Date date = new Date();
+
 
 
         final Intent back = new Intent(this,HomePage.class);
@@ -230,6 +229,8 @@ public class AddMoodActivity extends AppCompatActivity {
                 }
                 else{
                     geolocation = new Geolocation(a,b);
+                    final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    final Date date = new Date();
                     String add_date=dateFormat.format(date);
                     final Mood moodhistory =new Mood(emotion,reason.getText().toString(),add_date,socialstate,user,Double.toString(a),Double.toString(b));
                     FirebaseFirestore db;
