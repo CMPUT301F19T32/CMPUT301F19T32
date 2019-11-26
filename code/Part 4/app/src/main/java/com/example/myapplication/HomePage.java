@@ -232,13 +232,16 @@ public class HomePage extends AppCompatActivity {
         moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                moodList.clearChoices();
+
                 String selectTime = moodDataList.get(position).getTime();
                 Bundle extras = new Bundle();
                 extras.putString("key",selectTime);
                 extras.putString("user",usernameMain);
                 edit.putExtras(extras);
                 startActivity(edit);
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                }
                 return true;
             }
         });
