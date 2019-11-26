@@ -49,6 +49,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     Request requestInner;
     Handler mHandler ;
     private  Request request;
+    private  Integer i;
     //friendList get from fireStore
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +66,29 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         double a = 100;
         double b = 123;
+        i = 0;
+        final Button requestButton = findViewById(R.id.request);
         geolocation = new Geolocation(a,b);
         db = FirebaseFirestore.getInstance();
-/**
-        this.mHandler = new Handler();
-        this.mHandler.postDelayed(m_Runnable,5000);
-*/
+        final CollectionReference collectionReferences =  db.collection("Account").document(user).collection("Request");
+        collectionReferences.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (queryDocumentSnapshots != null) {
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots){
+                        if (doc != null){
+                            requestButton.setTextColor(Color.RED);
+                        }else {
+                            requestButton.setTextColor(Color.BLACK);
+                        }
+
+                    }
+
+                }else {
+                    requestButton.setTextColor(Color.BLACK);
+                }
+            }
+        });
         /**
          * The following part iterate the friendList of current user in firestore and get the last mood of friend.
          */
@@ -119,7 +137,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         moodFrArrayAdapter = new CustomeFriendList(this, moodFrArrayList);
         moodFriendList.setAdapter(moodFrArrayAdapter);
-        Button requestButton = findViewById(R.id.request);
+
         final Button map = findViewById(R.id.map_fr);
         Button addFriend = findViewById(R.id.addFriend);
         Button refresh=findViewById(R.id.refresh);
@@ -127,6 +145,10 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         /**
          * refresh button will refresh the activity.
          */
+        if (i == 0){
+            refresh.performClick();
+            i += 1;
+        }
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
