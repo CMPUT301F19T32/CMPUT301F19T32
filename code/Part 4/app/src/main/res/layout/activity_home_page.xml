@@ -92,8 +92,8 @@
         android:id="@+id/text"
         android:layout_width="323dp"
         android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:text="Long click to delete a mood history"
+        android:layout_marginStart="70dp"
+        android:text="Long click to view a mood details"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,19 +133,35 @@
 
     </LinearLayout>
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="24dp"
         android:text="ADD MOOD"
         android:tint="@color/common_google_signin_btn_text_dark_default"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/common_google_signin_btn_text_dark_pressed"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delete_mood_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="delete mood"
+        android:tint="@color/common_google_signin_btn_text_dark_default"
+        app:backgroundTint="#E91E63"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_delete" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,12 +1,19 @@
 package com.example.myapplication;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,8 +21,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -48,6 +58,7 @@ public class HomePage extends AppCompatActivity {
     static int chk=0;
     Button map_button;
     FloatingActionButton add_button;
+    FloatingActionButton deleteMoodButton;
     FirebaseFirestore db;
     TextView test;
     String TAG = "sample";
@@ -104,6 +115,7 @@ public class HomePage extends AppCompatActivity {
         filter_all = findViewById(R.id.filter_all);
 
         add_button = findViewById(R.id.button);
+        deleteMoodButton= findViewById(R.id.delete_mood_button);
         /*
         db.collection("Account").document(usernameMain).collection("moodHistory")
                 .get()
@@ -214,18 +226,57 @@ public class HomePage extends AppCompatActivity {
         moodList.setAdapter(moodAdapter);
 
         final Intent edit = new Intent(HomePage.this, EditMoodActivity.class);
-        moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                moodList.clearChoices();
                 String selectTime = moodDataList.get(position).getTime();
                 Bundle extras = new Bundle();
                 extras.putString("key",selectTime);
                 extras.putString("user",usernameMain);
                 edit.putExtras(extras);
                 startActivity(edit);
+                return true;
             }
         });
 
+        // Enable the selection of multiple items
+        moodList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Change background of colours of selected rows to indicate which are selected
+                for (int i = 0; i < moodList.getChildCount(); i++) {
+                    if (moodList.isItemChecked(i)){
+                        moodList.getChildAt(i).setBackgroundColor(Color.LTGRAY);
+                    } else {
+                        moodList.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
+                    }
+                }
+            }
+        });
+
+        deleteMoodButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                int i;
+                SparseBooleanArray selectedMoods = moodList.getCheckedItemPositions();
+
+                for (i = moodList.getCount(); i >= 0; i--){
+                    if (selectedMoods.get(i)){
+                        db.collection("Account").document(usernameMain).collection("moodHistory").document(moodDataList.get(i).getTime())
+                                .delete();
+                    }
+                }
+                moodList.clearChoices();
+
+            }
+        });
+
+
+
+
+
+        /*
         moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
@@ -235,6 +286,8 @@ public class HomePage extends AppCompatActivity {
                 return true;
             }
         });
+
+         */
 
 
 
@@ -255,6 +308,7 @@ public class HomePage extends AppCompatActivity {
                 Intent intentc = new Intent(HomePage.this, AddMoodActivity.class);
                 intentc.putExtra("user",usernameMain);
                 HomePage.this.startActivity(intentc);
+                moodList.clearChoices();
             }
         });
 
