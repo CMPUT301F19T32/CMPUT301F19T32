@@ -207,7 +207,9 @@ public class HomePage extends AppCompatActivity {
         map_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                }
 
 
                 Intent mapIntent  = new Intent(HomePage.this, MyHistotyMoodMap.class );
@@ -332,6 +334,9 @@ public class HomePage extends AppCompatActivity {
         followed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                }
                 Intent intentf = new Intent(HomePage.this,FriendActivity.class);
                 intentf.putExtra("user",usernameMain);
                 HomePage.this.startActivity(intentf);
@@ -341,6 +346,9 @@ public class HomePage extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                }
                 Intent intentc = new Intent(HomePage.this, AddMoodActivity.class);
                 intentc.putExtra("user",usernameMain);
                 HomePage.this.startActivity(intentc);
@@ -353,6 +361,9 @@ public class HomePage extends AppCompatActivity {
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                }
                 Intent intentMyProfile = new Intent(HomePage.this, MyProfileActivity.class);
                 intentMyProfile.putExtra("usernameMyProfile",usernameMain);
                 HomePage.this.startActivity(intentMyProfile);
