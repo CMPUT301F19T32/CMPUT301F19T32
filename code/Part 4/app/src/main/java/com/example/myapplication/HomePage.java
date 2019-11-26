@@ -71,6 +71,7 @@ public class HomePage extends AppCompatActivity {
     Button myProfileButton;
     ArrayList<String> mood ;
     ArrayList<String> date ;
+    private int moodIndex;
     //Account acc;
     ArrayList<Account> accountList;
     Map<String, Object> m;
@@ -240,6 +241,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        /*
         // Enable the selection of multiple items
         moodList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -271,6 +273,40 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+
+         */
+
+        moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                moodIndex=i;
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    if (j==i){
+                        moodList.getChildAt(j).setBackgroundColor(Color.LTGRAY);
+                    } else {
+                        moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                    }
+                }
+            }
+        });
+
+        deleteMoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(moodIndex!=-1) {
+                    db.collection("Account").document(usernameMain).collection("moodHistory").document(moodDataList.get(moodIndex).getTime())
+                            .delete();
+                    moodIndex = -1;
+                }
+
+                moodAdapter.notifyDataSetChanged();
+                moodList.setAdapter(moodAdapter);
+
+            }
+        });
+
+
 
 
 
@@ -329,6 +365,9 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 filterLayout.setVisibility(View.VISIBLE);
+                for (int j = 0; j < moodList.getChildCount(); j++) {
+                    moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                }
             }
         });
 
