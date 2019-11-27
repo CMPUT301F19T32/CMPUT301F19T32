@@ -450,10 +450,6 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
             }
         });
 
-
-
-
-
     }
 
     @Override

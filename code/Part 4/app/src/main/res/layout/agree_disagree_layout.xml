@@ -9,17 +9,21 @@
         android:id="@+id/FromUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:ems="10"
         android:hint="User"
-        android:textSize="30sp" />
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/MasssageGet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:ems="10"
         android:hint="Empty Massage"
-        android:textSize="18sp" />
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18dp" />
 
 
 </LinearLayout>
