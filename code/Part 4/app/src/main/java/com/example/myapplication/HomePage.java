@@ -397,7 +397,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
 
                 filter="sad";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
+                final Mood moodhistory =new Mood("","0","","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
                 filter_button.setText("SAD");
@@ -414,7 +414,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
 
                 filter="angry";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
+                final Mood moodhistory =new Mood("","0","","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
                 filter_button.setText("ANGRY");
@@ -427,7 +427,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
 
                 filter="happy";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
+                final Mood moodhistory =new Mood("","0","","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
                 filter_button.setText("HAPPY");
@@ -441,7 +441,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 filter="all";
-                final Mood moodhistory =new Mood("0","0","0","0","0","0","0");
+                final Mood moodhistory =new Mood("","0","","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").delete();
                 filter_button.setText("Filter");
