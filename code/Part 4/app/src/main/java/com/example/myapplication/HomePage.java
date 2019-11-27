@@ -41,7 +41,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFragmentInteractionListener {
 
     ListView moodList;
     ArrayAdapter<Mood> moodAdapter;
@@ -323,9 +323,10 @@ public class HomePage extends AppCompatActivity {
         moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
-                                           int index, long arg3) {
-                db.collection("Account").document(usernameMain).collection("moodHistory").document(moodDataList.get(index).getTime())
-                        .delete();
+                                           int idx, long arg3) {
+                //deleteCurrent(usernameMain,idx);
+                new DeleteMoodFrag(usernameMain,idx).show(getSupportFragmentManager(),"addFriend");
+
                 return true;
             }
         });
@@ -451,7 +452,22 @@ public class HomePage extends AppCompatActivity {
 
 
 
+
+
     }
+
+    @Override
+    public void onYesPressed(Integer state,String username, Integer idx) {
+
+        if (state == 1){
+
+            db.collection("Account").document(username).collection("moodHistory").document(moodDataList.get(idx).getTime())
+                    .delete();
+
+        }
+
+    }
+
 
 
 
