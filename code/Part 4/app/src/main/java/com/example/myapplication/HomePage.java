@@ -207,6 +207,7 @@ public class HomePage extends AppCompatActivity {
         map_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -339,6 +340,7 @@ public class HomePage extends AppCompatActivity {
         followed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -351,6 +353,7 @@ public class HomePage extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -366,6 +369,7 @@ public class HomePage extends AppCompatActivity {
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -381,6 +385,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 filterLayout.setVisibility(View.VISIBLE);
+                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
