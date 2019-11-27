@@ -208,6 +208,18 @@ public class AddMoodActivity extends AppCompatActivity {
 
             }
         });
+
+
+        map_bt.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                location_view.setText("Unknown");
+                return true;
+
+            }
+        });
+
+
         reason=findViewById(R.id.reason);
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
         reason.addTextChangedListener(new TextWatcher() {

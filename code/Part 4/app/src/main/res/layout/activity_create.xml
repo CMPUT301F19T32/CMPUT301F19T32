@@ -134,7 +134,7 @@
         android:layout_width="262dp"
         android:layout_height="72dp"
         android:layout_marginTop="14dp"
-        android:text="Click On Location Button To Get Current Location"
+        android:text="Click On Location Button To Get Current Location, Or Long Click To Erase Location. "
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/gridview"

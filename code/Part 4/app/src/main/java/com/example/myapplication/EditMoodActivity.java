@@ -281,6 +281,17 @@ public class EditMoodActivity extends AppCompatActivity {
 
             }
         });
+
+        map_bt.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                location_view.setText("Unknown");
+                return true;
+
+            }
+        });
+
+
         reason=findViewById(R.id.reason);
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         final Date date = new Date();
