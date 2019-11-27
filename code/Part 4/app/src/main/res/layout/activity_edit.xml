@@ -9,21 +9,21 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="147dp"
-        android:layout_height="121dp"
+        android:layout_width="146dp"
+        android:layout_height="112dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#FFF"
+        android:background="#0000"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/social"
         app:layout_constraintEnd_toStartOf="@+id/reason"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.603"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.756"
-        app:srcCompat="@drawable/empty2" />
+        app:layout_constraintVertical_bias="0.387"
+        app:srcCompat="@drawable/image_icon" />
 
     <GridView
         android:id="@+id/gridview"
@@ -47,9 +47,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="145dp"
-        android:layout_height="109dp"
-        android:background="#FFF"
+        android:layout_width="146dp"
+        android:layout_height="112dp"
+        android:background="#0000"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
@@ -59,16 +59,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.186"
-        app:srcCompat="@drawable/empty1" />
+        app:srcCompat="@drawable/emotion_icon" />
 
     <TextView
         android:id="@+id/emotion"
         android:layout_width="164dp"
         android:layout_height="79dp"
         android:layout_marginTop="132dp"
-        android:text="Emotion State"
+        android:text="Click On The Left To Edit An Emotion"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.846"
@@ -136,7 +136,7 @@
         android:layout_marginTop="14dp"
         android:text="Click on location button to get current location"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="17dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/gridview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
