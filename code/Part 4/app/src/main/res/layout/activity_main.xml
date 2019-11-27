@@ -23,19 +23,17 @@
             android:layout_height="58dp"
             android:ems="8"
             android:hint="username"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="@android:color/background_light"
+            android:textColor="@android:color/background_dark"
             android:textSize="25dp" />
 
         <EditText
             android:id="@+id/password_field"
-            android:layout_width="171dp"
-            android:layout_height="62dp"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
             android:ems="7"
             android:hint="password"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="@android:color/background_light"
             android:inputType="textPassword"
+            android:textColor="@android:color/background_dark"
             android:textSize="25dp" />
 
         <Button

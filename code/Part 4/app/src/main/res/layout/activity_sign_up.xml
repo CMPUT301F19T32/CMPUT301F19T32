@@ -18,32 +18,32 @@
 
         <EditText
             android:id="@+id/username_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="188dp"
+            android:layout_height="58dp"
             android:ems="7"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="@android:color/background_light"
-            android:hint="username" />
+            android:hint="username"
+            android:textSize="25dp"
+            android:textColor="@android:color/background_dark" />
 
         <EditText
             android:id="@+id/password_field"
-            android:layout_width="wrap_content"
+            android:layout_width="188dp"
             android:layout_height="wrap_content"
             android:ems="7"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="@android:color/background_light"
+            android:hint="password"
+            android:textSize="25dp"
             android:inputType="textPassword"
-            android:hint="password" />
+            android:textColor="@android:color/background_dark" />
 
         <EditText
             android:id="@+id/passwordConfirm_field"
-            android:layout_width="wrap_content"
+            android:layout_width="188dp"
             android:layout_height="wrap_content"
             android:ems="7"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="@android:color/background_light"
+            android:textSize="25dp"
+            android:hint="Re-password"
             android:inputType="textPassword"
-            android:hint="Re-password" />
+            android:textColor="@android:color/background_dark" />
 
 
         <Button
