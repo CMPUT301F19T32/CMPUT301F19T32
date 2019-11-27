@@ -43,7 +43,7 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
 
         userName.setText(mood.getUsername());
         timeText.setText(mood.getTime());
-        moodText.setText(mood.getEmotionState());
+        moodText.setText(mood.getEmotionState().toUpperCase());
 
         if(moods.get(position).getEmotionState().equals("sad")){
             timeText.setTextColor(Color.BLUE);

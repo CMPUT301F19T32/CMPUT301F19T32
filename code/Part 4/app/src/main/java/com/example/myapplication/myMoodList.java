@@ -44,7 +44,7 @@ public class myMoodList extends ArrayAdapter<Mood> {
         TextView mood_text = view.findViewById(R.id.mood_text);
         TextView date_text = view.findViewById(R.id.date_text);
 
-        mood_text.setText(mood.getEmotionState());
+        mood_text.setText(mood.getEmotionState().toUpperCase());
         date_text.setText(mood.getTime());
 
         if(moods.get(position).getEmotionState().equals("sad")){
