@@ -233,6 +233,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                moodIndex=-1;
                 String selectTime = moodDataList.get(position).getTime();
                 Bundle extras = new Bundle();
                 extras.putString("key",selectTime);
@@ -289,6 +290,7 @@ public class HomePage extends AppCompatActivity {
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     if (j==i){
                         moodList.getChildAt(j).setBackgroundColor(Color.LTGRAY);
+
                     } else {
                         moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                     }
