@@ -58,7 +58,7 @@ public class HomePage extends AppCompatActivity {
     static int chk=0;
     Button map_button;
     FloatingActionButton add_button;
-    FloatingActionButton deleteMoodButton;
+    //FloatingActionButton deleteMoodButton;
     FirebaseFirestore db;
     TextView test;
     String TAG = "sample";
@@ -116,7 +116,7 @@ public class HomePage extends AppCompatActivity {
         filter_all = findViewById(R.id.filter_all);
 
         add_button = findViewById(R.id.button);
-        deleteMoodButton= findViewById(R.id.delete_mood_button);
+        //deleteMoodButton= findViewById(R.id.delete_mood_button);
         /*
         db.collection("Account").document(usernameMain).collection("moodHistory")
                 .get()
@@ -230,9 +230,9 @@ public class HomePage extends AppCompatActivity {
         moodList.setAdapter(moodAdapter);
 
         final Intent edit = new Intent(HomePage.this, EditMoodActivity.class);
-        moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 moodIndex=-1;
                 String selectTime = moodDataList.get(position).getTime();
@@ -244,7 +244,6 @@ public class HomePage extends AppCompatActivity {
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
-                return true;
             }
         });
 
@@ -282,7 +281,7 @@ public class HomePage extends AppCompatActivity {
         });
 
          */
-
+/*
         moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -315,12 +314,12 @@ public class HomePage extends AppCompatActivity {
         });
 
 
+*/
 
 
 
 
 
-        /*
         moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
@@ -331,7 +330,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-         */
+
 
 
 
