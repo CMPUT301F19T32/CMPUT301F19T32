@@ -227,6 +227,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 viewIntent.putExtra("emotion",mood.getEmotionState());
                 viewIntent.putExtra("reason",mood.getReason());
                 viewIntent.putExtra("social",mood.getSocialState());
+                viewIntent.putExtra("latitude",mood.getLatitude());
+                viewIntent.putExtra("longitude",mood.getLongitude());
+                viewIntent.putExtra("time",mood.getTime());
                 startActivity(viewIntent);
                 /// add new activity relatide to homepage
             }
