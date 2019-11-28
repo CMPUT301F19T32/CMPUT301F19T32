@@ -259,7 +259,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                             toast_sent.show();
                                         }
                                         else {
-                                            DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName()).collection("Friend").document(requestInner.getSentName());
+                                            DocumentReference docIdRef = db.collection("Account").document(requestInner.getSentName()).collection("Friend").document(requestInner.getReciveName());
                                             docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
