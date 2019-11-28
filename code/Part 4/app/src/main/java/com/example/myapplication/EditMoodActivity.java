@@ -17,6 +17,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -293,6 +295,30 @@ public class EditMoodActivity extends AppCompatActivity {
 
 
         reason=findViewById(R.id.reason);
+        reason.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String[] strings;
+                String string = reason.getText().toString();
+                strings = string.split("\\s");
+                if (reason.getText().toString().split("\\s").length > 3){
+                    reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
+                    reason.setSelection(reason.getText().length());
+                }
+            }
+        });
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         final Date date = new Date();
 

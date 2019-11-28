@@ -225,13 +225,7 @@ public class AddMoodActivity extends AppCompatActivity {
         reason.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                int wordsLength = countWords(s.toString());// words.length;
-                // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 2) {
-                    setCharLimit(reason, reason.getText().length());
-                } else {
-                    removeFilter(reason);
-                }
+
 
             }
 
@@ -243,7 +237,13 @@ public class AddMoodActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                String[] strings;
+                String string = reason.getText().toString();
+                strings = string.split("\\s");
+                if (reason.getText().toString().split("\\s").length > 3){
+                    reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
+                    reason.setSelection(reason.getText().length());
+                }
             }
         });
 
@@ -409,25 +409,11 @@ public class AddMoodActivity extends AppCompatActivity {
 
         return address;
     }
-    private int countWords(String s) {
-        String trim = s.trim();
-        if (trim.isEmpty())
-            return 0;
-        return trim.split("\\s+").length; // separate string around spaces
-    }
 
-    private InputFilter filter;
 
-    private void setCharLimit(EditText et, int max) {
-        filter = new InputFilter.LengthFilter(20);
-        et.setFilters(new InputFilter[] { filter });
-    }
 
-    private void removeFilter(EditText et) {
-        if (filter != null) {
-            et.setFilters(new InputFilter[0]);
-            filter = null;
-        }
+
+
     }
 /*
     public void onActivityResult(int requestCode,int resultCode,Intent data) {
@@ -446,4 +432,4 @@ public class AddMoodActivity extends AppCompatActivity {
 */
 
 
-}
+

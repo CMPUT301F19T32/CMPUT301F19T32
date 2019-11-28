@@ -119,14 +119,16 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                         String time = (String) doc.getData().get("time");
                                         String username= (String)doc.getData().get("username");
                                         currentMood=new Mood(emotionState, reason, time, socialState, username, latitude, longitude);
-                                        //System.out.println(currentMood.getUsername());
                                     }
                                     if(currentMood!=null){
                                         moodFrArrayList.add(currentMood);
-                                        moodFrArrayAdapter.notifyDataSetChanged();
+                                        //Zhob
+
+
                                     }
 
                                 }
+                                moodFrArrayAdapter.notifyDataSetChanged();
                             }
                         });
                     }
@@ -149,6 +151,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             refresh.performClick();
             i += 1;
         }
+
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,6 +222,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             }
         });
 
+        content();
     }
 
     /**
@@ -322,16 +326,39 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
 
     }
-    /**
-    private  final Runnable m_Runnable = new Runnable() {
-        @Override
-        public void run() {
-            //Toast.makeText(FriendActivity.this,"in runnable",Toast.LENGTH_SHORT).show();
+    public void content(){
+        final Button requestButton = findViewById(R.id.request);
+        final CollectionReference collectionReferences =  db.collection("Account").document(user).collection("Request");
+        collectionReferences.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (queryDocumentSnapshots != null) {
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots){
+                        if (doc != null){
+                            requestButton.setTextColor(Color.RED);
+                        }else {
+                            requestButton.setTextColor(Color.BLACK);
+                        }
 
-            FriendActivity.this.mHandler.postDelayed(m_Runnable, 5000);
-        }
-    };
+                    }
 
- */
+                }else {
+                    requestButton.setTextColor(Color.BLACK);
+                }
+            }
+        });
+
+        refreshs(100);
+    }
+    private void refreshs(int millisecond){
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                content();
+            }
+        };
+        handler.postDelayed(runnable,millisecond);
+    }
 
 }
