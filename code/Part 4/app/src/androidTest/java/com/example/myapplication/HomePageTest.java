@@ -83,29 +83,30 @@ public class HomePageTest {
 
         //check filter happy
         solo.clickOnButton("Happy");
-        assertFalse(solo.waitForText("angry", 1, 2000));
-        assertFalse(solo.waitForText("sad", 1, 2000));
-        assertTrue(solo.waitForText("happy", 1, 2000));
+        assertFalse(solo.waitForText("ANGRY", 1, 2000));
+        assertFalse(solo.waitForText("SAD", 1, 2000));
+        assertTrue(solo.waitForText("HAPPY", 1, 2000));
 
         //check filter sad
-        solo.clickOnButton("Filter");
+        solo.clickOnButton("HAPPY");
         solo.clickOnButton("Sad");
-        assertFalse(solo.waitForText("angry", 1, 2000));
-        assertTrue(solo.waitForText("sad", 1, 2000));
-        assertFalse(solo.waitForText("happy", 1, 2000));
+        assertFalse(solo.waitForText("ANGRY", 1, 2000));
+        assertTrue(solo.waitForText("SAD", 1, 2000));
+        assertFalse(solo.waitForText("HAPPY", 1, 2000));
 
         //check filter angry
-        solo.clickOnButton("Filter");
+        solo.clickOnButton("SAD");
         solo.clickOnButton("Angry");
-        assertTrue(solo.waitForText("angry", 1, 2000));
-        assertFalse(solo.waitForText("sad", 1, 2000));
-        assertFalse(solo.waitForText("happy", 1, 2000));
+        assertTrue(solo.waitForText("ANGRY", 1, 2000));
+        assertFalse(solo.waitForText("SAD", 1, 2000));
+        assertFalse(solo.waitForText("HAPPY", 1, 2000));
 
         //check filter all
-        solo.clickOnButton("Filter");
+        solo.clickOnButton("ANGRY");
         solo.clickOnButton("All");
-        assertTrue(solo.waitForText("angry", 1, 2000));
-        assertTrue(solo.waitForText("sad", 1, 2000));
-        assertTrue(solo.waitForText("happy", 1, 2000));
+        assertTrue(solo.waitForText("ANGRY", 1, 2000));
+        assertTrue(solo.waitForText("SAD", 1, 2000));
+        assertTrue(solo.waitForText("HAPPY", 1, 2000));
+        assertTrue(solo.waitForText("Filter", 1, 2000));
     }
 }
