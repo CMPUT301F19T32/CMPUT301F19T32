@@ -125,9 +125,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                     if(currentMood!=null){
                                         moodFrArrayList.add(currentMood);
 
-
-
-
                                     }
 
                                 }
