@@ -25,7 +25,13 @@ public class myMoodList extends ArrayAdapter<Mood> {
         this.context = context;
     }
 
-
+    /**
+     * get mood list view in home page.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

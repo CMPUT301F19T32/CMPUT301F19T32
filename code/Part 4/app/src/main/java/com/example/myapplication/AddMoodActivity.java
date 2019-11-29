@@ -226,7 +226,7 @@ public class AddMoodActivity extends AppCompatActivity {
         });
 
 /**
- * Click reason to enter reason
+ * Click reason to enter reason also set limitation on input text. toast if the limitation is meet
  */
         reason=findViewById(R.id.reason);
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext

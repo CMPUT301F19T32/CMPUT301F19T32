@@ -295,7 +295,7 @@ public class EditMoodActivity extends AppCompatActivity {
         });
 
 /**
- *Click reason button to enter the reason
+ *Click reason button to enter the reason also set limitation on input text, toast if the limitation is meet
  */
         reason=findViewById(R.id.reason);
         reason.addTextChangedListener(new TextWatcher() {

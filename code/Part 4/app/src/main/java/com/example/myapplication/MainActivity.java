@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         final Intent tohome = new Intent(MainActivity.this,HomePage.class);
 
         /**
-         * sign in
+         * sign in, and toast different depend on what user input
          */
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override

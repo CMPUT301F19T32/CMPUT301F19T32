@@ -355,6 +355,10 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         }
 
     }
+    /**
+     * this content set request button which also in oncreate function
+     * set red if there is request from other.
+     */
     public void content(){
         final Button requestButton = findViewById(R.id.request);
         final CollectionReference collectionReferences =  db.collection("Account").document(user).collection("Request");
@@ -379,6 +383,11 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         refreshs(100);
     }
+
+    /**
+     * this refresh every 0.1 second
+     * @param millisecond
+     */
     private void refreshs(int millisecond){
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -390,13 +399,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         handler.postDelayed(runnable,millisecond);
     }
 
-    public void refresh() {
 
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
-
-    }
 
 }
