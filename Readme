@@ -10,6 +10,7 @@ Another reason is that (java.io.IOException: grpc failed). for this case, it may
 contain above 3 decimal places, or it may be said that Geocoder can not decode every latitude and longitude.
 (app may not work properly during this case. Since when we are doing testing, it's hard to find a device that 
 does not have Geocoder service, and even we choose latitude and longitude contain above 3 decimal places for testing, app works properly.)
+TURING-LIU and Turing98 are both Ziyuan Liu(zl8)'s account.
 
 
 reference for above: 
