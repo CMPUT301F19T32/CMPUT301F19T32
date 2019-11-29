@@ -100,7 +100,7 @@ public class EditMoodActivity extends AppCompatActivity {
         DocumentReference docRef = db.collection("Account").document(user).collection("moodHistory").document(key);
         Source source = Source.CACHE;
 /**
- *
+ *Get the data from firestore and then get the picture from Firebase storage
  */
         docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -130,7 +130,9 @@ public class EditMoodActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception exception) {
                         }
                     });
-
+/**
+ *Set the value of reason, emonton and social state
+ */
                     reason.setText(reasonS);
                     if(emotion.equals("happy")){
                         image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
@@ -239,17 +241,12 @@ public class EditMoodActivity extends AppCompatActivity {
 
             }
         });
+        /**
+         *User can click the picture to change a new one
+         */
         img_from_gallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
-                 * Intent intent = new Intent(Intent.ACTION_PICK);
-                 *                 intent.setType("image/*");
-                 *                 String[] mimeTypes = {"image/jpeg", "image/png"};
-                 *                 intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
-                 *                 // Launching the Intent
-                 *                 startActivityForResult(intent,GALLERY_REQUEST_CODE);
-                 */
 
                 Filechooser();
             }
@@ -265,7 +262,9 @@ public class EditMoodActivity extends AppCompatActivity {
         map_bt = findViewById(R.id.map_bt);
         location_view = findViewById(R.id.mood_location);
 
-
+/**
+ *Click location button to get the data of geolocation
+ */
         map_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -281,7 +280,9 @@ public class EditMoodActivity extends AppCompatActivity {
 
             }
         });
-
+/**
+ *Long click the location button to cancel the geolocation
+ */
         map_bt.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -291,7 +292,9 @@ public class EditMoodActivity extends AppCompatActivity {
             }
         });
 
-
+/**
+ *Click reason button to enter the reason
+ */
         reason=findViewById(R.id.reason);
         reason.addTextChangedListener(new TextWatcher() {
             @Override
@@ -319,6 +322,7 @@ public class EditMoodActivity extends AppCompatActivity {
                     toastTV.setTextColor(Color.RED);
                     toast_reason_letter.show();
                 }
+
                 if (reason.getText().toString().split("\\s").length > 3){
                     reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
                     reason.setSelection(reason.getText().length());
@@ -334,7 +338,9 @@ public class EditMoodActivity extends AppCompatActivity {
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         final Date date = new Date();
 
-
+/**
+ *Update the data
+ */
         final Intent back = new Intent(this,HomePage.class);
         submit=findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -395,6 +401,9 @@ public class EditMoodActivity extends AppCompatActivity {
                     }
                 });
     }
+    /**
+     *Choose files from gallery
+     */
     private void Filechooser(){
         Intent intent =new Intent();
         intent.setType("image/'");
@@ -408,6 +417,9 @@ public class EditMoodActivity extends AppCompatActivity {
             img_from_gallary.setImageURI(imguri);
         }
     }
+    /**
+     *Get locations
+     */
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,

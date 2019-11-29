@@ -123,7 +123,9 @@ public class AddMoodActivity extends AppCompatActivity {
                 // Another interface callback
             }
         });
-
+/**
+ * Select moods
+ */
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
@@ -167,7 +169,9 @@ public class AddMoodActivity extends AppCompatActivity {
 
             }
         });
-
+/**
+ *Select image
+ */
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,7 +198,9 @@ public class AddMoodActivity extends AppCompatActivity {
 
         map_bt = findViewById(R.id.map_bt);
         location_view = findViewById(R.id.mood_location);
-
+/**
+ *Click to get the location
+ */
         map_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,7 +231,9 @@ public class AddMoodActivity extends AppCompatActivity {
             }
         });
 
-
+/**
+ *Click reason to enter reason
+ */
         reason=findViewById(R.id.reason);
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
         reason.addTextChangedListener(new TextWatcher() {
@@ -272,7 +280,9 @@ public class AddMoodActivity extends AppCompatActivity {
         });
 
 
-
+/**
+ *Click submit to send the data to Firestore and Firebase Storage
+ */
         final Intent back = new Intent(this,HomePage.class);
         submit=findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +321,9 @@ public class AddMoodActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     *Choose picture and get its extension
+     */
     private String getExtension(Uri uri){
         ContentResolver cr=getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
@@ -363,6 +375,9 @@ public class AddMoodActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *Get the latitude and longitude 
+     */
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this,
@@ -409,8 +424,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
     /**
      *  Use latitude and longitude to get address
-     * @param latLng
-     * @return String
+
      */
 
 
