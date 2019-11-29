@@ -52,8 +52,8 @@ public class myMoodList extends ArrayAdapter<Mood> {
             date_text.setTextColor(Color.BLUE);
         }
         if(moods.get(position).getEmotionState().equals("happy")){
-            mood_text.setTextColor(Color.GREEN);
-            date_text.setTextColor(Color.GREEN);
+            mood_text.setTextColor(Color.rgb(0,125,0));
+            date_text.setTextColor(Color.rgb(0,125,0));
         }
         if(moods.get(position).getEmotionState().equals("angry")){
             mood_text.setTextColor(Color.RED);

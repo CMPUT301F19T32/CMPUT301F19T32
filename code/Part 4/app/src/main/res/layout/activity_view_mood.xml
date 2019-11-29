@@ -9,104 +9,111 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="111dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="77dp"
+        android:layout_width="110dp"
+        android:layout_height="125dp"
         android:layout_marginBottom="96dp"
         android:background="#0000"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintEnd_toStartOf="@+id/view_reason"
+        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.052"
-        app:srcCompat="@drawable/image_icon"/>
+        app:layout_constraintVertical_bias="0.134"
+        app:srcCompat="@drawable/image_icon" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="111dp"
-        android:layout_height="90dp"
+        android:layout_width="99dp"
+        android:layout_height="91dp"
         android:background="#0000"
         android:clickable="true"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintEnd_toStartOf="@+id/view_emotion"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258"
 
-        app:srcCompat="@drawable/emotion_icon"/>
+        app:layout_constraintVertical_bias="0.248"
+        app:srcCompat="@drawable/emotion_icon" />
 
     <TextView
         android:id="@+id/view_emotion"
-        android:layout_width="164dp"
-        android:layout_height="79dp"
+        android:layout_width="172dp"
+        android:layout_height="86dp"
         android:text="Emotion State"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintHorizontal_bias="0.748"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_username"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <TextView
         android:id="@+id/view_reason"
-        android:layout_width="189dp"
-        android:layout_height="146dp"
-        android:hint="Reason (Maximum 3 words, 20 letters)"
+        android:layout_width="211dp"
+        android:layout_height="132dp"
+        android:gravity="center"
         android:inputType="textPersonName"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Unknown Reason"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_social"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_emotion"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintVertical_bias="0.377" />
 
     <TextView
         android:id="@+id/view_social"
         android:layout_width="335dp"
         android:layout_height="70dp"
-        android:text="Social status"
         android:gravity="center"
+        android:text="Social status"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.925" />
 
     <TextView
         android:id="@+id/view_username"
         android:layout_width="238dp"
-        android:textStyle="bold"
         android:layout_height="76dp"
         android:gravity="center"
         android:text="Username"
         android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <TextView
         android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_width="342dp"
+        android:layout_height="113dp"
+        android:gravity="center"
+        android:text="Unknown Location"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
+        app:layout_constraintVertical_bias="0.929" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

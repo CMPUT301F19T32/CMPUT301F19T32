@@ -313,9 +313,23 @@ public class EditMoodActivity extends AppCompatActivity {
                 String[] strings;
                 String string = reason.getText().toString();
                 strings = string.split("\\s");
+                if(reason.getText().toString().length() == 20){
+                    Toast toast_reason_letter = Toast.makeText(EditMoodActivity.this, "Maximum 20 letters", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_reason_letter.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_reason_letter.show();
+                }
                 if (reason.getText().toString().split("\\s").length > 3){
                     reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
                     reason.setSelection(reason.getText().length());
+                    Toast toast_reason = Toast.makeText(EditMoodActivity.this, "Maximum 3 words", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_reason.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_reason.show();
                 }
             }
         });
