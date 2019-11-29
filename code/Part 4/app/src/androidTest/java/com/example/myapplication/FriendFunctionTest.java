@@ -91,7 +91,7 @@ public class FriendFunctionTest {
      */
     @Test
     public void CheckRequest() {
-        solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
+        solo.enterText((EditText) solo.getView(R.id.username_field), "test10");
         solo.enterText((EditText) solo.getView(R.id.password_field), "123");
         solo.clickOnButton("SIGN IN");
         solo.clickOnButton("Followed");
