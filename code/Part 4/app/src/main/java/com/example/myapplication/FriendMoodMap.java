@@ -43,16 +43,7 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent requestIntent  = new Intent(this, FriendActivity.class );
-            startActivity(requestIntent);
-            return true;
-        }
 
-        return super.onKeyDown(keyCode, event);
-    }
 
 
     /**

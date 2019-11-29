@@ -125,13 +125,5 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
         db.collection("Account").document(username).collection("Request").document(request.getSentName())
                 .delete();
     }
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent requestIntent  = new Intent(this, FriendActivity.class );
-            startActivity(requestIntent);
-            return true;
-        }
 
-        return super.onKeyDown(keyCode, event);
-    }
 }

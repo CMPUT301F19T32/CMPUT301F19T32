@@ -187,7 +187,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 overridePendingTransition(0, 0);
             }
         });
-
+/*
         handler = new Handler();
         runnable = new Runnable() {
 
@@ -202,7 +202,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         };
         handler.postDelayed(runnable, 1000*5);
 
-
+*/
 
 
 

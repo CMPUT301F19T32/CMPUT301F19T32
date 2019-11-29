@@ -154,14 +154,5 @@ public class ViewActivity extends AppCompatActivity {
     }
 
 
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent requestIntent  = new Intent(this, FriendActivity.class );
-            startActivity(requestIntent);
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
 
 }
