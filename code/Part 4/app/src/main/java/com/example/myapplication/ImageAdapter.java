@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-
+/**
+ *Manage the images which are used to be emji
+ */
 public class ImageAdapter extends BaseAdapter
 {
     private Context   mContext;

@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
+/**
+ *  This activity can show te the fragment to process the requests
+ */
 public class AgreeDisagreeFrag extends DialogFragment {
     private TextView fromUser;
     private TextView massage;

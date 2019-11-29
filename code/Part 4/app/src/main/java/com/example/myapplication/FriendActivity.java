@@ -40,7 +40,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ *This Activity can show friends' mood hisotries, send add freind request and accept request.
+ */
 public class FriendActivity extends AppCompatActivity implements AddFriendFrag.OnFragmentInteractionListener{
     ListView moodFriendList;
     ArrayAdapter<Mood> moodFrArrayAdapter;

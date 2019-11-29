@@ -21,7 +21,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *Show the requests you received and you can accept or deny them
+ */
 public class RequestActivity extends AppCompatActivity implements AgreeDisagreeFrag.OnFragmentInteractionListener{
     private String username;
     private Integer requestIndex;
