@@ -196,7 +196,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);
-                handler.postDelayed(runnable, 1000*3);//每隔3s执行
+                handler.postDelayed(runnable, 1000*10);
 
             }
         };
