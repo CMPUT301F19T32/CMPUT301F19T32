@@ -204,6 +204,12 @@ public class AddMoodActivity extends AppCompatActivity {
                 a=getCurrentLocation().latitude;
                 b=getCurrentLocation().longitude;
                 location_view.setText(s);
+                Toast toast_location = Toast.makeText(AddMoodActivity.this, "Long click to erase the location", Toast.LENGTH_SHORT);
+                LinearLayout toastLayout = (LinearLayout) toast_location.getView();
+                TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                toastTV.setTextSize(24);
+                toastTV.setTextColor(Color.BLUE);
+                toast_location.show();
 
 
             }
@@ -238,11 +244,29 @@ public class AddMoodActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String[] strings;
+
+
                 String string = reason.getText().toString();
                 strings = string.split("\\s");
+
+
+                if(reason.getText().toString().length() == 20){
+                    Toast toast_reason_letter = Toast.makeText(AddMoodActivity.this, "Maximum 20 letters", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_reason_letter.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_reason_letter.show();
+                }
                 if (reason.getText().toString().split("\\s").length > 3){
                     reason.setText(strings[0] + " " + strings[1] + " " + strings[2]);
                     reason.setSelection(reason.getText().length());
+                    Toast toast_reason = Toast.makeText(AddMoodActivity.this, "Maximum 3 words", Toast.LENGTH_SHORT);
+                    LinearLayout toastLayout = (LinearLayout) toast_reason.getView();
+                    TextView toastTV = (TextView) toastLayout.getChildAt(0);
+                    toastTV.setTextSize(24);
+                    toastTV.setTextColor(Color.RED);
+                    toast_reason.show();
                 }
             }
         });

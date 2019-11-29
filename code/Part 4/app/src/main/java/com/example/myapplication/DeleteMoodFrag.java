@@ -55,7 +55,7 @@ public class DeleteMoodFrag extends DialogFragment {
         return builder
                 .setView(view)
                 .setTitle("delete mood")
-                .setMessage("Are you sure you want to delete selected mood?")
+                .setMessage("Are you sure you want to delete the selected mood?")
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {

@@ -51,9 +51,9 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
             userName.setTextColor(Color.BLUE);
         }
         if(moods.get(position).getEmotionState().equals("happy")){
-            timeText.setTextColor(Color.GREEN);
-            moodText.setTextColor(Color.GREEN);
-            userName.setTextColor(Color.GREEN);
+            timeText.setTextColor(Color.rgb(0,125,0));
+            moodText.setTextColor(Color.rgb(0,125,0));
+            userName.setTextColor(Color.rgb(0,125,0));
         }
         if(moods.get(position).getEmotionState().equals("angry")){
             timeText.setTextColor(Color.RED);

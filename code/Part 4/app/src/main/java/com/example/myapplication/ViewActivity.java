@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -20,6 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Source;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * This Activity shows the details of the friend mood that is selected
@@ -44,6 +50,7 @@ public class ViewActivity extends AppCompatActivity {
     private void initComponent() {
         image = (ImageView) findViewById(R.id.imageView);
         reason_image = (ImageView) findViewById(R.id.imageView2);
+
     }
 
 
@@ -60,13 +67,19 @@ public class ViewActivity extends AppCompatActivity {
 
 
         view_username.setText(getIntent().getStringExtra("username"));
-        view_emotion.setText(getIntent().getStringExtra("emotion"));
+        view_emotion.setText(getIntent().getStringExtra("emotion").toUpperCase());
         view_reason.setText(getIntent().getStringExtra("reason"));
         view_social.setText(getIntent().getStringExtra("social"));
         latitude=getIntent().getStringExtra("latitude");
         longitude=getIntent().getStringExtra("longitude");
         time=getIntent().getStringExtra("time");
         user = getIntent().getStringExtra("username");
+
+        LatLng location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
+
+        view_location.setText(getAddress(location));
+
+
         if(getIntent().getStringExtra("emotion").equals("happy")){
             image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
         }
@@ -112,5 +125,29 @@ public class ViewActivity extends AppCompatActivity {
         });
 
         }
+
+
+
+    public String getAddress(LatLng latLng){
+        String address = "";
+        if (latLng.latitude==0.0 && latLng.longitude==0.0){
+            return "Unknown Location";
+        }
+        Geocoder geocoder = new Geocoder(ViewActivity.this, Locale.getDefault());
+        try{
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
+
+            address = addresses.get(0).getThoroughfare() + ",\t" + addresses.get(0).getLocality();
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        return address;
+    }
+
+
 
 }
