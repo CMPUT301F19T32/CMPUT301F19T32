@@ -63,11 +63,11 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
                 LatLng latLng = new LatLng(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLongitude()));
                 // if Emotionstr is happy, the color of marker is green, and red for angry, blue for sad.
                 if(mood.getEmotionState().equals("happy")) {
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername()+":"+mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername()+": "+mood.getEmotionState().toUpperCase()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                 }else if (mood.getEmotionState().equals("angry")){
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername()+":"+mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername()+": "+mood.getEmotionState().toUpperCase()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 }else if(mood.getEmotionState().equals("sad")){
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername()+":"+mood.getEmotionState()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getUsername()+": "+mood.getEmotionState().toUpperCase()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 }
 
                 // set view to clearly see the map

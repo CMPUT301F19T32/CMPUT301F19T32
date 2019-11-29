@@ -124,21 +124,21 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                     }
                                     if(currentMood!=null){
                                         moodFrArrayList.add(currentMood);
-
-
-
+                                        for (int i =0; i < moodFrArrayList.size(); i++){
+                                            Collections.sort(moodFrArrayList, new Comparator<Mood>() {
+                                                public int compare(Mood first, Mood second)  {
+                                                    return second.getTime().compareTo(first.getTime());
+                                                }
+                                            });
+                                        }
+                                        moodFrArrayAdapter.notifyDataSetChanged();
+                                        currentMood = null;
 
                                     }
 
                                 }
-                                for (int i =0; i < moodFrArrayList.size(); i++){
-                                    Collections.sort(moodFrArrayList, new Comparator<Mood>() {
-                                        public int compare(Mood first, Mood second)  {
-                                            return second.getTime().compareTo(first.getTime());
-                                        }
-                                    });
-                                }
-                                moodFrArrayAdapter.notifyDataSetChanged();
+
+
                             }
                         });
                     }
