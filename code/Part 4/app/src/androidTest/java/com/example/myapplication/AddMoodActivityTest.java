@@ -61,7 +61,6 @@ public class AddMoodActivityTest {
 
     /**
      * Add a mood to the EditText view and check the username using assertTrue
-
      */
     @Test
     public void checkAddMood(){
@@ -98,4 +97,3 @@ public class AddMoodActivityTest {
 
 
 }
-
