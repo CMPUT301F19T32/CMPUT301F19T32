@@ -74,7 +74,7 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
         mMap = googleMap;
         for(int num = 0;num < mapMood.size();num++) {
             Mood mood = mapMood.get(num);
-            //System.out.println(mood.getLatitude()+" "+mood.getLongitude());
+
 
             // if the mood has location, place a marker on map.
             if (!mood.getLatitude().equals("0.0")&&!mood.getLongitude().equals("0.0")) {
@@ -91,7 +91,7 @@ public class MyHistotyMoodMap extends AppCompatActivity implements OnMapReadyCal
                     mMap.addMarker(new MarkerOptions().position(latLng).title(mood.getEmotionState().toUpperCase()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 }
                 // set view to clearly see the map
-                //Geolocation geo = new Geolocation(Double.parseDouble(mood.getLatitude()), Double.parseDouble(mood.getLatitude()));
+
                 Geolocation geo = new Geolocation(latLng.latitude,latLng.longitude);
                 setCameraView(geo);
             }

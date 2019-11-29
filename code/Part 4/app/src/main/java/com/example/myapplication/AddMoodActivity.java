@@ -429,6 +429,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
 
     public String getAddress(LatLng latLng){
+
         String address = "";
         if (latLng.latitude==0.0 && latLng.longitude==0.0){
             return "Unknown";
