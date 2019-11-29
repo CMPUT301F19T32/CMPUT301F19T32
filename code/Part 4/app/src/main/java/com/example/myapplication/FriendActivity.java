@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,9 +31,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FriendActivity extends AppCompatActivity implements AddFriendFrag.OnFragmentInteractionListener{
     ListView moodFriendList;
@@ -52,6 +58,12 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     Handler mHandler ;
     private  Request request;
     private  Integer i;
+    private final Timer timer = new Timer();
+    private Runnable runnable;
+    private Handler handler;
+    int check=0;
+
+
     //friendList get from fireStore
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +75,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         moodFrArrayList = new ArrayList<>();
         friendList = new ArrayList<>();
         cloudstorage= FirebaseFirestore.getInstance();
-
         //some sample info (delete later)
 
         double a = 100;
@@ -98,8 +109,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (queryDocumentSnapshots != null) {
+                if (queryDocumentSnapshots != null&&check==0) {
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+
                         String friend = (String) doc.getId();
                         friendList.add(friend);
 
@@ -133,7 +145,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                                         }
                                         moodFrArrayAdapter.notifyDataSetChanged();
                                         currentMood = null;
-
                                     }
 
                                 }
@@ -142,6 +153,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                             }
                         });
                     }
+                    check=1;
                 }
             }
         });
@@ -171,6 +183,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 overridePendingTransition(0, 0);
             }
         });
+
+
+
 
         /**
          * The add button will call a fragment to ask information for the friend.
@@ -237,6 +252,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         content();
     }
+
 
     /**
      * This method is called when user sent a request
@@ -372,6 +388,15 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             }
         };
         handler.postDelayed(runnable,millisecond);
+    }
+
+    public void refresh() {
+
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+
     }
 
 }
