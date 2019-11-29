@@ -26,14 +26,10 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
     ListView requestVeiw;
     ArrayList<Request> requestArrayList;
     ArrayAdapter<Request> requestArrayAdapter;
-    ArrayList<Mood> moodlist;
     Request request;
-    ArrayList<String> friends;
     FirebaseFirestore db;
     List<String> friendList = new ArrayList<>();
     List<String> messageList = new ArrayList<>();
-    List<Request>requestArrayListest;
-    //  requestArrayList from fireStore   where  request.reciveName = userName
     StringBuilder sent = new StringBuilder("");
     StringBuilder rece = new StringBuilder("");
     StringBuilder mess = new StringBuilder("");

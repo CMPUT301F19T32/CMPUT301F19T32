@@ -158,7 +158,6 @@ public class SignUpActivity extends AppCompatActivity {
                     accountDataList.add(new Account(emoji,moodHistory,password,requestList,username));
                 }
 
-                //accountAdapter.notifyDataSetChanged();
             }
         });
 

@@ -13,7 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-
+/**
+ * this is the delete mood fragment
+ * to confirm that the user really want to delete an exist mood
+ */
 public class DeleteMoodFrag extends DialogFragment {
     private String userNameMain;
     private TextView delete;
@@ -21,15 +24,26 @@ public class DeleteMoodFrag extends DialogFragment {
     private OnFragmentInteractionListener listener;
     private HomePage home;
 
+    /**
+     * this is constructor
+     */
     public DeleteMoodFrag(String usernameMain, int idx) {
         this.userNameMain = usernameMain;
         this.idx = idx;
     }
 
+    /**
+     * contains the onYesPress method
+     */
     public interface OnFragmentInteractionListener {
         void onYesPressed(Integer state,String username,Integer idx);
     }
 
+
+    /**
+     *  Make sure the OnFragmentInteractionListener implement
+     * @param context
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -44,9 +58,11 @@ public class DeleteMoodFrag extends DialogFragment {
 
 
 
-
-
-
+    /**
+     * create the fragment
+     * @param savedInstanceState
+     * @return
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

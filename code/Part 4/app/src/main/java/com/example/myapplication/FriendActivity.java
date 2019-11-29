@@ -57,8 +57,8 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     FirebaseFirestore cloudstorage;
     Request requestInner;
     Handler mHandler ;
-    private  Request request;
-    private  Integer i;
+    private Request request;
+    private Integer i;
     private final Timer timer = new Timer();
     private Runnable runnable;
     private Handler handler;

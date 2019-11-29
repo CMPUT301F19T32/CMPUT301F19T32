@@ -2,6 +2,9 @@ package com.example.myapplication;
 
 import java.io.Serializable;
 
+/**
+ *  This is mood class to help store the mood data, get the mood data and set the mood data
+ */
 public class Mood implements Serializable {
     private String emotionState;
     private String reason;
