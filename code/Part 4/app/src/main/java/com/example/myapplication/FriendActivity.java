@@ -179,22 +179,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 startActivity(getIntent());
             }
         });
-/*
-        handler = new Handler();
-        runnable = new Runnable() {
 
-            @Override
-            public void run() {
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-                handler.postDelayed(runnable, 1000*10);
-
-            }
-        };
-        handler.postDelayed(runnable, 1000*5);
-
-*/
 
 
 

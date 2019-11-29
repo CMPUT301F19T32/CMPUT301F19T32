@@ -372,10 +372,7 @@ public class EditMoodActivity extends AppCompatActivity {
 
     }
 
-    /**
-     *  Use GPS to return current Latitude and Longitude
-     * @return LatLng
-     */
+
     private String getExtension(Uri uri){
         ContentResolver cr=getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
@@ -417,8 +414,11 @@ public class EditMoodActivity extends AppCompatActivity {
             img_from_gallary.setImageURI(imguri);
         }
     }
+
+
     /**
-     *Get locations
+     *  Use GPS to return current Latitude and Longitude
+     * @return LatLng
      */
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);

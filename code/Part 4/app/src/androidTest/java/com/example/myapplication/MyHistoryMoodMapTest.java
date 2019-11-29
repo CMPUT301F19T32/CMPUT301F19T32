@@ -58,9 +58,9 @@ public class MyHistoryMoodMapTest {
         solo.clickOnButton("SIGN IN");
 
         solo.assertCurrentActivity("Wrong Activity", HomePage.class);
-        solo.clickOnButton("Followed");
-        solo.assertCurrentActivity("Wrong Activity", FriendActivity.class);
-        solo.clickOnButton("");
+        solo.clickOnButton("MAP");
+        solo.assertCurrentActivity("Wrong Activity", MyHistotyMoodMap.class);
+
     }
 
 
