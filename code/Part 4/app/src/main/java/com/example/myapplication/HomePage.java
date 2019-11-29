@@ -1,19 +1,12 @@
 package com.example.myapplication;
 
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,11 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,9 +28,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 
+/**
+ *  this is home page class
+ */
 public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFragmentInteractionListener {
 
     ListView moodList;
@@ -49,52 +40,20 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
 
     String filter="all";
     LinearLayout filterLayout;
-    ArrayList<Mood> filterDataList;
     Button filter_button;
     Button filter_angry;
     Button filter_sad;
     Button filter_happy;
     Button filter_all;
-    static int chk=0;
     Button map_button;
     FloatingActionButton add_button;
-    //FloatingActionButton deleteMoodButton;
     FirebaseFirestore db;
     TextView test;
-    String TAG = "sample";
-    private LocationManager locationManager;
-    private double longitude;
-    private double latitude;
     Button followed;
-    ArrayList<Request> req;
 
     Button myProfileButton;
     ArrayList<String> mood ;
-    ArrayList<String> date ;
-    private int moodIndex;
-    //Account acc;
-    ArrayList<Account> accountList;
-    Map<String, Object> m;
-    ArrayList<Object> acc;
-    Object []mm;
-    ArrayList<String>sent;
-    ArrayList<String>receive;
-    ArrayList<String>message;
-    String trr;
-    int[] num;
-    List<String> emotionList = new ArrayList<>();
-    List<String> latitudeList = new ArrayList<>();
-    List<String> longitudeList = new ArrayList<>();
-    List<String> reasonList = new ArrayList<>();
-    List<String> socialList = new ArrayList<>();
-    List<String> timeList = new ArrayList<>();
 
-    StringBuilder socialf = new StringBuilder("");
-    StringBuilder timef = new StringBuilder("");
-    StringBuilder emotionf = new StringBuilder("");
-    StringBuilder latitudef = new StringBuilder("");
-    StringBuilder longitudef = new StringBuilder("");
-    StringBuilder reasonf = new StringBuilder("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,56 +66,21 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
         final DocumentReference docRef = db.collection("Account").document(usernameMain);
 
 
-
+        /**
+         *  link the variable to the layout variables
+         */
         filter_button = findViewById(R.id.filter_button);
         filterLayout = findViewById(R.id.filter_layout);
         filter_angry = findViewById(R.id.filter_angry);
         filter_happy = findViewById(R.id.filter_happy);
         filter_sad = findViewById(R.id.filter_sad);
         filter_all = findViewById(R.id.filter_all);
-
         add_button = findViewById(R.id.button);
-        //deleteMoodButton= findViewById(R.id.delete_mood_button);
-        /*
-        db.collection("Account").document(usernameMain).collection("moodHistory")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                socialf.append(document.get("socialState"));
-                                socialList.add(socialf.toString());
-                                socialf.setLength(0);
-                                timef.append(document.get("time"));
-                                timeList.add(timef.toString());
-                                timef.setLength(0);
-                                emotionf.append(document.get("emotionState"));
-                                emotionList.add(emotionf.toString());
-                                emotionf.setLength(0);
-                                latitudef.append(document.get("latitude"));
-                                latitudeList.add(latitudef.toString());
-                                latitudef.setLength(0);
-                                longitudef.append(document.get("longitude"));
-                                longitudeList.add(latitudef.toString());
-                                longitudef.setLength(0);
-                                reasonf.append(document.get("reason"));
-                                reasonList.add(reasonf.toString());
-                                reasonf.setLength(0);
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                        for (int i = 0; i < emotionList.size(); i++) {
-                            System.out.println("******************************************\n");
-                            moodDataList.add((new Mood(emotionList.get(i),reasonList.get(i),timeList.get(i),socialList.get(i),usernameMain,latitudeList.get(i),longitudeList.get(i))));
-                        }
-                        moodAdapter.notifyDataSetChanged();
-                    }
-                });
 
 
+        /**
+         *  allow the user to use filter
+         *  could filter by moods
          */
         final CollectionReference collectionReference =  db.collection("Account").document(usernameMain).collection("moodHistory");
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -201,13 +125,17 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
                 }
             }
         });
+
+        /**
+         *  when click on map button, go to MyHistotyMoodMap class
+         *  allow the user to see mood history on map
+         */
         TextView name= findViewById(R.id.uname);
         name.setText(usernameMain);
         map_button = findViewById(R.id.map_button);
         map_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -229,12 +157,14 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
         moodAdapter = new myMoodList(HomePage.this,moodDataList);
         moodList.setAdapter(moodAdapter);
 
+        /**
+         *  when click on the mood, go to edit activity
+         *  allow the user to view and edit an exist mood
+         */
         final Intent edit = new Intent(HomePage.this, EditMoodActivity.class);
         moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                moodIndex=-1;
                 String selectTime = moodDataList.get(position).getTime();
                 Bundle extras = new Bundle();
                 extras.putString("key",selectTime);
@@ -247,79 +177,14 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
             }
         });
 
-        /*
-        // Enable the selection of multiple items
-        moodList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Change background of colours of selected rows to indicate which are selected
-                for (int i = 0; i < moodList.getChildCount(); i++) {
-                    if (moodList.isItemChecked(i)){
-                        moodList.getChildAt(i).setBackgroundColor(Color.LTGRAY);
-                    } else {
-                        moodList.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
-                    }
-                }
-            }
-        });
 
-        deleteMoodButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                int i;
-                SparseBooleanArray selectedMoods = moodList.getCheckedItemPositions();
 
-                for (i = moodList.getCount(); i >= 0; i--){
-                    if (selectedMoods.get(i)){
-                        db.collection("Account").document(usernameMain).collection("moodHistory").document(moodDataList.get(i).getTime())
-                                .delete();
-                    }
-                }
-                moodList.clearChoices();
-
-            }
-        });
-
+        /**
+         *  when long click on the mood, would go to delete mood fragment
+         *  the fragment would confirm that the user really want to delete a mood
+         *  allow the user to delete an exist mood
          */
-/*
-        moodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                moodIndex=i;
-                for (int j = 0; j < moodList.getChildCount(); j++) {
-                    if (j==i){
-                        moodList.getChildAt(j).setBackgroundColor(Color.LTGRAY);
-
-                    } else {
-                        moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
-                    }
-                }
-            }
-        });
-
-        deleteMoodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(moodIndex!=-1) {
-                    db.collection("Account").document(usernameMain).collection("moodHistory").document(moodDataList.get(moodIndex).getTime())
-                            .delete();
-                    moodIndex = -1;
-                }
-
-                moodAdapter.notifyDataSetChanged();
-                moodList.setAdapter(moodAdapter);
-
-            }
-        });
-
-
-*/
-
-
-
-
-
         moodList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
@@ -335,12 +200,14 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
 
 
 
-
+        /**
+         *  when click on the followed button, would go to friend activity
+         *  allow the user to see and add friend in the friend activity
+         */
         followed = findViewById(R.id.followed_button);
         followed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -349,11 +216,15 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
                 HomePage.this.startActivity(intentf);
             }
         });
-        //Switch to AddMoodActivity Activity after click "Add Mood" button
+
+
+        /**
+         *  when click on the add_mood button, would switch to Add mood Activity
+         *  allow the user to add a mood
+         */
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -364,12 +235,14 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
             }
         });
 
-        /**** My Profile Button ***/
+        /**
+         *  when click on the myprofile button, would switch to my profile Activity
+         *  allow the user to set his/her own profile
+         */
         myProfileButton = findViewById(R.id.profile_button);
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -380,22 +253,25 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
         });
 
 
-
+        /**
+         *  when click on the filter_button, some moods button would be visible for user to choose
+         */
         filter_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filterLayout.setVisibility(View.VISIBLE);
-                moodIndex=-1;
                 for (int j = 0; j < moodList.getChildCount(); j++) {
                     moodList.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
                 }
             }
         });
 
+        /**
+         *  allow the user to filter the mood history with sad
+         */
         filter_sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 filter="sad";
                 final Mood moodhistory =new Mood("","0","","0","0","0","0");
                 db.collection("Account").document(usernameMain).collection("moodHistory").document("0").set(moodhistory);
@@ -408,7 +284,9 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
             }
         });
 
-
+        /**
+         *  allow the user to filter the mood history with angry
+         */
         filter_angry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -422,6 +300,11 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
 
             }
         });
+
+
+        /**
+         *  allow the user to filter the mood history with happy
+         */
         filter_happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -437,6 +320,9 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
         });
 
 
+        /**
+         *  allow the user to go back to the original mood history list
+         */
         filter_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -452,16 +338,18 @@ public class HomePage extends AppCompatActivity implements DeleteMoodFrag.OnFrag
 
     }
 
+
+    /**
+     *  this method connect to DeleteMoodFrag
+     *  the state equal to 1 means the user confirm to delete the mood
+     *  do the delete here
+     */
     @Override
     public void onYesPressed(Integer state,String username, Integer idx) {
-
         if (state == 1){
-
             db.collection("Account").document(username).collection("moodHistory").document(moodDataList.get(idx).getTime())
                     .delete();
-
         }
-
     }
 
 
