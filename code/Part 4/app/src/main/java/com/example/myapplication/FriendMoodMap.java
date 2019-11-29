@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,6 +25,7 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ArrayList<Mood> mapMood;
     private LatLngBounds mMapBoundary;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,16 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            Intent requestIntent  = new Intent(this, FriendActivity.class );
+            startActivity(requestIntent);
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
 
@@ -94,6 +108,7 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(mMapBoundary,0));
 
     }
+
 
 
 }

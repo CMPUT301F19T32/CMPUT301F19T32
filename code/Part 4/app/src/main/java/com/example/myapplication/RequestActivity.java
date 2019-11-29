@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +35,7 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
     StringBuilder sent = new StringBuilder("");
     StringBuilder rece = new StringBuilder("");
     StringBuilder mess = new StringBuilder("");
+    Button back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,14 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
         requestArrayList = new ArrayList<>();
         requestArrayAdapter = new CustomRequestList(this,requestArrayList);
         requestVeiw.setAdapter(requestArrayAdapter);
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent requestIntent  = new Intent(RequestActivity.this, FriendActivity.class );
+                startActivity(requestIntent);
+            }
+        });
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReferences =  db.collection("Account").document(username).collection("Request");
         collectionReferences.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -120,5 +131,11 @@ public class RequestActivity extends AppCompatActivity implements AgreeDisagreeF
 
         db.collection("Account").document(username).collection("Request").document(request.getSentName())
                 .delete();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return false;
     }
 }

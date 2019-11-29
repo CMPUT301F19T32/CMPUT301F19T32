@@ -187,7 +187,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 overridePendingTransition(0, 0);
             }
         });
-        /*
+
         handler = new Handler();
         runnable = new Runnable() {
 
@@ -203,7 +203,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         handler.postDelayed(runnable, 1000*5);
 
 
-         */
+
 
 
 
@@ -215,6 +215,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             public void onClick(View v) {
                 index = moodFrArrayList.size() + 1;
                 new AddFriendFrag(user).show(getSupportFragmentManager(),"addFriend");
+                handler.removeCallbacks(runnable);
 
             }
         });
@@ -231,6 +232,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 bundle.putSerializable("mood",moodFrArrayList);
                 //Log.e("ff",moodDataList.toString());
                 mapIntent.putExtras(bundle);
+                handler.removeCallbacks(runnable);
                 startActivity(mapIntent);
 
 
@@ -246,6 +248,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
             public void onClick(View v) {
                 Intent requestIntent  = new Intent(FriendActivity.this, RequestActivity.class );
                 requestIntent.putExtra("user",user);
+                handler.removeCallbacks(runnable);
                 startActivity(requestIntent);
             }
         });
@@ -378,13 +381,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
 
         //final DocumentReference ReceiverRef = db.collection("Account").document(request.getReciveName()).collection("Request").document(request.getSentName());
-
-
-
-
-
-
-
+        handler.postDelayed(runnable, 1000*5);
     }
     public void content(){
         final Button requestButton = findViewById(R.id.request);
