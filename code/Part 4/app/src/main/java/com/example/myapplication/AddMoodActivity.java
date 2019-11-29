@@ -376,7 +376,7 @@ public class AddMoodActivity extends AppCompatActivity {
     }
 
     /**
-     *Get the latitude and longitude 
+     *Get the latitude and longitude
      */
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
