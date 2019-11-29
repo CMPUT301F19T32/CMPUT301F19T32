@@ -66,10 +66,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/view_social"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_emotion"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintVertical_bias="0.472" />
 
     <TextView
         android:id="@+id/view_social"
@@ -84,7 +84,7 @@
         app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846" />
+        app:layout_constraintVertical_bias="0.927" />
 
     <TextView
         android:id="@+id/view_username"
@@ -115,6 +115,6 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.824" />
+        app:layout_constraintVertical_bias="0.874" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
