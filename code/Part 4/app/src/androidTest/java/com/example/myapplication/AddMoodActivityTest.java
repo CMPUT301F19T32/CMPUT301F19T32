@@ -65,34 +65,20 @@ public class AddMoodActivityTest {
      */
     @Test
     public void checkAddMood(){
-        /*
-        solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
-        solo.enterText((EditText) solo.getView(R.id.password_field), "123");
-        solo.clickOnButton("SIGN IN");
-        solo.clickOnButton("ADD MOOD");
-        */
         solo.assertCurrentActivity("Wrong Activity", AddMoodActivity.class);
-
         View view1 = solo.getView("imageView");
-
         solo.clickOnView(view1);
-        GridView gridview = (GridView) solo.getView("gridview");
-        ImageView img = (ImageView) gridview.getChildAt(0);
-        solo.clickOnView(img);
-
         solo.enterText((EditText) solo.getView(R.id.reason), "heavy school work");
-
+        ImageView gimg = (ImageView) solo.getView("");
+        solo.clickOnView(gimg);
         // 0 is the first spinner in the layout
         View view3 = solo.getView(Spinner.class, 0);
         solo.clickOnView(view3);
 
         solo.clickOnButton("submit");
 
-
-
-
-
     }
+
 
 
 
