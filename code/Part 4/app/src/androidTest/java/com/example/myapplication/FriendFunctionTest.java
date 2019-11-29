@@ -109,7 +109,7 @@ public class FriendFunctionTest {
      * by hand.
      */
     @Test
-    public void ChechAddfriend() {
+    public void CheckAddfriend() {
         solo.enterText((EditText) solo.getView(R.id.username_field), "user1");
         solo.enterText((EditText) solo.getView(R.id.password_field), "123");
         solo.clickOnButton("SIGN IN");
