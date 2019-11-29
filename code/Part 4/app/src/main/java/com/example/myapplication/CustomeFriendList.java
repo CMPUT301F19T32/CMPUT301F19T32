@@ -20,12 +20,20 @@ public class CustomeFriendList extends ArrayAdapter<Mood> {
     private ArrayList<Mood> moods;
     private Context context;
 
+
+    /**
+     * This is constructor
+     */
     public CustomeFriendList(Context context, ArrayList<Mood> moods) {
         super(context, 0, moods);
         this.moods = moods;
         this.context = context;
     }
 
+
+    /**
+     * set the data to let the user see a list
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

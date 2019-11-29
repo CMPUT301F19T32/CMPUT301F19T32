@@ -58,7 +58,10 @@ public class ViewActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * create a view list and set the data
+     * let the user be able to see the friend recent mood
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +135,11 @@ public class ViewActivity extends AppCompatActivity {
         }
 
 
-
+    /**
+     * to get the address of the friend mood
+     * @param latLng
+     * @return address
+     */
     public String getAddress(LatLng latLng){
         String address = "";
         if (latLng.latitude==0.0 && latLng.longitude==0.0){

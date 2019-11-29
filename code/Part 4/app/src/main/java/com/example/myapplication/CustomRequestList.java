@@ -25,6 +25,9 @@ public class CustomRequestList extends ArrayAdapter<Request> {
 
     }
 
+    /**
+     * Let the user be able to see the request list
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

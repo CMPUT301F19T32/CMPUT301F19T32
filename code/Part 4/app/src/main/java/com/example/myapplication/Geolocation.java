@@ -7,8 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-/** Model for holding geo location information from Google Maps API.
- *
+/**
+ *  Model for holding geo location information from Google Maps API.
  *
  */
 public class Geolocation implements Serializable {

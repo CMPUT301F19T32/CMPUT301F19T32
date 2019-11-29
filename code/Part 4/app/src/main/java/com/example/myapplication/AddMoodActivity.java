@@ -55,7 +55,7 @@ import io.grpc.Context;
 
 import static android.location.LocationManager.GPS_PROVIDER;
 /**
- *This activity can add new mood history
+ * This activity can add new mood history
  */
 public class AddMoodActivity extends AppCompatActivity {
     private ImageView image;
@@ -172,7 +172,7 @@ public class AddMoodActivity extends AppCompatActivity {
             }
         });
 /**
- *Select image
+ * Select image
  */
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,14 +184,6 @@ public class AddMoodActivity extends AppCompatActivity {
         img_from_gallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
-                 * Intent intent = new Intent(Intent.ACTION_PICK);
-                 *                 intent.setType("image/*");
-                 *                 String[] mimeTypes = {"image/jpeg", "image/png"};
-                 *                 intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
-                 *                 // Launching the Intent
-                 *                 startActivityForResult(intent,GALLERY_REQUEST_CODE);
-                 */
 
                 Filechooser();
             }
@@ -201,7 +193,7 @@ public class AddMoodActivity extends AppCompatActivity {
         map_bt = findViewById(R.id.map_bt);
         location_view = findViewById(R.id.mood_location);
 /**
- *Click to get the location
+ * Click to get the location
  */
         map_bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,7 +226,7 @@ public class AddMoodActivity extends AppCompatActivity {
         });
 
 /**
- *Click reason to enter reason
+ * Click reason to enter reason
  */
         reason=findViewById(R.id.reason);
         //this code is learn from https://stackoverflow.com/questions/28823898/android-how-to-set-maximum-word-limit-on-edittext
@@ -283,7 +275,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
 
 /**
- *Click submit to send the data to Firestore and Firebase Storage
+ * Click submit to send the data to Firestore and Firebase Storage
  */
         final Intent back = new Intent(this,HomePage.class);
         submit=findViewById(R.id.submit);
@@ -324,7 +316,7 @@ public class AddMoodActivity extends AppCompatActivity {
 
 
     /**
-     *Choose picture and get its extension
+     * Choose picture and get its extension
      */
     private String getExtension(Uri uri){
         ContentResolver cr=getContentResolver();
@@ -378,7 +370,7 @@ public class AddMoodActivity extends AppCompatActivity {
     }
 
     /**
-     *Get the latitude and longitude
+     * Get the latitude and longitude
      */
     public LatLng getCurrentLocation() {
         LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
@@ -426,7 +418,6 @@ public class AddMoodActivity extends AppCompatActivity {
 
     /**
      *  Use latitude and longitude to get address
-
      */
 
 
@@ -453,24 +444,6 @@ public class AddMoodActivity extends AppCompatActivity {
 
 
 
-
-
     }
-/*
-    public void onActivityResult(int requestCode,int resultCode,Intent data) {
-        // Result code is RESULT_OK only if the user selects an Image
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK)
-            switch (requestCode) {
-                case GALLERY_REQUEST_CODE:
-                    //data.getData returns the content URI for the selected Image
-                    Uri selectedImage = data.getData();
-                    img_from_gallary.setImageURI(selectedImage);
-                    break;
-            }
-    }
-
-*/
-
 
 
