@@ -1,5 +1,5 @@
 Code: The main code is in Part4 folder.
-The PNG file of storyboard is unclear.
+The PNG file of storyboard is unclear, click on Down to down a clear pdf storyboard.
 
 Remind:
 APP wokrs properly for API29 AND API28. In API27, it may generate some error message in event log of android studio, but does not affect its function.
