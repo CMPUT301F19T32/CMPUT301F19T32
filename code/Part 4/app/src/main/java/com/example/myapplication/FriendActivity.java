@@ -265,7 +265,16 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     public void onOkPress(Request request) {
 
         requestInner = request;
-        if(!requestInner.getReciveName().equals("")){
+        if (!requestInner.getReciveName().equals("")&&requestInner.getReciveName().equals(user)){
+            Toast toast =  Toast.makeText(FriendActivity.this, "Don't send request to your self", Toast.LENGTH_SHORT);
+            LinearLayout toastLayout = (LinearLayout) toast.getView();
+            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(24);
+            toastTV.setTextColor(Color.RED);
+            toast.show();
+
+        }
+        else if(!requestInner.getReciveName().equals("")&&!requestInner.getReciveName().equals(user)){
             DocumentReference docIdRef = db.collection("Account").document(requestInner.getReciveName());
             docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -335,6 +344,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 }
             });
         }
+
         else{
             Toast toast =  Toast.makeText(FriendActivity.this, "Enter a person please", Toast.LENGTH_SHORT);
             LinearLayout toastLayout = (LinearLayout) toast.getView();
