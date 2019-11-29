@@ -1,27 +1,25 @@
-Code: The main code is in LogIn folder.
+Code: The main code is in Part4 folder.
 The PNG file of storyboard is unclear.
 
-WARNING: This app could only run on API29, or app will crash due to gps access problem.
-when user wants to create a new mood, in other words, when programs goes to AddMoodActivity, it may crash. (We are still figuring out why this happens).
-
-WARNING: Accesses of location permission and GPS are needed for this app. When users first install this app, the app will ask users to enable location if location function is unabled, and will ask users to give permisson 
-of using location for this app. If two accesses is not granted, users cannot use this app. 
-
-
-Bug:
-
-1. Sometimes if users click MAP button, 
-it won't set a creat view to markers and place any markers, 
-users may need to try serval times to get a right display. 
-Maybe the program cannot receive data from firestore sometimes,  
-or need more times to wait data from firestore (this problem would happens only in MyhistoryMoodMap, but not for FriendMoodMap, 
-since data for FriendMoodMap is get from bundle while  MyhistoryMoodMap uses firestore, we are figuring out which one is better for data transmitting among activities).
-
-2. If you first install this app or just close your location then enable it when app ask you, when you tap LOCATION button in AddMoodActivity or EditMoodActivity,
-app will crash (it is fixed right now). Since this method 
-getLastKnownLocation(GPS_PROVIDER);  it needs your phone's location last time, if you just enable GPS, 
-it is null, app cannot get your location. User needs to click button twice that to get location (right now the app will not crash but still need double click).
+Remind:
+APP wokrs properly for API29 AND API28. In API27, it may generate some error message in event log of android studio, but does not affect its function.
+The location function uses Android Object <Geocoder>, if the device does not support this service, app cannot use location function.
+(android java.io.IOException: Service not Available) for this error
+For most android devices, especially real devices, they have this service. 
+Another reason is that (java.io.IOException: grpc failed). for this case, it may caused by Geocoder failed when latitude and longitude 
+contain above 3 decimal places, or it may be said that Geocoder can not decode every latitude and longitude.
+(app may not work properly during this case. Since when we are doing testing, it's hard to find a device that 
+does not have Geocoder service, and even we choose latitude and longitude contain above 3 decimal places for testing, app works properly.)
 
 
-3. The friendList sometime will show more than on same mood for one friend(very little chance). Still work in this problem. 
-4 sometime the lsiview will show 0.0(flashing). Not sure it is our program's problem or the virtua machine's problem.
+reference for above: 
+
+https://stackoverflow.com/questions/4761052/why-is-android-geocoder-throwing-a-service-not-available-exception/4762815#4762815
+https://stackoverflow.com/questions/45012289/java-io-ioexception-grpc-failed
+https://blog.csdn.net/ww897532167/article/details/80964248
+
+
+
+
+
+
