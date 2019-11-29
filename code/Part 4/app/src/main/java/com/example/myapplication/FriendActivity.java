@@ -367,8 +367,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         }
 
-
-
     }
     public void content(){
         final Button requestButton = findViewById(R.id.request);
