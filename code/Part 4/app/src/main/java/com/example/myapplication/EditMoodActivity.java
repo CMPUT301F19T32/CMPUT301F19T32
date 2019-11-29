@@ -99,7 +99,9 @@ public class EditMoodActivity extends AppCompatActivity {
         storageReference=FirebaseStorage.getInstance().getReference(user);
         DocumentReference docRef = db.collection("Account").document(user).collection("moodHistory").document(key);
         Source source = Source.CACHE;
-
+/**
+ *
+ */
         docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -116,7 +118,6 @@ public class EditMoodActivity extends AppCompatActivity {
                     storageReference.child(time).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            //Toast.makeText(EditMoodActivity.this,"Image successfully find",Toast.LENGTH_LONG).show();
                             Uri downloadUrl = uri;
                             String fileUrl = downloadUrl.toString();
                             Glide.with(EditMoodActivity.this /* context */)
@@ -127,7 +128,6 @@ public class EditMoodActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            //Toast.makeText(EditMoodActivity.this,"Failed",Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -170,7 +170,6 @@ public class EditMoodActivity extends AppCompatActivity {
 
         gridview.setAdapter(new ImageAdapter(this));
 // Set the background
-        //gridview.setBackgroundResource(R.color.common_google_signin_btn_text_dark);
 
         social.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -202,7 +201,6 @@ public class EditMoodActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
 
-                //If user click one emoji in the gridview, then the imageview will show the corresponding emoji.
                 if(position==0){
                     image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
                     gridview.setVisibility(View.INVISIBLE);
