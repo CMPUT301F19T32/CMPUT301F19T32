@@ -25,7 +25,6 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ArrayList<Mood> mapMood;
     private LatLngBounds mMapBoundary;
-    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +33,7 @@ public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallbac
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-
         mapMood = (ArrayList<Mood>) bundle.getSerializable("mood");
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
