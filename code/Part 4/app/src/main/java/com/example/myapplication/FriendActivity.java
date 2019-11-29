@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -63,7 +64,11 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
     private Handler handler;
     int check=0;
 
+    protected void onDestroy() {
+        super.onDestroy();
 
+        handler.removeCallbacks(runnable);
+    }
     //friendList get from fireStore
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +114,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (queryDocumentSnapshots != null&&check==0) {
+                if (queryDocumentSnapshots != null) {
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
                         String friend = (String) doc.getId();
@@ -164,15 +169,9 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
 
         final Button map = findViewById(R.id.map_fr);
         Button addFriend = findViewById(R.id.addFriend);
-        Button refresh=findViewById(R.id.refresh);
+        final Button refresh=findViewById(R.id.refresh);
 
-        /**
-         * refresh button will refresh the activity.
-         */
-        if (i == 0){
-            refresh.performClick();
-            i += 1;
-        }
+
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +182,20 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 overridePendingTransition(0, 0);
             }
         });
+        final Button refreshbutton = refresh;
+        handler = new Handler();
+        runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                handler.postDelayed(runnable, 1000*3);//每隔3s执行
+
+            }
+        };
+        handler.postDelayed(runnable, 1000*5);
 
 
 

@@ -41,11 +41,14 @@
             android:label="@string/title_activity_my_histoty_mood_map" />
         <activity android:name=".AddFriendFrag" />
         <activity android:name=".RequestActivity" />
-        <activity android:name=".FriendActivity" />
+        <activity
+            android:name=".FriendActivity"
+            android:theme="@style/AppThemeNoAnimation" />
         <activity android:name=".AddMoodActivity" />
         <activity android:name=".HomePage" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".SignUpActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
