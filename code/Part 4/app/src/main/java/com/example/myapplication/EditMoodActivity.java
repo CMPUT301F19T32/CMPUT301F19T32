@@ -55,7 +55,9 @@ import java.util.List;
 import java.util.Locale;
 
 import static android.location.LocationManager.GPS_PROVIDER;
-
+/**
+ * This activity can edit the existing moods
+ */
 public class EditMoodActivity extends AppCompatActivity {
     private ImageView image;
     private void initComponent() {

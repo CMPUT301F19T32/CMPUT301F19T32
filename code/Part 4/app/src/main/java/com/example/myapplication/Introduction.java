@@ -1,5 +1,7 @@
 package com.example.myapplication;
-
+/**
+ *The information of introduction in profile
+ */
 public class Introduction {
     private String Introduction;
 

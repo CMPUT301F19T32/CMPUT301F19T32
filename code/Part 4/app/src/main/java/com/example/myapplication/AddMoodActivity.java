@@ -54,7 +54,9 @@ import java.util.Locale;
 import io.grpc.Context;
 
 import static android.location.LocationManager.GPS_PROVIDER;
-
+/**
+ *This activity can add new mood history
+ */
 public class AddMoodActivity extends AppCompatActivity {
     private ImageView image;
     private void initComponent() {

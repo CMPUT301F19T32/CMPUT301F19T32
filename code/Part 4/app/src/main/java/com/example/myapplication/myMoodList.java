@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
+/**
+ *  This is mood list to help store the mood data, get the mood data and set the mood data
+ */
 public class myMoodList extends ArrayAdapter<Mood> {
 
     private ArrayList<Mood> moods;

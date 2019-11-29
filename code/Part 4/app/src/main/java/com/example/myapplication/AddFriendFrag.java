@@ -20,7 +20,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+/**
+ *  This activity can show the fragment which can send request to other user with message
+ */
 public class AddFriendFrag extends DialogFragment {
     private String userName;
     private EditText userToSent;

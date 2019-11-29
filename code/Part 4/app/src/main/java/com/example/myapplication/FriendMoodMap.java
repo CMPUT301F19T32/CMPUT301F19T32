@@ -19,7 +19,9 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-
+/**
+ *  This activity can show the maps that shows friends' mood histories' track
+ */
 public class FriendMoodMap extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
