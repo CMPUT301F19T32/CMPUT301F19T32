@@ -1,9 +1,13 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +49,7 @@ public class ViewActivity extends AppCompatActivity {
     String longitude;
     String time;
     String user;
+    Button back;
     private ImageView image;
     private ImageView reason_image;
     private void initComponent() {
@@ -64,7 +69,7 @@ public class ViewActivity extends AppCompatActivity {
         view_reason = findViewById(R.id.view_reason);
         view_social = findViewById(R.id.view_social);
         view_location = findViewById(R.id.location);
-
+        back = findViewById(R.id.back);
 
         view_username.setText(getIntent().getStringExtra("username"));
         view_emotion.setText(getIntent().getStringExtra("emotion").toUpperCase());
@@ -78,7 +83,13 @@ public class ViewActivity extends AppCompatActivity {
         LatLng location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
 
         view_location.setText(getAddress(location));
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent requestIntent  = new Intent(ViewActivity.this, FriendActivity.class );
+                startActivity(requestIntent);
+            }
+        });
 
         if(getIntent().getStringExtra("emotion").equals("happy")){
             image.setImageDrawable( getResources().getDrawable(R.drawable.img1));
@@ -149,5 +160,11 @@ public class ViewActivity extends AppCompatActivity {
     }
 
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -158,7 +158,6 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                             }
                         });
                     }
-                    check=1;
                 }
             }
         });
@@ -258,6 +257,7 @@ public class FriendActivity extends AppCompatActivity implements AddFriendFrag.O
                 viewIntent.putExtra("latitude",mood.getLatitude());
                 viewIntent.putExtra("longitude",mood.getLongitude());
                 viewIntent.putExtra("time",mood.getTime());
+                handler.removeCallbacks(runnable);
                 startActivity(viewIntent);
                 /// add new activity relatide to homepage
             }
